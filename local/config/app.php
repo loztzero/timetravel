@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost:8080/timetravel/',
+    'url' => 'http://localhost/timetravel/',
 
     /*
     |--------------------------------------------------------------------------

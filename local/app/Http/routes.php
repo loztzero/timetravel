@@ -21,6 +21,9 @@ Route::controller('sample-upload', 'SampleUploadController');
 Route::controller('main', 'MainController');
 Route::controller('user', 'UserController');
 Route::controller('tour-profile', 'TourProfileController');
+Route::controller('tour-review', 'TourReviewController');
+Route::controller('tour-itenary', 'TourItenaryController');
+Route::controller('tour-album', 'TourAlbumController');
 
 Route::get('/', function () {
     return view('welcome');

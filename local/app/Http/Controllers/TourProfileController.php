@@ -2,20 +2,16 @@
 
 use Input, Session, Redirect;
 use App\Models\TourProfile;
+use App\User;
 class TourProfileController extends Controller {
 
 	public function getIndex(){
-		//print_r($profile);
-		$tourProfile = TourProfile::all();
+		$tourProfile = TourProfile::all()->toArray()[0];
+		$tourProfile['user'] = User::find($tourProfile['mst001_id'])->toArray();
 		return view('tourprofile.tour-profile-browse')->with('tourProfile', $tourProfile);
 	}
 
-	public function getInput(){
-		return view('tourprofile.tour-profile-browse');
-	}
-
 	public function postSave(){
-		// echo "yeye";
 		$data = Input::all();
 		$tourProfile = new TourProfile();
 		$errorBag = $tourProfile->rules($data);
