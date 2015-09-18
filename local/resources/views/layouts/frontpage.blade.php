@@ -86,10 +86,10 @@
     <div class="row">
       <div class="col s3">
         <div class="collection hide-on-med-and-down" >
-          <a href="#!" class="collection-item active">Profile</a>
-          <a href="#!" class="collection-item">My Travel Time</a>
-          <a href="#!" class="collection-item">My Trip</a>
-          <a href="#!" class="collection-item">My Review</a>
+          <a href="{{App::make('url')->to('/visitor-profile')}}" class="collection-item active">Profile</a>
+          <a href="{{App::make('url')->to('/visitor-favorite-tour')}}" class="collection-item">My Favorite Tour</a>
+          <a href="{{App::make('url')->to('/visitor-itenary')}}" class="collection-item">My Itenary</a>
+          <a href="{{App::make('url')->to('/visitor-photo-album')}}" class="collection-item">My Journey</a>
         </div>
       </div>
       <div class="col s12 m9">

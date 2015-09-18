@@ -1,13 +1,13 @@
 <?php namespace App\Http\Controllers;
 
-use Input, Session, Redirect;
+use Input, Session, Redirect, Auth, Request, File;
 use App\Models\VisitorProfile;
 class VisitorProfileController extends Controller {
 
 	public function getIndex(){
 		//print_r($visitorProfile);
-		$visitorProfile = VisitorProfile::all();
-		return view('visitorprofile.visitor-profile-browse')->with('visitor-profile', $visitorProfile);
+		$visitorProfile = VisitorProfile::where('mst001_id', '=', Auth::user()->id)->first();
+		return view('visitorprofile.visitor-profile-browse')->with('profile', $visitorProfile);
 	}
 
 	public function getInput(){
@@ -22,7 +22,7 @@ class VisitorProfileController extends Controller {
 		if(count($errorBag) > 0){
 
 			Session::flash('error', $errorBag);
-			return redirect('tour-profile/input')
+			return redirect('visitor-profile')
 				->withInput($data);	
 		} else {
 
@@ -35,8 +35,21 @@ class VisitorProfileController extends Controller {
 
 			$visitorProfile->doParams($visitorProfile, $data);
 			$visitorProfile->save();
+
+			if(Request::hasFile('photo')){
+				if(Request::file('photo')->isValid()){
+
+					$path = './files/visitor/'.$visitorProfile->id;
+					if(!File::exists($path)) {
+					    File::makeDirectory($path, $mode = 0777, true, true);
+					}
+		            Request::file('photo')->move($path, Request::file('photo')->getClientOriginalName());
+					
+				}
+			}
 			
-			return redirect('tour-profile')->with('message', array('Data tour-profile telah berhasil di buat'));
+			return redirect('visitor-profile')->with('message', array('Data anda telah berhasil di simpan'))
+			->withInput($visitorProfile->toArray());
 		}
 	}
 
@@ -49,11 +62,11 @@ class VisitorProfileController extends Controller {
 
             if($visitorProfile == null){
             	Session::flash('error', array('pass value dengan id ' . $passvalue['ID'] . ' tidak ditemukan'));
-            	return Redirect::to('tour-profile');
+            	return Redirect::to('visitor-profile');
             }
 
             //print_r($visitorProfile->toArray());
-            return Redirect::to('tour-profile/input')->withInput($visitorProfile->toArray());
+            return Redirect::to('visitor-profile')->withInput($visitorProfile->toArray());
         }
     }
 }

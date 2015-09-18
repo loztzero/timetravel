@@ -22,7 +22,7 @@ class VisitorItenaryController extends Controller {
 		if(count($errorBag) > 0){
 
 			Session::flash('error', $errorBag);
-			return redirect('tour-profile/input')
+			return redirect('visitor-itenary/input')
 				->withInput($data);	
 		} else {
 
@@ -36,7 +36,7 @@ class VisitorItenaryController extends Controller {
 			$visitorItenary->doParams($visitorItenary, $data);
 			$visitorItenary->save();
 			
-			return redirect('tour-profile')->with('message', array('Data tour-profile telah berhasil di buat'));
+			return redirect('visitor-itenary')->with('message', array('Data tour-profile telah berhasil di buat'));
 		}
 	}
 
@@ -49,11 +49,11 @@ class VisitorItenaryController extends Controller {
 
             if($visitorItenary == null){
             	Session::flash('error', array('pass value dengan id ' . $passvalue['ID'] . ' tidak ditemukan'));
-            	return Redirect::to('tour-profile');
+            	return Redirect::to('visitor-itenary');
             }
 
             //print_r($visitorItenary->toArray());
-            return Redirect::to('tour-profile/input')->withInput($visitorItenary->toArray());
+            return Redirect::to('visitor-itenary/input')->withInput($visitorItenary->toArray());
         }
     }
 }
