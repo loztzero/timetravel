@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use Input;
 use DateTime;
 use App\Emodel;
-use Validator;
+use Validator, Auth;
 class VisitorItenary extends Emodel {
 	protected $table = 'VST030';
 
@@ -39,9 +39,9 @@ class VisitorItenary extends Emodel {
 	}
 
 	private function getMaxLineNumber(){
-		$result = VisitorItenary::max('line_number')->where('mst001_id', '=', Auth::user()->id);
+		$result = VisitorItenary::where('mst001_id', '=', Auth::user()->id)->max('line_number');
 		if($result != null){
-			return $result->get()->line_number + 1;
+			return $result + 1;
 		}
 
 		return 1;
