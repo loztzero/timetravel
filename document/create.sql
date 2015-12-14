@@ -5,7 +5,7 @@
 # Project name:                                                          #
 # Author:                                                                #
 # Script type:           Database creation script                        #
-# Created on:            2015-12-02 13:20                                #
+# Created on:            2015-12-14 21:26                                #
 # ---------------------------------------------------------------------- #
 
 
@@ -27,7 +27,10 @@ CREATE TABLE `TR0040` (
     `currency` VARCHAR(40) NOT NULL,
     `price` VARCHAR(40) NOT NULL,
     `description` VARCHAR(1024) NOT NULL,
+    `start_period` DATE NOT NULL,
+    `end_period` DATE,
     `photo` VARCHAR(100),
+    `min_pax` INTEGER(5) NOT NULL,
     `updated_at` TIMESTAMP NOT NULL,
     `created_at` TIMESTAMP NOT NULL,
     CONSTRAINT `PK_TR0040` PRIMARY KEY (`id`),
