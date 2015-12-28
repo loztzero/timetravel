@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use Input;
 use DateTime;
 use App\Emodel;
+use DB;
 use Validator;
 class VisitorItenary extends Emodel {
 	protected $table = 'VST030';
@@ -17,8 +18,8 @@ class VisitorItenary extends Emodel {
         );
 
 		$messages = array(
-            'title.required'		=> 'Field 1 harus diisi',
-            'description.required'		=> 'Field 2 harus diisi',
+            'title.required'		=> 'Title must be filled',
+            'description.required'		=> 'Description must be filled',
 		);
 		
         $v = Validator::make($data, $rules, $messages);
@@ -31,7 +32,7 @@ class VisitorItenary extends Emodel {
 
 	public function doParams($object, $data)
 	{
-		$object->mst001_id 		= Auth::user()->id;
+		$object->mst001_id 		= '7d88f93d-6af6-4e9d-9235-2e7b005f5a0d';//Auth::user()->id;
 		$object->line_number 	= $this->getMaxLineNumber();
 		$object->title      	= $data['title'];
 		$object->description   	= $data['description'];
@@ -39,9 +40,11 @@ class VisitorItenary extends Emodel {
 	}
 
 	private function getMaxLineNumber(){
-		$result = VisitorItenary::max('line_number')->where('mst001_id', '=', Auth::user()->id);
+		$result =  VisitorItenary::where('mst001_id', '=', '7d88f93d-6af6-4e9d-9235-2e7b005f5a0d')
+					->max('line_number')->get()
+					;
 		if($result != null){
-			return $result->get()->line_number + 1;
+			return $result->line_number + 1;
 		}
 
 		return 1;

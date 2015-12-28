@@ -7,9 +7,9 @@
 <table class="table table-striped table-bordered bordered striped">
   <thead>
     <tr>
-      <th style="width:90px;">Edit</th>
-      <th style="width:90px;">Delete</th>
+      <th style="width:90px;">Action</th>
       <th>Title</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
@@ -34,6 +34,7 @@
         </div>
       </td>
       <td>{{ $value->title }}</td>
+      <td>{{ $value->description }}</td>
     </tr>
     @endforeach
   </tbody>

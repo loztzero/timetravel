@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <textarea id="description" class="materialize-textarea">{{Input::old('description')}}</textarea>
+        <textarea id="description" name="description" class="materialize-textarea">{{Input::old('description')}}</textarea>
           <label for="description">Description</label>
       </div>
     </div>
