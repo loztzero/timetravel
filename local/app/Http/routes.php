@@ -10,17 +10,40 @@
 | and give it the controller to call when that URI is requested.x
 |
 */
-use App\Models\VisitorPhotoAlbum;
+
+Route::filter('auth', function($route, $request)
+{
+    // Login check (Default)
+    if (Auth::guest()) return Redirect::guest('/main');
+});
+
+//script untuk menjaga apakah dia visitor atau bukan
+Route::filter('isTraveler', function($route, $request){
+
+	if(Auth::user()->role != 'User'){
+		return redirect('/main/register');
+	}
+
+});
+
+Route::group(array('before' => 'auth'), function(){
+	Route::group(array('before' => 'isTraveler'), function(){
+		Route::controller('visitor-profile', 'VisitorProfileController');
+		Route::controller('visitor-itenary', 'VisitorItenaryController');
+		Route::controller('visitor-favorite-tour', 'VisitorFavoriteTourController');
+		Route::controller('visitor-photo-album', 'VisitorPhotoAlbumController');
+	});
+});
+
 
 Route::controller('sample', 'SampleController');
-Route::controller('visitor-profile', 'VisitorProfileController');
-Route::controller('visitor-itenary', 'VisitorItenaryController');
-Route::controller('visitor-favorite-tour', 'VisitorFavoriteTourController');
-Route::controller('visitor-photo-album', 'VisitorPhotoAlbumController');
 Route::controller('sample-upload', 'SampleUploadController');
 Route::controller('main', 'MainController');
 Route::controller('user', 'UserController');
 Route::controller('tour-profile', 'TourProfileController');
+Route::controller('tour-review', 'TourReviewController');
+Route::controller('tour-itenary', 'TourItenaryController');
+Route::controller('tour-album', 'TourAlbumController');
 
 Route::get('/', function () {
     return view('welcome');

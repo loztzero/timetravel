@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use Input, Session, Redirect;
+use Input, Session, Redirect, Auth;
 use App\Models\VisitorItenary;
 class VisitorItenaryController extends Controller {
 
@@ -12,6 +12,11 @@ class VisitorItenaryController extends Controller {
 
 	public function getInput(){
 		return view('visitoritenary.visitor-itenary-input');
+	}
+
+	public function getKambing(){
+		$result = VisitorItenary::where('mst001_id', '=', Auth::user()->id)->max('line_number');
+		print_r($result);
 	}
 
 	public function postSave(){
