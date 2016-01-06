@@ -1,13 +1,14 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Visitor;
 
 use Input, Session, Redirect, Auth, Request, File;
+use App\Http\Controllers\Controller;
 use App\Models\VisitorProfile;
 class VisitorProfileController extends Controller {
 
 	public function getIndex(){
 		//print_r($visitorProfile);
 		$visitorProfile = VisitorProfile::where('mst001_id', '=', Auth::user()->id)->first();
-		return view('visitorprofile.visitor-profile-browse')->with('profile', $visitorProfile);
+		return view('visitor.profile.visitor-profile-browse')->with('profile', $visitorProfile);
 	}
 
 	public function getInput(){

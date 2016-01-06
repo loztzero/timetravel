@@ -1,6 +1,7 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Visitor;
 
 use Input, Session, Redirect;
+use App\Http\Controllers\Controller;
 use App\Models\VisitorPhotoAlbum;
 class VisitorPhotoAlbumController extends Controller {
 

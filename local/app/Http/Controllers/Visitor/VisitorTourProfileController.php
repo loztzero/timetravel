@@ -1,5 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Visitor;
 
+use App\Http\Controllers\Controller;
 use Input, Session, Redirect;
 use App\Models\VisitorTourProfile;
 class VisitorTourProfilecontroller extends Controller {

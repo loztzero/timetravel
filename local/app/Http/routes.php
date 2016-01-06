@@ -28,10 +28,10 @@ Route::filter('isTraveler', function($route, $request){
 
 Route::group(array('before' => 'auth'), function(){
 	Route::group(array('before' => 'isTraveler'), function(){
-		Route::controller('visitor-profile', 'VisitorProfileController');
-		Route::controller('visitor-itenary', 'VisitorItenaryController');
-		Route::controller('visitor-favorite-tour', 'VisitorFavoriteTourController');
-		Route::controller('visitor-photo-album', 'VisitorPhotoAlbumController');
+		Route::controller('visitor-profile', 'Visitor\VisitorProfileController');
+		Route::controller('visitor-itenary', 'Visitor\VisitorItenaryController');
+		Route::controller('visitor-favorite-tour', 'Visitor\VisitorFavoriteTourController');
+		Route::controller('visitor-photo-album', 'Visitor\VisitorPhotoAlbumController');
 	});
 });
 

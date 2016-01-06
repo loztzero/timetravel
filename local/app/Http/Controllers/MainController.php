@@ -57,5 +57,9 @@ class MainController extends Controller {
 		return view('main.main-register-success');
 	}
 
+	public function getTrialNewLayout(){
+		return view('main.main-load');
+	}
+
 
 }

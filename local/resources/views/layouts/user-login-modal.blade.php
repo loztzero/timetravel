@@ -2,7 +2,7 @@
 	<div class="modal-content">
 		<h5>Login Here</h5>
 		<form class="col s12" action="{{App::make('url')->to('/')}}/user/validate-user" method="post">
-			<input type="hidden" name="_token" value="{{{ csrf_token() }}}">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<div class="row">
 				<div class="input-field col s12">
 					<input placeholder="Email" id="email" type="text" class="validate" name="email" focus>

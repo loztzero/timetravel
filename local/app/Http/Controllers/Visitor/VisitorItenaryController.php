@@ -1,6 +1,7 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Visitor;
 
 use Input, Session, Redirect, Auth;
+use App\Http\Controllers\Controller;
 use App\Models\VisitorItenary;
 class VisitorItenaryController extends Controller {
 
