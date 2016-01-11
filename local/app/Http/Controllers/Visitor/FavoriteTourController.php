@@ -3,7 +3,7 @@
 use Input, Session, Redirect;
 use App\Http\Controllers\Controller;
 use App\Models\VisitorFavoriteTour;
-class VisitorFavoriteTourController extends Controller {
+class FavoriteTourController extends Controller {
 
 	public function getIndex(){
 		//print_r($visitorFavoriteTour);

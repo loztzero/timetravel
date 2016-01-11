@@ -3,7 +3,7 @@
 use App\Http\Controllers\Controller;
 use Input, Session, Redirect;
 use App\Models\VisitorTourProfile;
-class VisitorTourProfilecontroller extends Controller {
+class TourProfilecontroller extends Controller {
 
 	public function getIndex(){
 		//print_r($tourProfile);

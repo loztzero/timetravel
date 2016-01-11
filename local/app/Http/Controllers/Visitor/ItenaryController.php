@@ -3,7 +3,7 @@
 use Input, Session, Redirect, Auth;
 use App\Http\Controllers\Controller;
 use App\Models\VisitorItenary;
-class VisitorItenaryController extends Controller {
+class ItenaryController extends Controller {
 
 	public function getIndex(){
 		//print_r($visitorItenary);

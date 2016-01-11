@@ -3,7 +3,7 @@
 use Input, Session, Redirect, Auth, Request, File;
 use App\Http\Controllers\Controller;
 use App\Models\VisitorProfile;
-class VisitorProfileController extends Controller {
+class ProfileController extends Controller {
 
 	public function getIndex(){
 		//print_r($visitorProfile);

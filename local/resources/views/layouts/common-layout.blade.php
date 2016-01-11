@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="ui.project">
+<html lang="en">
     <head>
         <title>Holidayku</title>
         <meta charset="utf-8">
@@ -43,7 +43,6 @@
     </head>
     <body>
 <!--scroll to top-->
-        {{ url() }}
         <a href="#" class="scrollToTop text-center"><i class="fa fa-arrow-circle-o-up fa-3x"></i><br>Scroll<br>To Top</a>
         <!--scroll to top end-->
         <!--Modals-->
@@ -63,15 +62,14 @@
                         </div>
                        
                         <div class="modal-body">
-                            <form role="form" class="form-horizontal" method="POST" action="check">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <form role="form" class="form-horizontal">
                                 <div class="form-group">
                                     <div class="modal-input">
                                         <div class="col-xs-4">
                                             <label class="c-dodger-blue"><i class="fa fa-envelope-o"></i> E-mail</label>
                                         </div>
                                         <div class="col-xs-8">
-                                            <input type="email" class="form-control" placeholder="Your e-mail address" name="email">
+                                            <input type="email" class="form-control" placeholder="Your e-mail address">
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +79,7 @@
                                             <label class="c-dodger-blue"><i class="fa fa-key"></i> Password</label>
                                         </div>
                                         <div class="col-xs-8">
-                                            <input type="password" class="form-control" placeholder="Your password" name="password">
+                                            <input type="password" class="form-control" placeholder="Your password">
                                         </div>
                                     </div>
                                 </div>
@@ -179,23 +177,20 @@
                 </div>
                 <div class="collapse navbar-collapse" id="Navi">
                      <ul class="nav navbar-nav navbar-right">
-                        @if(!Auth::check())
-                            <li><a href="#" data-toggle="modal" data-target="#modregister" class="bg-tree-poppy c-white"><i class="fa fa-user-plus"></i> Register</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#modlogin" class="bg-cinnabar c-white"><i class="fa fa-sign-in"></i> Login</a></li>
-                            <li><a href="vendor-register.html" class="bg-tall-poppy c-white"><i class="fa fa-users"></i> Join Us</a></li>
-                        @else
-                            <li class="dropdown">
-                                 <a class="dropdown-toggle c-white" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> Hi, John Doe <i class="fa fa-caret-down"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="traveller-profile.html" class=""><i class="fa fa-user"></i> My Profile</a></li>
-                                        <li><a href="traveller-favourite.html" class=""><i class="fa fa-heart"></i> My Favourite Tour</a></li>
-                                        <li><a href="traveller-itinerary.html" class=""><i class="fa fa-map"></i> My Itinerary</a></li>
-                                        <li><a href="traveller-journey.html" class=""><i class="fa fa-location-arrow"></i> My Journey</a></li> 
-                                    </ul>
-                             </li>
-                             <li><a href="#" class="c-white"><i class="fa fa-envelope-o"></i> Messages</a></li>
-                             <li><a href="#" class="c-white"><i class="fa fa-sign-out"></i> Logout</a></li>
-                         @endif
+                        <li><a href="#" data-toggle="modal" data-target="#modregister" class="bg-tree-poppy c-white"><i class="fa fa-user-plus"></i> Register</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#modlogin" class="bg-cinnabar c-white"><i class="fa fa-sign-in"></i> Login</a></li>
+                        <li><a href="vendor-register.html" class="bg-tall-poppy c-white"><i class="fa fa-users"></i> Join Us</a></li>
+                         <li class="dropdown">
+                             <a class="dropdown-toggle c-white" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> Hi, John Doe <i class="fa fa-caret-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="traveller-profile.html" class=""><i class="fa fa-user"></i> My Profile</a></li>
+                                    <li><a href="traveller-favourite.html" class=""><i class="fa fa-heart"></i> My Favourite Tour</a></li>
+                                    <li><a href="traveller-itinerary.html" class=""><i class="fa fa-map"></i> My Itinerary</a></li>
+                                    <li><a href="traveller-journey.html" class=""><i class="fa fa-location-arrow"></i> My Journey</a></li> 
+                                </ul>
+                         </li>
+                         <li><a href="#" class="c-white"><i class="fa fa-envelope-o"></i> Messages</a></li>
+                         <li><a href="#" class="c-white"><i class="fa fa-sign-out"></i> Logout</a></li>
                     </ul> 
                 </div>
               </div>
@@ -210,7 +205,6 @@
         <!--Season Banner End-->
         
         <!--Slideshow-->
-        @if(!Auth::check())
         <div id="section-slider" class="container">
             <div class="flexslider">
                 <ul class="slides" >
@@ -221,7 +215,6 @@
                 </ul>
             </div> 
         </div>
-        @endif
         <!--Slideshow End-->
         <!--Form Section-->
         <div class="container-fluid" id="sb-wrapper">
@@ -281,7 +274,175 @@
         <!--Form Section End-->
         
         <!--Container Section-->
-        @yield('content')
+        <section class="container">
+            <!--Mengapa Holidayku Section-->
+            <h2 class="section-title c-java text-center"><span><i class="fa fa-check"></i> Mengapa Holidayku?</span></h2>
+            <hr class="bc-java s-title">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <ul class="feat-box list-unstyled">
+                        <li><h3 class="fw-700 c-java"><span class="feature-no bg-java c-white">1</span> Feature</h3></li>
+                        <li><hr class="bc-java"></li>
+                        <li>
+                            <p class="text-justify c-midgrey">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac commodo urna. Donec volutpat mi id nibh blandit pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <ul class="feat-box list-unstyled">
+                        <li><h3 class="fw-700 c-java"><span class="feature-no bg-java c-white">2</span> Feature</h3></li>
+                        <li><hr class="bc-java"></li>
+                        <li>
+                            <p class="text-justify c-midgrey">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac commodo urna. Donec volutpat mi id nibh blandit pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <ul class="feat-box list-unstyled">
+                        <li><h3 class="fw-700 c-java"><span class="feature-no bg-java c-white">3</span> Feature</h3></li>
+                        <li><hr class="bc-java"></li>
+                        <li>
+                            <p class="text-justify c-midgrey">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac commodo urna. Donec volutpat mi id nibh blandit pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <ul class="feat-box list-unstyled">
+                        <li><h3 class="fw-700 c-java"><span class="feature-no bg-java c-white">4</span> Feature</h3></li>
+                        <li><hr class="bc-java"></li>
+                        <li>
+                            <p class="text-justify c-midgrey">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac commodo urna. Donec volutpat mi id nibh blandit pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            <!--Mengapa Holidayku Section End-->
+            
+            <!--Featured Destinations Section-->
+            <h2 class="section-title c-dodger-blue text-center"><span><i class="fa fa-plane"></i> Featured Destinations</span></h2>
+            <hr class="bc-java s-title">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 pop-wrapper">
+                    <ul class="pop-box list-unstyled">
+                        <li class="ask-it c-white"><a href="#"><i class="fa fa-plane"></i> Ask Itinerary</a></li>
+                        <li><img src="{{ url('assets/image/hk.jpg') }}" ></li>
+                        <li class="inner-box">
+                            <ul class="list-unstyled p-1">
+                                <li><a href="#" class="fw-400 c-white"><i class="fa fa-building-o"></i> PT. TravelMate Indonesia</a></li>
+                        <li><hr class="bc-white"></li>
+                        <li class="row text-center">
+                            <a class="col-xs-4"><span class="badge bg-tree-poppy"><i class="fa fa-save"></i> Save</span></a>
+                            <a class="col-xs-4 b-lr-dotted"><span class="badge bg-cinnabar"><i class="fa fa-eye"></i> 1700x</span></a>
+                            <a class="col-xs-4"><span class="badge bg-java"><i class="fa fa-thumbs-up"></i> 1024</span></a>
+                        </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-6 pop-wrapper">
+                    <ul class="pop-box list-unstyled">
+                        <li class="ask-it c-white"><a href="#"><i class="fa fa-plane"></i> Ask Itinerary</a></li>
+                        <li><img src="{{ url('assets/image/hk.jpg') }}" ></li>
+                        <li class="inner-box">
+                            <ul class="list-unstyled p-1">
+                                <li><a href="#" class="fw-400 c-white"><i class="fa fa-building-o"></i> PT. TravelMate Indonesia</a></li>
+                        <li><hr class="bc-white"></li>
+                        <li class="row text-center">
+                            <a class="col-xs-4"><span class="badge bg-tree-poppy"><i class="fa fa-save"></i> Save</span></a>
+                            <a class="col-xs-4 b-lr-dotted"><span class="badge bg-cinnabar"><i class="fa fa-eye"></i> 1700x</span></a>
+                            <a class="col-xs-4"><span class="badge bg-java"><i class="fa fa-thumbs-up"></i> 1024</span></a>
+                        </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-6 pop-wrapper">
+                    <ul class="pop-box list-unstyled">
+                        <li class="ask-it c-white"><a href="#"><i class="fa fa-plane"></i> Ask Itinerary</a></li>
+                        <li><img src="{{ url('assets/image/hk.jpg') }}" ></li>
+                        <li class="inner-box">
+                            <ul class="list-unstyled p-1">
+                                <li><a href="#" class="fw-400 c-white"><i class="fa fa-building-o"></i> PT. TravelMate Indonesia</a></li>
+                        <li><hr class="bc-white"></li>
+                        <li class="row text-center">
+                            <a class="col-xs-4"><span class="badge bg-tree-poppy"><i class="fa fa-save"></i> Save</span></a>
+                            <a class="col-xs-4 b-lr-dotted"><span class="badge bg-cinnabar"><i class="fa fa-eye"></i> 1700x</span></a>
+                            <a class="col-xs-4"><span class="badge bg-java"><i class="fa fa-thumbs-up"></i> 1024</span></a>
+                        </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-6 pop-wrapper">
+                    <ul class="pop-box list-unstyled">
+                        <li class="ask-it c-white"><a href="#"><i class="fa fa-plane"></i> Ask Itinerary</a></li>
+                        <li><img src="{{ url('assets/image/hk.jpg') }}" ></li>
+                        <li class="inner-box">
+                            <ul class="list-unstyled p-1">
+                                <li><a href="#" class="fw-400 c-white"><i class="fa fa-building-o"></i> PT. TravelMate Indonesia</a></li>
+                        <li><hr class="bc-white"></li>
+                        <li class="row text-center">
+                            <a class="col-xs-4"><span class="badge bg-tree-poppy"><i class="fa fa-save"></i> Save</span></a>
+                            <a class="col-xs-4 b-lr-dotted"><span class="badge bg-cinnabar"><i class="fa fa-eye"></i> 1700x</span></a>
+                            <a class="col-xs-4"><span class="badge bg-java"><i class="fa fa-thumbs-up"></i> 1024</span></a>
+                        </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-6 pop-wrapper">
+                    <ul class="pop-box list-unstyled">
+                        <li class="ask-it c-white"><a href="#"><i class="fa fa-plane"></i> Ask Itinerary</a></li>
+                        <li><img src="{{ url('assets/image/hk.jpg') }}" ></li>
+                        <li class="inner-box">
+                            <ul class="list-unstyled p-1">
+                                <li><a href="#" class="fw-400 c-white"><i class="fa fa-building-o"></i> PT. TravelMate Indonesia</a></li>
+                        <li><hr class="bc-white"></li>
+                        <li class="row text-center">
+                            <a class="col-xs-4"><span class="badge bg-tree-poppy"><i class="fa fa-save"></i> Save</span></a>
+                            <a class="col-xs-4 b-lr-dotted"><span class="badge bg-cinnabar"><i class="fa fa-eye"></i> 1700x</span></a>
+                            <a class="col-xs-4"><span class="badge bg-java"><i class="fa fa-thumbs-up"></i> 1024</span></a>
+                        </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-6 pop-wrapper">
+                    <ul class="pop-box list-unstyled">
+                        <li class="ask-it c-white"><a href="#"><i class="fa fa-plane"></i> Ask Itinerary</a></li>
+                        <li><img src="{{ url('assets/image/hk.jpg') }}" ></li>
+                        <li class="inner-box">
+                            <ul class="list-unstyled p-1">
+                                <li><a href="#" class="fw-400 c-white"><i class="fa fa-building-o"></i> PT. TravelMate Indonesia</a></li>
+                        <li><hr class="bc-white"></li>
+                        <li class="row text-center">
+                            <a class="col-xs-4"><span class="badge bg-tree-poppy"><i class="fa fa-save"></i> Save</span></a>
+                            <a class="col-xs-4 b-lr-dotted"><span class="badge bg-cinnabar"><i class="fa fa-eye"></i> 1700x</span></a>
+                            <a class="col-xs-4"><span class="badge bg-java"><i class="fa fa-thumbs-up"></i> 1024</span></a>
+                        </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <!--Featured Destinations Section End-->
+            <div class="row load-more">
+                <div class="col-sm-5 md-none"><hr class="bc-dodger-blue"></div>
+                <div class="col-sm-2 text-center" style="margin-top:.25em;"><a href="#">Load More</a></div>
+                <div class="col-sm-5 md-none"><hr class="bc-dodger-blue"></div>
+            </div>
+            <br>
+        </section>
         <!--Container Section End-->
         
         <!--Footer Section-->
@@ -329,5 +490,4 @@
         </footer>
         <!--Footer End-->
     </body>
-    @yield('script')
 </html>

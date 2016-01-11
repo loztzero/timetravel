@@ -1,22 +1,34 @@
 <?php namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
-use Input, Auth, Request, Session, Redirect, Hash;
+use Input, Auth, Session, Redirect, Hash;
 use App\User;
 class MainController extends Controller {
 
 	public function getIndex()
 	{
-		if(Auth::check()){
-			//echo "welcome".Auth::user()->email;
-		}
-
-		return view('main.main-browse', array('data' => 'bebek'));
+		return view('main.main-page');
 	}
 
-	public function getRegister()
-	{
-		return view('main.main-register');	
+	public function postCheck(Request $request){
+		
+		$userdata = array(
+			'email' => $request->email,
+			'password' => $request->password
+		);
+
+		if(Auth::attempt($userdata, true)){
+			return Redirect::to('/');
+		} else {
+			Session::flash('error', 'User atau password salah');
+			return Redirect::to('/');
+		}
+	}
+
+	public function logout(){
+		Auth::logout();
+		return Redirect::to('/');
 	}
 
 	public function postSave(){
@@ -58,7 +70,7 @@ class MainController extends Controller {
 	}
 
 	public function getTrialNewLayout(){
-		return view('main.main-load');
+		return view('layouts.common-layout');
 	}
 
 

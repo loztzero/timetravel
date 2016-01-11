@@ -3,7 +3,7 @@
 use Input, Session, Redirect;
 use App\Http\Controllers\Controller;
 use App\Models\VisitorPhotoAlbum;
-class VisitorPhotoAlbumController extends Controller {
+class PhotoAlbumController extends Controller {
 
 	public function getIndex(){
 		//print_r($visitorPhotoAlbum);

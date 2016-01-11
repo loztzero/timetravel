@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('password', function(){
+	echo Hash::make('bebek123');
+});
+
 Route::filter('auth', function($route, $request)
 {
     // Login check (Default)
@@ -28,26 +32,26 @@ Route::filter('isTraveler', function($route, $request){
 
 Route::group(array('before' => 'auth'), function(){
 	Route::group(array('before' => 'isTraveler'), function(){
-		Route::controller('visitor-profile', 'Visitor\VisitorProfileController');
-		Route::controller('visitor-itenary', 'Visitor\VisitorItenaryController');
-		Route::controller('visitor-favorite-tour', 'Visitor\VisitorFavoriteTourController');
-		Route::controller('visitor-photo-album', 'Visitor\VisitorPhotoAlbumController');
+		Route::controller('visitor-profile', 'Visitor\ProfileController');
+		Route::controller('visitor-itenary', 'Visitor\ItenaryController');
+		Route::controller('visitor-favorite-tour', 'Visitor\FavoriteTourController');
+		Route::controller('visitor-photo-album', 'Visitor\PhotoAlbumController');
 	});
 });
 
 
 Route::controller('sample', 'SampleController');
 Route::controller('sample-upload', 'SampleUploadController');
-Route::controller('main', 'MainController');
+Route::controller('/', 'MainController');
 Route::controller('user', 'UserController');
 Route::controller('tour-profile', 'TourProfileController');
 Route::controller('tour-review', 'TourReviewController');
 Route::controller('tour-itenary', 'TourItenaryController');
 Route::controller('tour-album', 'TourAlbumController');
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Route::get('yo', function()
 {
