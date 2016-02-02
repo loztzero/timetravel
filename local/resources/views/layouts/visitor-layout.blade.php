@@ -43,7 +43,7 @@
     </head>
     <body>
 <!--scroll to top-->
-        {{ url() }}
+        {{-- url() --}}
         <a href="#" class="scrollToTop text-center"><i class="fa fa-arrow-circle-o-up fa-3x"></i><br>Scroll<br>To Top</a>
         <!--scroll to top end-->
         <!--Modals-->
@@ -185,16 +185,16 @@
                             <li><a href="vendor-register.html" class="bg-tall-poppy c-white"><i class="fa fa-users"></i> Join Us</a></li>
                         @else
                             <li class="dropdown">
-                                 <a class="dropdown-toggle c-white" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> Hi, John Doe <i class="fa fa-caret-down"></i></a>
+                                 <a class="dropdown-toggle c-white" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> {{ 'Hi, '. Auth::user()->email }} <i class="fa fa-caret-down"></i></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="traveller-profile.html" class=""><i class="fa fa-user"></i> My Profile</a></li>
-                                        <li><a href="traveller-favourite.html" class=""><i class="fa fa-heart"></i> My Favourite Tour</a></li>
-                                        <li><a href="traveller-itinerary.html" class=""><i class="fa fa-map"></i> My Itinerary</a></li>
-                                        <li><a href="traveller-journey.html" class=""><i class="fa fa-location-arrow"></i> My Journey</a></li> 
+                                        <li><a href="{{ url('visitor-profile') }}" class=""><i class="fa fa-user"></i> My Profile</a></li>
+                                        <li><a href="{{ url('visitor-favorite-tour') }}" class=""><i class="fa fa-heart"></i> My Favourite Tour</a></li>
+                                        <li><a href="{{ url('visitor-itenary') }}" class=""><i class="fa fa-map"></i> My Itinerary</a></li>
+                                        <li><a href="{{ url('visitor-journey') }}" class=""><i class="fa fa-location-arrow"></i> My Journey</a></li> 
                                     </ul>
                              </li>
                              <li><a href="#" class="c-white"><i class="fa fa-envelope-o"></i> Messages</a></li>
-                             <li><a href="#" class="c-white"><i class="fa fa-sign-out"></i> Logout</a></li>
+                             <li><a href="{{ url('auth') }}" class="c-white"><i class="fa fa-sign-out"></i> Logout</a></li>
                          @endif
                     </ul> 
                 </div>
@@ -210,7 +210,6 @@
         <!--Season Banner End-->
         
         <!--Slideshow-->
-        @if(!Auth::check())
         <div id="section-slider" class="container">
             <div class="flexslider">
                 <ul class="slides" >
@@ -221,7 +220,6 @@
                 </ul>
             </div> 
         </div>
-        @endif
         <!--Slideshow End-->
         <!--Form Section-->
         <div class="container-fluid" id="sb-wrapper">

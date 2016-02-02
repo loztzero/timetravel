@@ -14,10 +14,18 @@
             </ul>
         </div>
         <div class="col-sm-9">
+
+            @include('layouts.message-helper')
             <!--My Profile-->
             <h3 class="section-title c-dodger-blue text-center"><span class="c-lightgrey">MY PROFILE</span></h3>
             <hr class="s-title">
-            <form role="form" class="form-horizontal" id="edit-profile">
+            <form role="form" method="POST" class="form-horizontal" id="edit-profile" action="visitor-profile/save">
+
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                @if($profile != null)
+                    <input type="hidden" name="id" value="{{ $profile->id }}">
+                @endif
+
                 <div class="form-group">
                     <div class="col-sm-3 md-center">
                         <img src="image/def-pic-traveller.png">
@@ -39,7 +47,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label class="control-label c-java">Last name</label>
-                        <input type="text" class="form-control input-lg br-0" placeholder="Your Last Name" value="{{ Input::old('lastName', $profile != null ? $profile->last_name : '') }}">
+                        <input type="text" class="form-control input-lg br-0" placeholder="Your Last Name" name="lastName" value="{{ Input::old('lastName', $profile != null ? $profile->last_name : '') }}">
                     </div>
                 </div>
                 <div class="space-1"></div>
@@ -60,16 +68,12 @@
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label class="control-label c-java">Country</label>
-                        <select class="form-control input-lg br-0">
-                            <option>Country 1</option>
-                            <option>Country 2</option>
-                        </select>
+                        {!! Form::select('country', ([null => 'Select Your Country'] + $countries->toArray()), Input::old('country', $profile != null ? $profile->country : null), array('class'=>'form-control input-lg br-0', 'id' => 'country')) !!}
                     </div>
                     <div class="col-sm-6">
                         <label class="control-label c-java">City</label>
-                        <select class="form-control input-lg br-0">
-                            <option>City 1</option>
-                            <option>City 2</option>
+                        <select class="form-control input-lg br-0" id="city">
+                            <option value>Select A City</option>
                         </select>
                     </div>
                 </div>
@@ -101,4 +105,29 @@
     </div>
     <br>
 </section>
+@stop
+
+@section('script')
+<script>
+$('#country').on('change', function(){
+    //alert(this.value);
+    $.post("{{ url('visitor-profile/city-by-country') }}",
+    {
+        _token: '{{ csrf_token() }}',
+        country: this.value
+    },
+    function(data, status){
+        //alert("Data: " + data + "\nStatus: " + status);
+        // var id = 
+        //$("#city").html("<option>Only This</option>");
+        //console.log(data);
+
+        $("#city").html("<option>Select Your City</option>");
+        $.each(data, function(k, v) {
+            console.log(k + '-' + v.id);
+            $("#city").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
+        });
+    }, 'json');
+});
+</script>
 @stop

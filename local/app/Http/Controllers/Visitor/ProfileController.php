@@ -1,14 +1,20 @@
 <?php namespace App\Http\Controllers\Visitor;
 
-use Input, Session, Redirect, Auth, Request, File;
+use Input, Session, Redirect, Auth, File;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\VisitorProfile;
+use App\Models\Country;
+use App\Models\City;
 class ProfileController extends Controller {
 
 	public function getIndex(){
 		//print_r($visitorProfile);
 		$visitorProfile = VisitorProfile::where('mst001_id', '=', Auth::user()->id)->first();
-		return view('visitor.profile.visitor-profile-browse')->with('profile', $visitorProfile);
+		$countries = Country::orderBy('country_name')->lists('country_name', 'id');
+		return view('visitor.profile.visitor-profile-browse')
+				->with('profile', $visitorProfile)
+				->with('countries', $countries);
 	}
 
 	public function getInput(){
@@ -69,5 +75,11 @@ class ProfileController extends Controller {
             //print_r($visitorProfile->toArray());
             return Redirect::to('visitor-profile')->withInput($visitorProfile->toArray());
         }
+    }
+
+    public function postCityByCountry(Request $request){
+    	$country = $request->country;
+    	$cities = City::where('country_id', '=', $country)->orderBy('city_name')->get(['id', 'city_name'])->toArray();
+    	return json_encode($cities);
     }
 }

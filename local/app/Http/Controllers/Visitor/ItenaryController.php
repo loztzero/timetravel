@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Visitor;
 
 use Input, Session, Redirect, Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\VisitorItenary;
 class ItenaryController extends Controller {
@@ -8,17 +9,13 @@ class ItenaryController extends Controller {
 	public function getIndex(){
 		//print_r($visitorItenary);
 		$visitorItenary = VisitorItenary::all();
-		return view('visitoritenary.visitor-itenary-browse')->with('visitorItenary', $visitorItenary);
+		return view('visitor.itenary.visitor-itenary-browse')->with('visitorItenary', $visitorItenary);
 	}
 
 	public function getInput(){
-		return view('visitoritenary.visitor-itenary-input');
+		return view('visitor.itenary.visitor-itenary-input');
 	}
 
-	public function getKambing(){
-		$result = VisitorItenary::where('mst001_id', '=', Auth::user()->id)->max('line_number');
-		print_r($result);
-	}
 
 	public function postSave(){
 		$data = Input::all();
@@ -40,6 +37,7 @@ class ItenaryController extends Controller {
 			}
 
 			$visitorItenary->doParams($visitorItenary, $data);
+			$visitorItenary->mst001_id = Auth::user()->id;
 			$visitorItenary->save();
 			
 			return redirect('visitor-itenary')->with('message', array('Data tour-profile telah berhasil di buat'));
@@ -50,8 +48,8 @@ class ItenaryController extends Controller {
     	$this->layout = null;
     	$passvalue = Input::all();
     	//Session::flash('selectedData', $passvalue);
-        if(isset($passvalue['ID'])){
-            $visitorItenary = VisitorItenary::find($passvalue['ID']);
+        if(isset($passvalue['id'])){
+            $visitorItenary = VisitorItenary::find($passvalue['id']);
 
             if($visitorItenary == null){
             	Session::flash('error', array('pass value dengan id ' . $passvalue['ID'] . ' tidak ditemukan'));
@@ -61,5 +59,31 @@ class ItenaryController extends Controller {
             //print_r($visitorItenary->toArray());
             return Redirect::to('visitor-itenary/input')->withInput($visitorItenary->toArray());
         }
+
+        Session::flash('error', array('Nothing to load'));
+    	return Redirect::to('visitor-itenary');
     }
+
+    public function postDelete(Request $request)
+	{
+		if($request->id){
+			$master = VisitorItenary::find($request->id);
+			if($master != null){
+
+				try {
+					$master->delete();
+				} catch (\Illuminate\Database\QueryException $e) {
+					Session::flash('error', array('Data sudah pernah digunakan oleh transaksi, jadi tidak dapat dihapus'));
+					return redirect('visitor-itenary');
+				}
+				Session::flash('message', array('Data berhasil dihapus'));
+			} else {
+				Session::flash('error', array('Tidak ada data yang dihapus'));
+			}
+		} else {
+			Session::flash('error', array('Terjadi kesalahan, silahkan di coba lagi, jika masi terjadi hubungi programmer'));
+		}
+
+		return redirect('visitor-itenary');
+	}
 }

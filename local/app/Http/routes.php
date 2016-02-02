@@ -35,7 +35,7 @@ Route::group(array('before' => 'auth'), function(){
 		Route::controller('visitor-profile', 'Visitor\ProfileController');
 		Route::controller('visitor-itenary', 'Visitor\ItenaryController');
 		Route::controller('visitor-favorite-tour', 'Visitor\FavoriteTourController');
-		Route::controller('visitor-photo-album', 'Visitor\PhotoAlbumController');
+		Route::controller('visitor-journey', 'Visitor\JourneyController');
 	});
 });
 
