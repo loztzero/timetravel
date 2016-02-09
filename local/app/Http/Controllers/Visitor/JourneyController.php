@@ -12,7 +12,7 @@ class JourneyController extends Controller {
 	}
 
 	public function getInput(){
-		return view('visitorphotoalbum.visitor-photo-album-input');
+		return view('visitor.journey.visitor-photo-album-input');
 	}
 
 	public function postSave(){
@@ -50,11 +50,11 @@ class JourneyController extends Controller {
 
             if($visitorJourney == null){
             	Session::flash('error', array('pass value dengan id ' . $passvalue['ID'] . ' tidak ditemukan'));
-            	return Redirect::to('visitor-photo-album');
+            	return Redirect::to('visitor-jurney');
             }
 
             //print_r($visitorJourney->toArray());
-            return Redirect::to('visitor-photo-album/input')->withInput($visitorJourney->toArray());
+            return Redirect::to('visitor-journey/input')->withInput($visitorJourney->toArray());
         }
     }
 }
