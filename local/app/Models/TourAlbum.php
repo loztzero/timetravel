@@ -8,8 +8,9 @@ use Validator;
 class TourAlbum extends Emodel {
 	protected $table = 'VST020';
 
-	public static function rules($data){
+	public static function rules($data) {
 		$error = array();
+		
 		$rules = array(
 			'photo'      	=> 'required',
             'title'      	=> 'required',
@@ -21,24 +22,24 @@ class TourAlbum extends Emodel {
 		);
 		
         $v = Validator::make($data, $rules, $messages);
-        if($v->fails()){
+        if($v->fails()) {
     		$error = $v->errors()->all();
         }
 
 		return $error;
 	}
 
-	public function doParams($object, $data){
-		$object->mst001_id = Auth::user()->id;
-		$object->line_number = $this->getMaxLineNumber();
-		$object->photo 	= $data['photo'];
-		$object->title 	= $data['title'];
+	public function doParams($object, $data) {
+		$object->mst001_id		= Auth::user()->id;
+		$object->line_number	= $this->getMaxLineNumber();
+		$object->photo			= $data['photo'];
+		$object->title			= $data['title'];
 		return $object;
 	}
 
-	private function getMaxLineNumber(){
+	private function getMaxLineNumber() {
 		$result = TourAlbum::max('line_number')->where('mst001_id', '=', Auth::user()->id);
-		if($result != null){
+		if($result != null) {
 			return $result->get()->line_number + 1;
 		}
 

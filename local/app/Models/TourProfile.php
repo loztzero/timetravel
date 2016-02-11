@@ -8,9 +8,9 @@ use Validator;
 class TourProfile extends Emodel {
 	protected $table = 'TR0010';
 
-	public static function rules($data)
-	{
+	public static function rules($data) {
 		$error = array();
+		
 		$rules = array(
 			'tour_name'		=> 'required',
 			'first_name'	=> 'required',
@@ -32,15 +32,14 @@ class TourProfile extends Emodel {
 		);
 		
         $v = Validator::make($data, $rules, $messages);
-        if($v->fails()){
+        if($v->fails()) {
     		$error = $v->errors()->all();
         }
 
 		return $error;
 	}
 
-	public function doParams($object, $data)
-	{
+	public function doParams($object, $data) {
 		$object->mst001_id		= Auth::user()->id;
 		$object->tour_name		= Input::get('tour_name');
 		$object->first_name		= Input::get('first_name');

@@ -44,10 +44,10 @@ Route::controller('sample', 'SampleController');
 Route::controller('sample-upload', 'SampleUploadController');
 Route::controller('/', 'MainController');
 Route::controller('user', 'UserController');
-Route::controller('tour-profile', 'TourProfileController');
-Route::controller('tour-review', 'TourReviewController');
-Route::controller('tour-itenary', 'TourItenaryController');
-Route::controller('tour-album', 'TourAlbumController');
+Route::controller('tour-profile', 'Tour\ProfileController');
+Route::controller('tour-review', 'Tour\ReviewController');
+Route::controller('tour-itenary', 'Tour\ItenaryController');
+Route::controller('tour-album', 'Tour\AlbumController');
 
 /*Route::get('/', function () {
     return view('welcome');
