@@ -39,7 +39,8 @@ Route::group(array('before' => 'auth'), function(){
 	});
 });
 
-
+Route::get('/facebook', 'FacebookController@facebook');
+Route::get('/callback', 'FacebookController@callback');
 Route::controller('sample', 'SampleController');
 Route::controller('sample-upload', 'SampleUploadController');
 Route::controller('/', 'MainController');

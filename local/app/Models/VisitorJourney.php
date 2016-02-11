@@ -1,7 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Input;
+use Input, Auth;
 use DateTime;
 use App\Emodel;
 use Validator;
@@ -39,9 +39,9 @@ class VisitorJourney extends Emodel {
 	}
 
 	private function getMaxLineNumber(){
-		$result = VisitorPhotoAlbum::max('line_number')->where('mst001_id', '=', Auth::user()->id);
+		$result = VisitorJourney::where('mst001_id', '=', Auth::user()->id)->max('line_number');
 		if($result != null){
-			return $result->get()->line_number + 1;
+			return $result + 1;
 		}
 
 		return 1;

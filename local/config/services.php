@@ -35,11 +35,11 @@ return [
         'secret' => '',
     ],
 
-    // 'facebook' => [
-    //     'client_id' => 'your-github-app-id',
-    //     'client_secret' => 'your-github-app-secret',
-    //     'redirect' => 'http://your-callback-url',
-    // ],
+    'facebook' => [
+        'client_id' => '429718447219223',
+        'client_secret' => 'd6c8e818a75dafc9c6c699c7a66aec54',
+        'redirect' => 'http://tester.holidayku.com/callback',
+    ],
 
     // 'twitter' => [
     //     'client_id' => 'your-github-app-id',
