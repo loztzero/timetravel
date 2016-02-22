@@ -1,0 +1,13 @@
+Untuk semua menu
+1. jika sudah berhasi simpan tolong beri pesan submited success!!
+
+di my profile
+1. sudah diisi, submit, terus pilih menu lain, lalu kembali ke my profile data setelah disimpan tidak ada
+
+my itenary
+1. klik salah satu itenary yang sudah ada (edit), lalu klik menu itenary kembali di sebelah kiri
+   tanpa menyimpan data dulu, harapan dapat kembali ke halama awal itenary, tetapi error
+2. upload gbr msh blm berhasil
+
+my favourite tour
+1. salah link ini.. cb liat contoh si mardy bukan ini

@@ -5,7 +5,7 @@
 # Project name:                                                          #
 # Author:                                                                #
 # Script type:           Database drop script                            #
-# Created on:            2016-02-21 23:38                                #
+# Created on:            2016-02-22 23:07                                #
 # ---------------------------------------------------------------------- #
 
 
@@ -13,22 +13,18 @@
 # Drop foreign key constraints                                           #
 # ---------------------------------------------------------------------- #
 
-ALTER TABLE `TR0010` DROP FOREIGN KEY `MST001_TR0010`;
-
-ALTER TABLE `TR0010` DROP FOREIGN KEY `MST002_TR0010`;
-
-ALTER TABLE `TR0010` DROP FOREIGN KEY `MST003_TR0010`;
+ALTER TABLE `MST003` DROP FOREIGN KEY `MST002_MST003`;
 
 # ---------------------------------------------------------------------- #
-# Drop table "TR0010"                                                    #
+# Drop table "MST003"                                                    #
 # ---------------------------------------------------------------------- #
 
 # Drop constraints #
 
-ALTER TABLE `TR0010` DROP PRIMARY KEY;
+ALTER TABLE `MST003` DROP PRIMARY KEY;
 
-DROP INDEX `TUC_TR0010_1` ON `TR0010`;
+DROP INDEX `TUC_MST003_1` ON `MST003`;
 
 # Drop table #
 
-DROP TABLE `TR0010`;
+DROP TABLE `MST003`;
