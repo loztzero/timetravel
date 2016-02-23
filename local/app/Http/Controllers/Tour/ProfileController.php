@@ -1,14 +1,25 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Tour;
 
-use Input, Session, Redirect;
+use Input, Session, Redirect, Auth, File;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\TourProfile;
 use App\User;
-class TourProfileController extends Controller {
+use App\Models\Country;
+use App\Models\City;
+
+class ProfileController extends Controller {
 
 	public function getIndex(){
-		$tourProfile = TourProfile::all()->toArray()[0];
+		$tourProfile = TourProfile::where('mst001_id', '=', '2')->first();//Auth::user()->id)->first();
 		$tourProfile['user'] = User::find($tourProfile['mst001_id'])->toArray();
-		return view('tourprofile.tour-profile-browse')->with('tourProfile', $tourProfile);
+		$countries = Country::all()->sortBy('country_name');
+		$cities = City::where('mst002_id', '=', $tourProfile['mst002_id'])->orderBy('city_name')->get();
+
+		return view('tour.profile.tour-profile-browse')
+				->with('tourProfile', $tourProfile)
+				->with('countries', $countries)
+				->with('cities', $cities);
 	}
 
 	public function postSave(){
@@ -25,9 +36,12 @@ class TourProfileController extends Controller {
 			if(isset($data['id'])){
 				$tourProfile = TourProfile::find($data['id']);
 				if($tourProfile == null){
-	    			$tourProfile = new TourProfile();
-	    		}
+					$tourProfile = new TourProfile();
+				}
 			}
+			
+// 			$data = Input::hasFile('fileUpload');
+// 			Input::file('fileUpload')->move('./files/', Input::file('fileUpload')->getClientOriginalName());
 
 			$tourProfile->doParams($tourProfile, $data);
 			$tourProfile->save();
@@ -36,20 +50,17 @@ class TourProfileController extends Controller {
 		}
 	}
 
-	public function postLoadData(){
-    	$this->layout = null;
-    	$data = Input::all();
-    	//Session::flash('selectedData', $data);
-        if(isset($data['ID'])){
-            $tourProfile = TourProfile::find($data['ID']);
+	public function getCityByCountry(Request $request){
+		$countryId = $request->countryId;
+		$cities = City::where('mst002_id', '=', $countryId)->orderBy('city_name')->get()->toJson();
+		
+		return $cities;
+	}
 
-            if($tourProfile == null){
-            	Session::flash('error', array('Data value dengan id ' . $data['ID'] . ' tidak ditemukan'));
-            	return Redirect::to('tour-profile');
-            }
-
-            //print_r($profile->toArray());
-            return Redirect::to('tour-profile')->withInput($tourProfile->toArray());
-        }
-    }
+	public function getCityByCountrySearch(Request $request){
+		$countryIdSearch = $request->countryIdSearch;
+		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
+		
+		return $cities;
+	}
 }

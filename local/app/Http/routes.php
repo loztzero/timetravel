@@ -30,6 +30,11 @@ Route::filter('isTraveler', function($route, $request){
 
 });
 
+//script untuk menjaga apakah dia visitor atau bukan
+Route::filter('isTour', function($route, $request){
+
+});
+
 Route::group(array('before' => 'auth'), function(){
 	Route::group(array('before' => 'isTraveler'), function(){
 		Route::controller('visitor-profile', 'Visitor\ProfileController');
@@ -39,16 +44,18 @@ Route::group(array('before' => 'auth'), function(){
 	});
 });
 
+	Route::controller('tour-register', 'Tour\RegisterController');
+	Route::controller('tour-profile', 'Tour\ProfileController');
+	Route::controller('tour-review', 'Tour\ReviewController');
+	Route::controller('tour-itinerary', 'Tour\ItineraryController');
+	Route::controller('tour-album', 'Tour\AlbumController');
+
 Route::get('/facebook', 'FacebookController@facebook');
 Route::get('/callback', 'FacebookController@callback');
 Route::controller('sample', 'SampleController');
 Route::controller('sample-upload', 'SampleUploadController');
 Route::controller('/', 'MainController');
 Route::controller('user', 'UserController');
-Route::controller('tour-profile', 'Tour\ProfileController');
-Route::controller('tour-review', 'Tour\ReviewController');
-Route::controller('tour-itenary', 'Tour\ItenaryController');
-Route::controller('tour-album', 'Tour\AlbumController');
 
 /*Route::get('/', function () {
     return view('welcome');

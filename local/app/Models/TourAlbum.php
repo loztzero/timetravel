@@ -1,30 +1,30 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Input;
+use Input, Auth;
 use DateTime;
 use App\Emodel;
 use Validator;
 class TourAlbum extends Emodel {
-	protected $table = 'VST020';
+	protected $table = 'TR0030';
 
 	public static function rules($data) {
 		$error = array();
 		
 		$rules = array(
-			'photo'      	=> 'required',
-            'title'      	=> 'required',
-        );
+			'photo'		=> 'required',
+			'title'		=> 'required',
+		);
 
 		$messages = array(
-            'photo.required'		=> 'File photo must be uploaded',
-            'title.required'		=> 'Title is required',
+			'photo.required'	=> 'File photo must be uploaded',
+			'title.required'	=> 'Title is required',
 		);
 		
-        $v = Validator::make($data, $rules, $messages);
-        if($v->fails()) {
-    		$error = $v->errors()->all();
-        }
+		$v = Validator::make($data, $rules, $messages);
+		if($v->fails()) {
+			$error = $v->errors()->all();
+		}
 
 		return $error;
 	}
@@ -34,6 +34,7 @@ class TourAlbum extends Emodel {
 		$object->line_number	= $this->getMaxLineNumber();
 		$object->photo			= $data['photo'];
 		$object->title			= $data['title'];
+		
 		return $object;
 	}
 

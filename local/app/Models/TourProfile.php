@@ -15,26 +15,26 @@ class TourProfile extends Emodel {
 			'tour_name'		=> 'required',
 			'first_name'	=> 'required',
 			'last_name'		=> 'required',
-            'address1'		=> 'required',
-            'city'			=> 'required',
-            'country'		=> 'required',
-            'phone_number'	=> 'required',
-        );
+			'address1'		=> 'required',
+			'cityId'		=> 'required',
+			'countryId'		=> 'required',
+			'phone_number'	=> 'required',
+		);
 
 		$messages = array(
-            'tour_name.required'		=> 'Nama Tour harus diisi',
-            'first_name.required'		=> 'First Name harus diisi',
-            'last_name.required'		=> 'Last Name harus diisi',
-            'address1.required'			=> 'Alamat 1 harus diisi',
-            'city.required'				=> 'Kota harus diisi',
-            'country.required'			=> 'Negara harus diisi',
-            'phone_number.required'		=> 'No Telepon harus diisi',
+			'tour_name.required'		=> 'Nama Tour harus diisi',
+			'first_name.required'		=> 'First Name harus diisi',
+			'last_name.required'		=> 'Last Name harus diisi',
+			'address1.required'			=> 'Alamat 1 harus diisi',
+			'cityId.required'			=> 'Kota harus diisi',
+			'countryId.required'		=> 'Negara harus diisi',
+			'phone_number.required'		=> 'No Telepon harus diisi',
 		);
 		
-        $v = Validator::make($data, $rules, $messages);
-        if($v->fails()) {
-    		$error = $v->errors()->all();
-        }
+		$v = Validator::make($data, $rules, $messages);
+		if($v->fails()) {
+			$error = $v->errors()->all();
+		}
 
 		return $error;
 	}
@@ -47,8 +47,8 @@ class TourProfile extends Emodel {
 		$object->address1		= Input::get('address1');
 		$object->address2		= Input::get('address2');
 		$object->address3		= Input::get('address3');
-		$object->city			= Input::get('city');
-		$object->country		= Input::get('country');
+		$object->mst002_id		= Input::get('countryId');
+		$object->mst003_id		= Input::get('cityId');
 		$object->zip_code		= Input::get('zip_code');
 		$object->phone_number	= Input::get('phone_number');
 		$object->instagram		= Input::get('instagram');

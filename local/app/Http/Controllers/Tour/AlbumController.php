@@ -1,17 +1,21 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Tour;
 
-use Input, Session, Redirect;
+use Input, Session, Redirect, Auth, File;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\TourAlbum;
-class TourAlbumController extends Controller {
+use App\Models\Country;
+use App\Models\City;
+
+class AlbumController extends Controller {
 
 	public function getIndex(){
-		//print_r($tourAlbum);
-		$tourAlbum = TourAlbum::all();
-		return view('touralbum.tour-album-browse')->with('tourAlbum', $tourAlbum);
-	}
-
-	public function getInput(){
-		return view('touralbum.tour-album-input');
+		$tourAlbum = TourAlbum::paginate(config('constants.PAGINATION'));
+		$countries = Country::all()->sortBy('country_name');
+		
+		return view('tour.album.tour-album-browse')
+				->with('tourAlbum', $tourAlbum)
+				->with('countries', $countries);
 	}
 
 	public function postSave(){
@@ -22,38 +26,52 @@ class TourAlbumController extends Controller {
 		if(count($errorBag) > 0){
 
 			Session::flash('error', $errorBag);
-			return redirect('tour-album/input')
-				->withInput($data);	
+			return redirect('tour-album');
 		} else {
 
 			if(isset($data['id'])){
 				$tourAlbum = TourAlbum::find($data['id']);
 				if($tourAlbum == null){
-	    			$tourAlbum = new TourAlbum();
-	    		}
+					$tourAlbum = new TourAlbum();
+				}
 			}
-
+			
 			$tourAlbum->doParams($tourAlbum, $data);
+			
+			if($request->hasFile('photo')){
+				if($request->file('photo')->isValid()){
+
+					$path = './files/tour/'.Auth::user()->id;
+					if(!File::exists($path)) {
+						File::makeDirectory($path, $mode = 0777, true, true);
+					}
+					$request->file('photo')->move($path, $request->file('photo')->getClientOriginalName());
+				
+					$visitorJourney->photo = $request->file('photo')->getClientOriginalName();
+				}
+
+			} else {
+				//echo $request->hasFile('photo')
+			}
+			
 			$tourAlbum->save();
 			
 			return redirect('tour-album')->with('message', array('Photo telah berhasil di upload'));
 		}
 	}
 
-	public function postLoadData(){
-    	$this->layout = null;
-    	$data = Input::all();
-    	//Session::flash('selectedData', $data);
-        if(isset($data['ID'])){
-            $tourAlbum = TourAlbum::find($data['ID']);
+	public function getDelete($id){
+		$tourAlbum = TourAlbum::find($id);
+		if($tourAlbum){
+			$tourAlbum->delete();
+			return redirect('tour-album')->with('message', array('Data album telah berhasil di hapus'));
+		}
+	}
 
-            if($tourAlbum == null){
-            	Session::flash('error', array('Data value dengan id ' . $data['ID'] . ' tidak ditemukan'));
-            	return Redirect::to('tour-album');
-            }
-
-            //print_r($tourAlbum->toArray());
-            return Redirect::to('tour-album/input')->withInput($tourAlbum->toArray());
-        }
-    }
+	public function getCityByCountrySearch(Request $request){
+		$countryIdSearch = $request->countryIdSearch;
+		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
+		
+		return $cities;
+	}
 }

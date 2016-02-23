@@ -1,13 +1,27 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Tour;
 
-use Input, Session, Redirect;
+use Input, Session, Redirect, Auth;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\TourReview;
+use App\Models\Country;
+use App\Models\City;
 
-class TourReviewController extends Controller {
+class ReviewController extends Controller {
 
 	public function getIndex() {
+		$tourReview = TourReview::paginate(config('constants.PAGINATION'));
+		$countries = Country::all()->sortBy('country_name');
 		
-		$tourReview = TourReview::all();
-		return view('tourreview.tour-review-browse')->with('tourReview', $tourReview);
+		return view('tour.review.tour-review-browse')
+				->with('tourReview', $tourReview)
+				->with('countries', $countries);
+	}
+
+	public function getCityByCountrySearch(Request $request){
+		$countryIdSearch = $request->countryIdSearch;
+		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
+		
+		return $cities;
 	}
 }
