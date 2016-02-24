@@ -55,7 +55,7 @@
 				<!--My Album-->
 				<h3 class="section-title text-center"><span class="c-lightgrey">MY ALBUM</span></h3>
 				<hr class="s-title">
-				<form role="form" class="form" method="post" action="{{ url('/tour-album/save') }}" enctype="multipart/form-data">
+				<form role="form" class="form" method="post" action="{{ url('tour-album/save') }}" enctype="multipart/form-data">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="fileUpload row form-group">
 						<div class="col-sm-4">

@@ -45,14 +45,12 @@ Route::group(array('before' => 'auth'), function(){
 		Route::controller('visitor-favorite-tour', 'Visitor\FavoriteTourController');
 		Route::controller('visitor-journey', 'Visitor\JourneyController');
 	});
-});
 
-Route::group(array('before' => 'auth'), function(){
 	Route::group(array('before' => 'isTour'), function(){
-	Route::controller('tour-profile', 'Tour\ProfileController');
-	Route::controller('tour-review', 'Tour\ReviewController');
-	Route::controller('tour-itinerary', 'Tour\ItineraryController');
-	Route::controller('tour-album', 'Tour\AlbumController');
+		Route::controller('tour-profile', 'Tour\ProfileController');
+		Route::controller('tour-review', 'Tour\ReviewController');
+		Route::controller('tour-itinerary', 'Tour\ItineraryController');
+		Route::controller('tour-album', 'Tour\AlbumController');
 	});
 });
 

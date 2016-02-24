@@ -13,7 +13,7 @@ class TourAlbum extends Emodel {
 		
 		$rules = array(
 			'title'		=> 'required',
-			'photo'		=> 'required|mimes:jpg',
+			'photo'		=> 'required',
 		);
 
 		$messages = array(
@@ -40,7 +40,8 @@ class TourAlbum extends Emodel {
 	}
 
 	private function getMaxLineNumber() {
-		$result = TourAlbum::max('line_number')->where('mst001_id', '=', Auth::user()->id);
+		$result = TourAlbum::where('mst001_id', '=', Auth::user()->id)
+					->max('line_number');
 		
 		if($result != null) {
 			return $result->get()->line_number + 1;

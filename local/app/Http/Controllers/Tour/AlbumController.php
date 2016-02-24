@@ -6,13 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\TourAlbum;
 use App\Models\Country;
 use App\Models\City;
-
 class AlbumController extends Controller {
 
 	public function getIndex(){
 		$tourAlbum = TourAlbum::paginate(config('constants.PAGINATION'));
 		$countries = Country::all()->sortBy('country_name');
-		
+
 		return view('tour.album.tour-album-browse')
 				->with('tourAlbum', $tourAlbum)
 				->with('countries', $countries);
@@ -22,7 +21,7 @@ class AlbumController extends Controller {
 		$data = $request->all();
 		$tourAlbum = new TourAlbum();
 		$errorBag = $tourAlbum->rules($data);
-		
+
 		if(count($errorBag) > 0){
 
 			Session::flash('error', $errorBag);
