@@ -59,15 +59,24 @@
 					<input type="hidden" name="id" value="{{ $tourProfile['id'] }}">
 					<div class="form-group">
 						<div class="col-sm-3 md-center">
-							<button type="submit" class="p-0" style="border:none;">
-								@if (isset($tourProfile['logo']))
-									<img src="{{ url('assets/image/Album/'.$value->logo) }}" class="img-responsive" height="168" width="168">
-								@else
-									<img src="{{ url('assets/image/def-pic-vendor.png') }}" class="img-responsive" height="168" width="168">
-								@endif
-							</button>
+							@if (isset($tourProfile['logo']))
+								<img src="{{ url(config('constants.TOUR_ALBUM').Auth::user()->id.'/'.$value->logo) }}" class="img-responsive" height="168" width="168">
+							@else
+								<img src="{{ url('assets/image/def-pic-vendor.png') }}" class="img-responsive" height="168" width="168">
+							@endif
 						</div>
-						<div class="col-sm-9">
+						<div class="col-sm-3 md-center">
+							<div class="space-1"></div>
+							<div class="space-1"></div>
+							<div class="space-1"></div>
+							<input type="text" id="photo" class="form-control" placeholder="Photo Name" disabled>
+							<div class="space-1"></div>
+							<div class="fileUpload btn form-control bg-java bc-java c-white">
+								<span><i class="fa fa-folder"></i> Browse</span>
+								<input id="file" type="file" name="photo" class="upload" />
+							</div>
+						</div>
+						<div class="col-sm-6">
 							<label class="control-label c-persimmon"> E-mail</label>
 							<input id="email" name="email" type="email" class="form-control br-0 input-lg" placeholder="john-doe@example.com" value="{{ $tourProfile['user']['email'] }}" disabled>
 							<div class="space-1"></div>
@@ -153,8 +162,6 @@
 						<div class="col-xs-8 col-sm-4">
 							<input id="facebook" name="facebook" type="text" class="form-control br-0 bc-facebook" value="{{ $tourProfile['facebook'] }}">
 						</div>
-					</div>
-					<div class="form-group">
 						<div class="col-xs-4 col-sm-2">
 							<label class="c-twitter">
 								<i class="fa fa-twitter"></i> Twitter
@@ -173,8 +180,6 @@
 						<div class="col-xs-8 col-sm-4">
 							<input id="instagram" name="instagram" type="text" class="form-control br-0 bc-instagram" value="{{ $tourProfile['instagram'] }}">
 						</div>
-					</div>
-					<div class="form-group">
 						<div class="col-xs-4 col-sm-2">
 							<label class="c-rss">
 								<i class="fa fa-rss"></i> Website
@@ -199,4 +204,8 @@
 
 @section('script')
 <script src="{{ url('assets/js/tour-profile.js') }}"></script>
+@stop
+
+@section('style')
+<link rel="stylesheet" href="{{ url('assets/css/upload_photo.css') }}" type="text/css">
 @stop

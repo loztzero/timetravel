@@ -83,7 +83,7 @@
 					@foreach($tourAlbum as $key => $value)
 						<div class="col-md-4">
 							<ul class="list-unstyled vendor-album">
-								<li class="of-hidden"><img src="{{ url('assets/image/Album/'.$value->photo) }}" class="img-responsive wh-100"></li>
+								<li class="of-hidden"><img src="{{ url(config('constants.TOUR_ALBUM').Auth::user()->id.'/'.$value->photo) }}" class="img-responsive wh-100"></li>
 								<li class="text-center">
 									<div class="col-xs-4 p-1">
 										<a href="#" class="c-white">
@@ -123,5 +123,5 @@
 @stop
 
 @section('style')
-<link rel="stylesheet" href="{{ url('assets/css/tour-album.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ url('assets/css/upload_photo.css') }}" type="text/css">
 @stop

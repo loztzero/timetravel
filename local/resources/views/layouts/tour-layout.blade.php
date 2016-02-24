@@ -178,7 +178,7 @@
 									</ul>
 								</li>
 								<li><a href="#" class="c-white"><i class="fa fa-envelope-o"></i> Messages</a></li>
-								<li><a href="{{ url('auth') }}" class="c-white"><i class="fa fa-sign-out"></i> Logout</a></li>
+								<li><a href="{{ url('auth/logout') }}" class="c-white"><i class="fa fa-sign-out"></i> Logout</a></li>
 							@endif
 						</ul> 
 					</div>

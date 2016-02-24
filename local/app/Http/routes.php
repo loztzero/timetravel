@@ -32,7 +32,10 @@ Route::filter('isTraveler', function($route, $request){
 
 //script untuk menjaga apakah dia visitor atau bukan
 Route::filter('isTour', function($route, $request){
-
+	
+	if(Auth::user()->role != 'Tour'){
+		return redirect('/main/register');
+	}
 });
 
 Route::group(array('before' => 'auth'), function(){
@@ -44,12 +47,16 @@ Route::group(array('before' => 'auth'), function(){
 	});
 });
 
-	Route::controller('tour-register', 'Tour\RegisterController');
+Route::group(array('before' => 'auth'), function(){
+	Route::group(array('before' => 'isTour'), function(){
 	Route::controller('tour-profile', 'Tour\ProfileController');
 	Route::controller('tour-review', 'Tour\ReviewController');
 	Route::controller('tour-itinerary', 'Tour\ItineraryController');
 	Route::controller('tour-album', 'Tour\AlbumController');
+	});
+});
 
+Route::controller('tour-register', 'Tour\RegisterController');
 Route::get('/facebook', 'FacebookController@facebook');
 Route::get('/callback', 'FacebookController@callback');
 Route::controller('sample', 'SampleController');

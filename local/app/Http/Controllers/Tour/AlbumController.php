@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers\Tour;
 
-use Input, Session, Redirect, Auth, File;
+use Input, Session, Redirect, Auth, File, Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\TourAlbum;
@@ -18,8 +18,8 @@ class AlbumController extends Controller {
 				->with('countries', $countries);
 	}
 
-	public function postSave(){
-		$data = Input::all();
+	public function postSave(Request $request){
+		$data = $request->all();
 		$tourAlbum = new TourAlbum();
 		$errorBag = $tourAlbum->rules($data);
 		
@@ -41,12 +41,13 @@ class AlbumController extends Controller {
 			if($request->hasFile('photo')){
 				if($request->file('photo')->isValid()){
 
-					$path = './files/tour/'.Auth::user()->id;
+					$path = './'.config('constants.TOUR_ALBUM').Auth::user()->id;
+					
 					if(!File::exists($path)) {
 						File::makeDirectory($path, $mode = 0777, true, true);
 					}
+					
 					$request->file('photo')->move($path, $request->file('photo')->getClientOriginalName());
-				
 					$visitorJourney->photo = $request->file('photo')->getClientOriginalName();
 				}
 
@@ -62,6 +63,7 @@ class AlbumController extends Controller {
 
 	public function getDelete($id){
 		$tourAlbum = TourAlbum::find($id);
+		
 		if($tourAlbum){
 			$tourAlbum->delete();
 			return redirect('tour-album')->with('message', array('Data album telah berhasil di hapus'));

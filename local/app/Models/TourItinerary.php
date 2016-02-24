@@ -30,6 +30,7 @@ class TourItinerary extends Emodel {
 		);
 		
 		$v = Validator::make($data, $rules, $messages);
+		
 		if($v->fails()) {
 			$error = $v->errors()->all();
 		}
@@ -56,6 +57,7 @@ class TourItinerary extends Emodel {
 
 	private function getMaxLineNumber() {
 		$result = TourItinerary::max('line_number')->where('mst001_id', '=', Auth::user()->id);
+		
 		if($result != null) {
 			return $result->get()->line_number + 1;
 		}

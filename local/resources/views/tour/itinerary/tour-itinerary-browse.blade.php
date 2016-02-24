@@ -18,54 +18,56 @@
 					<form role="form" class="form-horizontal" action="{{ url('tour-itinerary/save') }}" method="post">
 						<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 						<input type="hidden" name="id" value="">
-						<div class="form-group">
-							<div class="col-md-4 text-center" style="padding: 0 2.1em;">
-								<button type="submit" class="p-0" style="border:none;">
-									<img src="{{ url('assets/image/def-pic-vendor.png') }}" class="img-responsive" height="168" width="168">
-								</button>
+						<div class="fileUpload row form-group" style="padding:0 2.1em;">
+							<div class="col-sm-8">
+								<input type="text" id="photo" class="form-control" placeholder="Photo Name" disabled>
 								<div class="space-1"></div>
 							</div>
-							<div class="col-md-8">
-								<div class="col-md-6">
-									<label class="control-label c-dodger-blue fa-lg fw-400">Currency</label>
-									<select id="currency" name="currency" class="form-control bc-java">
-										<option value="" selected></option>
-										@foreach($currencies as $key => $value)
-											<option value="{{ $value->id }}">{{ $value->curr_name }}</option>
-										@endforeach
-									</select>
-									<div class="space-1"></div>
+							<div class="col-sm-3">
+								<div class="fileUpload btn form-control bg-java bc-java c-white">
+									<span><i class="fa fa-folder"></i> Browse</span>
+									<input id="file" type="file" name="photo" class="upload" />
 								</div>
-								<div class="col-md-6">
-									<label class="control-label c-dodger-blue fa-lg fw-400">Price</label>
-									<input id="price" name="price" type="text" class="form-control">
-									<div class="space-1"></div>
-								</div>
-								<div class="col-md-6">
-									<label class="control-label c-dodger-blue fa-lg fw-400">Category</label>
-									<select id="category" name="category" class="form-control br-0">
-										<option value="" selected></option>
-										<option value="Backpacker">Backpacker</option>
-										<option value="Family">Family</option>
-										<option value="Honeymoon">Honeymoon</option>
-									</select>
-									<div class="col-md-12 space-1"></div>
-								</div>
-								<div class="col-md-6">
-									<label class="control-label c-dodger-blue fa-lg fw-400">Min Pax</label>
-									<input id="min_pax" name="min_pax" type="text" class="form-control">
-									<div class="space-1"></div>
-								</div>
-								<div class="col-md-6">
-									<label class="control-label c-dodger-blue fa-lg fw-400">Start Period</label>
-									<input id="start_period" name="start_period" type="text" class="form-control">
-									<div class="space-1"></div>
-								</div>
-								<div class="col-md-6">
-									<label class="control-label c-dodger-blue fa-lg fw-400">End Period</label>
-									<input id="end_period" name="end_period" type="text" class="form-control">
-									<div class="space-1"></div>
-								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">Currency</label>
+								<select id="currency" name="currency" class="form-control bc-java">
+									<option value="" selected></option>
+									@foreach($currencies as $key => $value)
+										<option value="{{ $value->id }}">{{ $value->curr_name }}</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="col-md-6" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">Price</label>
+								<input id="price" name="price" type="text" class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">Category</label>
+								<select id="category" name="category" class="form-control br-0">
+									<option value="" selected></option>
+									<option value="Backpacker">Backpacker</option>
+									<option value="Family">Family</option>
+									<option value="Honeymoon">Honeymoon</option>
+								</select>
+							</div>
+							<div class="col-md-6" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">Min Pax</label>
+								<input id="min_pax" name="min_pax" type="text" class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">Start Period</label>
+								<input id="start_period" name="start_period" type="text" class="form-control">
+							</div>
+							<div class="col-md-6" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">End Period</label>
+								<input id="end_period" name="end_period" type="text" class="form-control">
 							</div>
 						</div>
 						<div class="form-group">
@@ -77,21 +79,18 @@
 											<option value="{{ $value->id }}">{{ $value->country_name }}</option>
 										@endforeach
 								</select>
-								<div class="col-md-12 space-1"></div>
 							</div>
 							<div class="col-md-6" style="padding:0 2.1em;">
 								<label class="control-label c-dodger-blue fa-lg fw-400">City</label>
 								<select id="cityId" name="cityId" class="form-control br-0">
 									<option></option>
 								</select>
-								<div class="col-md-12 space-1"></div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-md-12" style="padding:0 2.1em;">
 								<label class="control-label c-dodger-blue fa-lg fw-400">Description</label>
 								<textarea id="description" name="description" class="form-control br-0"></textarea>
-								<div class="space-1"></div>
 							</div>
 						</div>
 						<div class="form-group">
@@ -165,7 +164,7 @@
 						</div>
 						<div class="col-md-2 img-vendor">
 								@if(isset($value->photo))
-									<img src="{{ url('assets/image/Album/'.$value->photo) }}" class="img-responsive">
+									<img src="{{ url(config('constants.TOUR_ALBUM').Auth::user()->id.'/'.$value->photo) }}" class="img-responsive">
 								@else
 									<img src="{{ url('assets/image/def-pic-vendor.png') }}" class="img-responsive">
 								@endif
@@ -203,4 +202,8 @@
 
 @section('script')
 <script src="{{ url('assets/js/tour-itinerary.js') }}"></script>
+@stop
+
+@section('style')
+<link rel="stylesheet" href="{{ url('assets/css/upload_photo.css') }}" type="text/css">
 @stop

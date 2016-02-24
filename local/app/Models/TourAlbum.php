@@ -12,16 +12,17 @@ class TourAlbum extends Emodel {
 		$error = array();
 		
 		$rules = array(
-			'photo'		=> 'required',
 			'title'		=> 'required',
+			'photo'		=> 'required|mimes:jpg',
 		);
 
 		$messages = array(
-			'photo.required'	=> 'File photo must be uploaded',
 			'title.required'	=> 'Title is required',
+			'photo.required'	=> 'File photo must be uploaded',
 		);
 		
 		$v = Validator::make($data, $rules, $messages);
+		
 		if($v->fails()) {
 			$error = $v->errors()->all();
 		}
@@ -40,6 +41,7 @@ class TourAlbum extends Emodel {
 
 	private function getMaxLineNumber() {
 		$result = TourAlbum::max('line_number')->where('mst001_id', '=', Auth::user()->id);
+		
 		if($result != null) {
 			return $result->get()->line_number + 1;
 		}
