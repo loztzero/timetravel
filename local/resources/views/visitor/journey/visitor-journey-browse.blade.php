@@ -4,15 +4,7 @@
 <section class="container">
     <div class="space-1"></div>
     <div class="row user-panel">
-        <div class="col-sm-3 md-none">
-            <h4 class="bg-dodger-blue p-1 c-white fw-700"><span><i class="fa fa-bars"></i> DASHBOARD</span></h4>
-            <ul class="list-unstyled">
-                <li class="p-05 active"><a href="traveller-profile.html" class="c-lightgrey"><i class="fa fa-user"></i> My Profile</a></li>
-                <li class="p-05"><a href="traveller-favourite.html" class="c-lightgrey"><i class="fa fa-heart"></i> My Favourite Tour</a></li>
-                <li class="p-05"><a href="traveller-itinerary.html" class="c-lightgrey"><i class="fa fa-map"></i> My Itinerary</a></li>
-                <li class="p-05"><a href="traveller-journey.html" class="c-lightgrey"><i class="fa fa-location-arrow"></i> My Journey</a></li> 
-            </ul>
-        </div>
+        @include('layouts.visitor-dashboard')
         <div class="col-sm-9">
 
             @include('layouts.message-helper')
@@ -24,7 +16,7 @@
                 <div class="col-md-4 col-sm-6 pop-wrapper">
                     <ul class="pop-box list-unstyled">
                         <li class="ask-it c-white"><a href="#"><i class="fa fa-times"></i></a></li>
-                        <li><img src="{{ url('files/'. $record->photo) }}" ></li>
+                        <li><img src="{{ url('files/visitor/'.  Auth::user()->id .'/'. $record->photo) }}" ></li>
                         <li class="j-title"><a href="#" class="fw-400 c-white"><i class="fa fa-map-marker"></i> {{ $record->title }}</a></li>
                     </ul>
                 </div>
@@ -38,7 +30,7 @@
                 <div class="col-sm-4 md-none"><hr class="bc-dodger-blue"></div>
             </div>
             <div class="space-2"></div>
-            <form role="form" class="form" method="post" action="{{ url('/visitor-journey/save') }}">
+            <form role="form" class="form" method="post" action="{{ url('/visitor-journey/save') }}" enctype="multipart/form-data">
                 <style>
                     .fileUpload {
                         position: relative;
@@ -90,27 +82,5 @@ $( "#file" ).change(function() {
     $('#photo').val(photo);
 });
 
-</script>
-<script>
-$('#country').on('change', function(){
-    //alert(this.value);
-    $.post("{{ url('visitor-profile/city-by-country') }}",
-    {
-        _token: '{{ csrf_token() }}',
-        country: this.value
-    },
-    function(data, status){
-        //alert("Data: " + data + "\nStatus: " + status);
-        // var id = 
-        //$("#city").html("<option>Only This</option>");
-        //console.log(data);
-
-        $("#city").html("<option>Select Your City</option>");
-        $.each(data, function(k, v) {
-            console.log(k + '-' + v.id);
-            $("#city").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
-        });
-    }, 'json');
-});
 </script>
 @stop

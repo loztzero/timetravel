@@ -18,7 +18,7 @@ Route::get('password', function(){
 Route::filter('auth', function($route, $request)
 {
     // Login check (Default)
-    if (Auth::guest()) return Redirect::guest('/main');
+    if (Auth::guest()) return Redirect::guest('main');
 });
 
 //script untuk menjaga apakah dia visitor atau bukan
@@ -56,12 +56,22 @@ Route::group(array('before' => 'auth'), function(){
 	});
 });
 
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+]);
+
+Route::get('/', function()
+{
+	return redirect('main');
+});
+
 Route::controller('tour-register', 'Tour\RegisterController');
 Route::get('/facebook', 'FacebookController@facebook');
 Route::get('/callback', 'FacebookController@callback');
 Route::controller('sample', 'SampleController');
 Route::controller('sample-upload', 'SampleUploadController');
-Route::controller('/', 'MainController');
+Route::controller('main', 'MainController');
 Route::controller('user', 'UserController');
 
 /*Route::get('/', function () {

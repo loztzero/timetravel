@@ -63,7 +63,7 @@
                         </div>
                        
                         <div class="modal-body">
-                            <form role="form" class="form-horizontal" method="POST" action="check">
+                            <form role="form" class="form-horizontal" method="POST" action="{{ url('main/check') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
                                     <div class="modal-input">
@@ -131,14 +131,15 @@
                         </div>
                        
                         <div class="modal-body">
-                            <form role="form" class="form-horizontal">
+                            <form role="form" class="form-horizontal" action="{{ url('main/register') }}" method="post">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
                                     <div class="modal-input">
                                         <div class="col-xs-4">
                                             <label class="c-dodger-blue"><i class="fa fa-envelope-o"></i> E-mail</label>
                                         </div>
                                         <div class="col-xs-8">
-                                            <input type="email" class="form-control" placeholder="Your e-mail address">
+                                            <input type="email" name="email" class="form-control" placeholder="Your e-mail address">
                                         </div>
                                     </div>
                                 </div>
@@ -194,7 +195,7 @@
                                     </ul>
                              </li>
                              <li><a href="#" class="c-white"><i class="fa fa-envelope-o"></i> Messages</a></li>
-                             <li><a href="{{ url('auth') }}" class="c-white"><i class="fa fa-sign-out"></i> Logout</a></li>
+                             <li><a href="{{ url('auth/logout') }}" class="c-white"><i class="fa fa-sign-out"></i> Logout</a></li>
                          @endif
                     </ul> 
                 </div>

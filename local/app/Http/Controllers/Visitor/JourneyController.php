@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Visitor;
 
-use Input, Session, Redirect;
+use Input, Session, Redirect, Auth, File;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\VisitorJourney;
 class JourneyController extends Controller {
@@ -15,8 +16,8 @@ class JourneyController extends Controller {
 		return view('visitor.journey.visitor-photo-album-input');
 	}
 
-	public function postSave(){
-		$data = Input::all();
+	public function postSave(Request $request){
+		$data = $request->all();
 		$visitorJourney = new VisitorJourney();
 		$errorBag = $visitorJourney->rules($data);
 		
@@ -35,7 +36,26 @@ class JourneyController extends Controller {
 			}
 
 			$visitorJourney->doParams($visitorJourney, $data);
+			
+
+			if($request->hasFile('photo')){
+				if($request->file('photo')->isValid()){
+
+					$path = './files/visitor/'.Auth::user()->id;
+					if(!File::exists($path)) {
+					    File::makeDirectory($path, $mode = 0777, true, true);
+					}
+		            $request->file('photo')->move($path, $request->file('photo')->getClientOriginalName());					
+				
+		            $visitorJourney->photo = $request->file('photo')->getClientOriginalName();
+				}
+
+			} else {
+				//echo $request->hasFile('photo')
+			}
+
 			$visitorJourney->save();
+			
 			
 			return redirect('visitor-journey')->with('message', array('Data Journey Successfully uploaded'));
 		}

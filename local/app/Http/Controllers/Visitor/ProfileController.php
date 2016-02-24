@@ -21,7 +21,7 @@ class ProfileController extends Controller {
 		return view('visitorprofile.visitor-profile-input');
 	}
 
-	public function postSave(){
+	public function postSave(Request $request){
 		$data = Input::all();
 		$visitorProfile = new VisitorProfile();
 		$errorBag = $visitorProfile->rules($data);
@@ -43,14 +43,14 @@ class ProfileController extends Controller {
 			$visitorProfile->doParams($visitorProfile, $data);
 			$visitorProfile->save();
 
-			if(Request::hasFile('photo')){
-				if(Request::file('photo')->isValid()){
+			if($request->hasFile('photo')){
+				if($request->file('photo')->isValid()){
 
 					$path = './files/visitor/'.$visitorProfile->id;
 					if(!File::exists($path)) {
 					    File::makeDirectory($path, $mode = 0777, true, true);
 					}
-		            Request::file('photo')->move($path, Request::file('photo')->getClientOriginalName());
+		            $request->file('photo')->move($path, $request->file('photo')->getClientOriginalName());
 					
 				}
 			}

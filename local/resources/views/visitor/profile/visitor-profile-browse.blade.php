@@ -4,15 +4,9 @@
 <section class="container">
     <div class="space-1"></div>
     <div class="row user-panel">
-        <div class="col-sm-3 md-none">
-            <h4 class="bg-dodger-blue p-1 c-white fw-700"><span><i class="fa fa-bars"></i> DASHBOARD</span></h4>
-            <ul class="list-unstyled">
-                <li class="p-05 active"><a href="traveller-profile.html" class="c-lightgrey"><i class="fa fa-user"></i> My Profile</a></li>
-                <li class="p-05"><a href="traveller-favourite.html" class="c-lightgrey"><i class="fa fa-heart"></i> My Favourite Tour</a></li>
-                <li class="p-05"><a href="traveller-itinerary.html" class="c-lightgrey"><i class="fa fa-map"></i> My Itinerary</a></li>
-                <li class="p-05"><a href="traveller-journey.html" class="c-lightgrey"><i class="fa fa-location-arrow"></i> My Journey</a></li> 
-            </ul>
-        </div>
+        
+        @include('layouts.visitor-dashboard')
+
         <div class="col-sm-9">
 
             @include('layouts.message-helper')
@@ -72,7 +66,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label class="control-label c-java">City</label>
-                        <select class="form-control input-lg br-0" id="city">
+                        <select class="form-control input-lg br-0" id="city" name="city">
                             <option value>Select A City</option>
                         </select>
                     </div>
@@ -109,12 +103,13 @@
 
 @section('script')
 <script>
-$('#country').on('change', function(){
-    //alert(this.value);
+var firstLoad = true;
+function setCities(){
+    
     $.post("{{ url('visitor-profile/city-by-country') }}",
     {
         _token: '{{ csrf_token() }}',
-        country: this.value
+        country: $('#country').val()//this.value
     },
     function(data, status){
         //alert("Data: " + data + "\nStatus: " + status);
@@ -122,12 +117,30 @@ $('#country').on('change', function(){
         //$("#city").html("<option>Only This</option>");
         //console.log(data);
 
-        $("#city").html("<option>Select Your City</option>");
+        $("#city").html("<option value=''>Select Your City</option>");
         $.each(data, function(k, v) {
-            console.log(k + '-' + v.id);
+            // console.log(k + '-' + v.id);
             $("#city").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
         });
+
+        if(firstLoad){
+            firstLoad = false;
+            $('#city').val('{{ old("city", $profile != null ? $profile->city : "") }}')
+        }
+
+
     }, 'json');
+
+}
+
+$('#country').on('change', function(){
+    setCities();
 });
+
+$(document).ready(function () {
+    setCities();
+});
+
+
 </script>
 @stop

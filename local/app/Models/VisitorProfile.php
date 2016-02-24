@@ -15,6 +15,7 @@ class VisitorProfile extends Emodel {
 			'firstName'     => 'required',
             'address1'      => 'required',
             'phoneNumber'   => 'required',
+            'city'   => 'required',
         );
 
 		$messages = array(

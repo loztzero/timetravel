@@ -33,7 +33,7 @@ class VisitorPhotoAlbum extends Emodel {
 	{
 		$object->mst001_id = Auth::user()->id;
 		$object->line_number = $this->getMaxLineNumber();
-		$object->photo 	= $data['photo'];
+		// $object->photo 	= $data['photo'];
 		$object->title 	= $data['title'];
 		return $object;
 	}

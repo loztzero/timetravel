@@ -5,15 +5,7 @@
     <section class="container">
         <div class="space-1"></div>
         <div class="row user-panel">
-            <div class="col-sm-3 md-none">
-                <h4 class="bg-dodger-blue p-1 c-white fw-700"><span><i class="fa fa-bars"></i> DASHBOARD</span></h4>
-                <ul class="list-unstyled">
-                    <li class="p-05"><a href="traveller-profile.html" class="c-lightgrey"><i class="fa fa-user"></i> My Profile</a></li>
-                    <li class="p-05"><a href="traveller-favourite.html" class="c-lightgrey"><i class="fa fa-heart"></i> My Favourite Tour</a></li>
-                    <li class="p-05 active"><a href="traveller-itinerary.html" class="c-lightgrey"><i class="fa fa-map"></i> My Itinerary</a></li>
-                    <li class="p-05"><a href="traveller-journey.html" class="c-lightgrey"><i class="fa fa-location-arrow"></i> My Journey</a></li> 
-                </ul>
-            </div>
+            @include('layouts.visitor-dashboard')
             <div class="col-sm-9">
                 <!--My Journey-->
                 <h3 class="section-title c-dodger-blue text-center"><span class="c-lightgrey">MY ITINERARY</span></h3>
@@ -35,10 +27,10 @@
                         </form>
                     </div>
                     <div class="col-md-2">
-                        <form action="{{ url('visitor-itenary/delete') }}" method="post" style="float:left;" id="formDelete">
+                        <form action="{{ url('visitor-itenary/delete') }}" method="post" style="float:left;">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" value="{{ $value->id }}" name="id">
-                            <a class="bg-tall-poppy" onclick="document.getElementById('formDelete').submit()"><i class="fa fa-trash"></i> delete</a>
+                            <a class="bg-tall-poppy" ><i class="fa fa-trash"></i> delete</a>
                         </form>
                         
                     </div>
@@ -55,4 +47,16 @@
     </section>
     <!--Container Section End-->
         
-@stop
+@endsection
+
+@section('script')
+<script>
+$('.bg-tall-poppy').click(function () {
+    var r = confirm("Are you sure want to delete this itenary ?");
+    if (r == true) {
+        $(this).closest("form").submit();
+    }
+});
+//onclick="document.getElementById('formDelete').submit()"
+</script>
+@endsection
