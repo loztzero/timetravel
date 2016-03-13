@@ -15,6 +15,7 @@ return [
     |
     */
 
+    // 'driver' => env('MAIL_DRIVER', 'smtp'),
     'driver' => env('MAIL_DRIVER', 'smtp'),
 
     /*
@@ -28,7 +29,8 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    // 'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => 'mail.holidayku.com',
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +56,8 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    // 'from' => ['address' => null, 'name' => null],
+    'from' => array('address' => 'no-reply@holidayku.com', 'name' => 'no-reply@holidayku.com'),
 
     /*
     |--------------------------------------------------------------------------

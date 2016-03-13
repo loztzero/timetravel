@@ -1,13 +1,8 @@
 @extends('layouts.visitor-layout')
 @section('content')
 
-@if(Session::has('error'))
-<script>
-    alert("{{ Session::get('error') }}")
-</script>
-@endif
-
 <section class="container">
+    @include('layouts.message-helper')
     <!--Mengapa Holidayku Section-->
     <h2 class="section-title c-java text-center"><span><i class="fa fa-check"></i> Mengapa Holidayku?</span></h2>
     <hr class="bc-java s-title">

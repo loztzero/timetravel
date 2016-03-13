@@ -8,6 +8,17 @@ use Validator;
 class VisitorFavoriteTour extends Emodel {
 	protected $table = 'VST010';
 
+	public function tour()
+    {
+        return $this->hasOne('TourProfile', 'id', 'tr0010_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne('User', 'id', 'mst001_id');
+    }
+
+
 	public static function rules($data)
 	{
 		$error = array();

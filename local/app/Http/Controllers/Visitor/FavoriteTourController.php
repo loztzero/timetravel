@@ -1,14 +1,15 @@
 <?php namespace App\Http\Controllers\Visitor;
 
-use Input, Session, Redirect;
+use Input, Session, Redirect, Auth;
 use App\Http\Controllers\Controller;
 use App\Models\VisitorFavoriteTour;
 class FavoriteTourController extends Controller {
 
 	public function getIndex(){
 		//print_r($visitorFavoriteTour);
-		$visitorFavoriteTour = VisitorFavoriteTour::all();
-		return view('visitorfavoritetour.visitor-favorite-tour-browse')->with('visitor-profile', $visitorFavoriteTour);
+		$visitorFavoriteTour = VisitorFavoriteTour::where('mst001_id', '=', Auth::user()->id)->get();
+		return view('visitor.favoritetour.visitor-favorite-tour-browse')
+				->with('favoriteTours', $visitorFavoriteTour);
 	}
 
 	public function getInput(){
