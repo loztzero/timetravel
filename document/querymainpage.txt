@@ -1,0 +1,5 @@
+select * from TR040
+where category = :category
+and price between :budgetfrom and :budgetTo
+and mst002_id = :country
+and mst003_id = : city
