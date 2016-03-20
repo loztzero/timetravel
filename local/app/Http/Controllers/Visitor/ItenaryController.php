@@ -8,7 +8,7 @@ class ItenaryController extends Controller {
 
 	public function getIndex(){
 		//print_r($visitorItenary);
-		$visitorItenary = VisitorItenary::all();
+		$visitorItenary = VisitorItenary::from('VST030 as a')->paginate(20);
 		return view('visitor.itenary.visitor-itenary-browse')->with('visitorItenary', $visitorItenary);
 	}
 

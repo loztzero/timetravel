@@ -36,8 +36,8 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => '429718447219223',
-        'client_secret' => 'd6c8e818a75dafc9c6c699c7a66aec54',
+        'client_id' => '1077861668946877',
+        'client_secret' => '744f00d3a955ad879e6fb5f75d31cc94',
         'redirect' => 'http://tester.holidayku.com/callback',
     ],
 
