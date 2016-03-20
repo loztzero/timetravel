@@ -11,7 +11,7 @@ use App\Models\City;
 class ProfileController extends Controller {
 
 	public function getIndex(){
-		$tourProfile = TourProfile::where('mst001_id', '=', '2')->first();//Auth::user()->id)->first();
+		$tourProfile = TourProfile::where('mst001_id', '=', Auth::user()->id)->first();
 		$tourProfile['user'] = User::find($tourProfile['mst001_id'])->toArray();
 		$countries = Country::all()->sortBy('country_name');
 		$cities = City::where('mst002_id', '=', $tourProfile['mst002_id'])->orderBy('city_name')->get();
@@ -22,8 +22,8 @@ class ProfileController extends Controller {
 				->with('cities', $cities);
 	}
 
-	public function postSave(){
-		$data = Input::all();
+	public function postSave(Request $request){
+		$data = $request->all();
 		$tourProfile = new TourProfile();
 		$errorBag = $tourProfile->rules($data);
 		
@@ -40,13 +40,25 @@ class ProfileController extends Controller {
 				}
 			}
 			
-// 			$data = Input::hasFile('fileUpload');
-// 			Input::file('fileUpload')->move('./files/', Input::file('fileUpload')->getClientOriginalName());
-
 			$tourProfile->doParams($tourProfile, $data);
 			$tourProfile->save();
 			
-			return redirect('tour-profile')->with('message', array('Data tour profile telah berhasil di buat'));
+			if($request->hasFile('logo')){
+				if($request->file('logo')->isValid()){
+
+					$path = './'.config('constants.TOUR_ALBUM').Auth::user()->id;
+					
+					if(!File::exists($path)) {
+						File::makeDirectory($path, $mode = 0777, true, true);
+					}
+					
+					$request->file('logo')->move($path, $request->file('logo')->getClientOriginalName());
+				}
+
+			}
+			
+			return redirect('tour-profile')->with('message', array('Data tour profile telah berhasil di buat'))
+					->withInput($tourProfile->toArray());
 		}
 	}
 

@@ -10,7 +10,7 @@ use App\Models\City;
 class ReviewController extends Controller {
 
 	public function getIndex() {
-		$tourReview = TourReview::paginate(config('constants.PAGINATION'));
+		$tourReview = TourReview::where('mst001_id', '=', Auth::user()->id)->paginate(config('constants.PAGINATION'));
 		$countries = Country::all()->sortBy('country_name');
 		
 		return view('tour.review.tour-review-browse')

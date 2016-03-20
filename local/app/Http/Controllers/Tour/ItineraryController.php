@@ -11,7 +11,7 @@ use App\Models\Currency;
 class ItineraryController extends Controller {
 
 	public function getIndex(){
-		$tourItinerary = TourItinerary::paginate(config('constants.PAGINATION'));
+		$tourItinerary = TourItinerary::where('mst001_id', '=', Auth::user()->id)->paginate(config('constants.PAGINATION'));
 		$countries = Country::all()->sortBy('country_name');
 		$currencies = Currency::all()->sortBy('curr_name');
 		
@@ -21,8 +21,8 @@ class ItineraryController extends Controller {
 				->with('currencies', $currencies);
 	}
 
-	public function postSave(){
-		$data = Input::all();
+	public function postSave(Request $request){
+		$data = $request->all();
 		$tourItinerary = new TourItinerary();
 		$errorBag = $tourItinerary->rules($data);
 		
@@ -39,13 +39,24 @@ class ItineraryController extends Controller {
 				}
 			}
 			
-// 			$data = Input::hasFile('fileUpload');
-// 			Input::file('fileUpload')->move('./files/', Input::file('fileUpload')->getClientOriginalName());
-
 			$tourItinerary->doParams($tourItinerary, $data);
 			$tourItinerary->save();
 			
-			return redirect('tour-itinerary')->with('message', array('Data itinerary telah berhasil di buat'));
+			if($request->hasFile('photo')){
+				if($request->file('photo')->isValid()){
+
+					$path = './'.config('constants.TOUR_ALBUM').Auth::user()->id;
+					
+					if(!File::exists($path)) {
+						File::makeDirectory($path, $mode = 0777, true, true);
+					}
+					
+					$request->file('photo')->move($path, $request->file('photo')->getClientOriginalName());
+				}
+			}
+			
+			return redirect('tour-itinerary')->with('message', array('Data itinerary telah berhasil di buat'))
+					->withInput($tourItinerary->toArray());
 		}
 	}
 

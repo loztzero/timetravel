@@ -41,12 +41,17 @@ function getData($id){
 		success : function(data){
 			data = JSON.parse(data);
 
-			$("#currency").val(data.currency);
+			$("#id").val($id);
+			$("#title").val(data.title);
+			$("#currencyId").val(data.mst004_id);
 			$("#price").val(data.price);
 			$("#category").val(data.category);
 			$("#min_pax").val(data.min_pax);
 			$("#start_period").val(data.start_period);
-			$("#end_period").val(data.end_period);
+			
+			if(data.end_period && data.end_period != '0000-00-00')
+				$("#end_period").val(data.end_period);
+			
 			$("#countryId").val(data.mst002_id);
 			$("#description").val(data.description);
 

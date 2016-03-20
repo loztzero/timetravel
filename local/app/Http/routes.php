@@ -30,11 +30,11 @@ Route::filter('isTraveler', function($route, $request){
 
 });
 
-//script untuk menjaga apakah dia visitor atau bukan
+//script untuk menjaga apakah dia tour atau bukan
 Route::filter('isTour', function($route, $request){
 	
-	if(Auth::user()->role != 'Tour'){
-		return redirect('/main/register');
+	if(Auth::user()->role != config('constants.TOUR')){
+		return redirect('/main');
 	}
 });
 
@@ -51,6 +51,9 @@ Route::group(array('before' => 'auth'), function(){
 		Route::controller('tour-review', 'Tour\ReviewController');
 		Route::controller('tour-itinerary', 'Tour\ItineraryController');
 		Route::controller('tour-album', 'Tour\AlbumController');
+		Route::controller('tour-profile-viewed', 'Tour\ProfileViewedController');
+		Route::controller('tour-album-viewed', 'Tour\AlbumViewedController');
+		Route::controller('tour-itinerary-viewed', 'Tour\ItineraryViewedController');
 	});
 });
 

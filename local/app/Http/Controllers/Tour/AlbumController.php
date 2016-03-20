@@ -1,15 +1,16 @@
 <?php namespace App\Http\Controllers\Tour;
 
-use Input, Session, Redirect, Auth, File, Hash;
+use Input, Session, Redirect, Auth, File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\TourAlbum;
 use App\Models\Country;
 use App\Models\City;
+
 class AlbumController extends Controller {
 
 	public function getIndex(){
-		$tourAlbum = TourAlbum::paginate(config('constants.PAGINATION'));
+		$tourAlbum = TourAlbum::where('mst001_id', '=', Auth::user()->id)->paginate(config('constants.PAGINATION'));
 		$countries = Country::all()->sortBy('country_name');
 
 		return view('tour.album.tour-album-browse')
@@ -36,8 +37,10 @@ class AlbumController extends Controller {
 			}
 			
 			$tourAlbum->doParams($tourAlbum, $data);
+			$tourAlbum->save();
 			
 			if($request->hasFile('photo')){
+				print_r($request->hasFile('photo'));
 				if($request->file('photo')->isValid()){
 
 					$path = './'.config('constants.TOUR_ALBUM').Auth::user()->id;
@@ -47,16 +50,11 @@ class AlbumController extends Controller {
 					}
 					
 					$request->file('photo')->move($path, $request->file('photo')->getClientOriginalName());
-					$visitorJourney->photo = $request->file('photo')->getClientOriginalName();
 				}
-
-			} else {
-				//echo $request->hasFile('photo')
 			}
 			
-			$tourAlbum->save();
-			
-			return redirect('tour-album')->with('message', array('Photo telah berhasil di upload'));
+			return redirect('tour-album')->with('message', array('Photo telah berhasil di upload'))
+					->withInput($tourAlbum->toArray());
 		}
 	}
 

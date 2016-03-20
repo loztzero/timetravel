@@ -3,7 +3,7 @@ $("document").ready(function(){
 		var countryId = this.value;
 		$.ajax({
 			type: "GET",
-			url : "tour-profile/city-by-country",
+			url : "tour-profile-viewed/city-by-country",
 			data : {'countryId':countryId, '_token':'"{{ csrf_token() }}"'},
 			success : function(data){
 				data = JSON.parse(data);
@@ -19,7 +19,7 @@ $("document").ready(function(){
 		var countryIdSearch = this.value;
 		$.ajax({
 			type: "GET",
-			url : "tour-itinerary/city-by-country-search",
+			url : "tour-profile-viewed/city-by-country-search",
 			data : {'countryIdSearch':countryIdSearch, '_token':'"{{ csrf_token() }}"'},
 			success : function(data){
 				data = JSON.parse(data);
@@ -30,9 +30,4 @@ $("document").ready(function(){
 			}
 		},"json");
 	});
-});
-
-$("#file").change(function() {
-	var logo = $('input[type=file]')[0].files[0].name;
-	$('#logo').val(logo);
 });

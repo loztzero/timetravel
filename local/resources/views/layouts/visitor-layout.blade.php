@@ -154,7 +154,7 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <span>Are you a vendor? Please click </span><a href="vendor-register.html" class="fw-700">here</a>
+                            <span>Are you a vendor? Please click </span><a href="{{ url('tour-register') }}" class="fw-700">here</a>
                         </div>
                     </div>
                 </div>
@@ -183,7 +183,7 @@
                         @if(!Auth::check())
                             <li><a href="#" data-toggle="modal" data-target="#modregister" class="bg-tree-poppy c-white"><i class="fa fa-user-plus"></i> Register</a></li>
                             <li><a href="#" data-toggle="modal" data-target="#modlogin" class="bg-cinnabar c-white"><i class="fa fa-sign-in"></i> Login</a></li>
-                            <li><a href="vendor-register.html" class="bg-tall-poppy c-white"><i class="fa fa-users"></i> Join Us</a></li>
+                            <li><a href="{{ url('tour-register') }}" class="bg-tall-poppy c-white"><i class="fa fa-users"></i> Join Us</a></li>
                         @else
                             <li class="dropdown">
                                  <a class="dropdown-toggle c-white" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> {{ 'Hi, '. Auth::user()->email }} <i class="fa fa-caret-down"></i></a>
@@ -296,7 +296,7 @@
                             <li><a  href="#" class="c-white">About Us</a></li>
                             <li><a href="#" class="c-white">FAQ</a></li>
                             <li><a href="#" class="c-white">Contact Us</a></li>
-                            <li><a href="vendor-register.html" class="c-white">Join Us</a></li>
+                            <li><a href="{{ url('tour-register') }}" class="c-white">Join Us</a></li>
                         </ul>
                     </div>
                     <div class="col-md-8 text-right md-center">

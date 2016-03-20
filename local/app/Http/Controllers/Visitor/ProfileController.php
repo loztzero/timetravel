@@ -50,8 +50,8 @@ class ProfileController extends Controller {
 					if(!File::exists($path)) {
 					    File::makeDirectory($path, $mode = 0777, true, true);
 					}
-		            $request->file('photo')->move($path, $request->file('photo')->getClientOriginalName());
 					
+		            $request->file('photo')->move($path, $request->file('photo')->getClientOriginalName());
 				}
 			}
 			
