@@ -38,6 +38,9 @@
                 @endforeach
                 <!--My Journey End-->
 
+                <div class="pagination">
+                    {!! $visitorItenary->render() !!}
+                </div>
                 <div class="col-md-offset-8 col-md-4 p-0">
                     <button class="btn btn-default bg-java bc-java c-white" onclick="window.location.assign('{{ url('visitor-itenary/input') }}')">Make Itenary</button>
                 </div>

@@ -4,11 +4,39 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 use Input, Auth, Session, Redirect, Hash, Mail, Validator, Exception, DB;
 use App\User;
+use App\Models\TourItinerary;
 class MainController extends Controller {
 
-	public function getIndex()
+	public function getIndex(Request $request)
 	{
-		return view('main.main-page');
+		$tourItenary = TourItinerary::from('TR0040 as a')
+						->join('MST002 as b', 'a.mst002_id', '=', 'b.id')
+						->join('MST003 as c', 'a.mst003_id', '=', 'c.id');
+
+		if($request->has('category')){
+			$tourItenary->where('a.category', '=', $request->category);
+		}
+
+		if($request->has('budget_from')){
+			$tourItenary->where('a.price', '>=', $request->budget_from);	
+		}
+
+		if($request->has('budget_to')){
+			$tourItenary->where('a.price', '<=', $request->budget_to);
+		}
+
+		if($request->has('country')){
+			$tourItenary->where('b.country_name', '=', $request->country);
+		}
+
+		if($request->has('city')){
+			$tourItenary->where('c.city_name', '=', $request->city);
+		}
+
+		$tourItenary = $tourItenary->paginate('20');
+
+		return view('main.main-page')->with('itenary', $tourItenary);
+		//->with('tourItenary', $tourItenary);
 	}
 
 	public function postCheck(Request $request){

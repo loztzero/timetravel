@@ -94,7 +94,7 @@
                                         <label class="control-label c-lightgrey">- OR -</label>
                                     </div>
                                     <div class="col-sm-5">
-                                        <button type="submit" class="btn btn-default bg-facebook"><i class="fa fa-facebook-official"></i> Login with Facebook</button>
+                                        <button type="button" onclick="javascript: window.location = '{{ url('facebook') }}'" class="btn btn-default bg-facebook"><i class="fa fa-facebook-official"></i> Login with Facebook</button>
                                     </div>
                                 </div>
                                 <div class="space-1"></div>
