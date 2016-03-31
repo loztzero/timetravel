@@ -46,7 +46,7 @@ class TourProfile extends Emodel {
 	}
 
 	public function doParams($object, $data) {
-		$object->mst001_id		= Auth::user()->id;
+		$object->mst001_id		= isset(Auth::user()->id) ? Auth::user()->id : $data['mst001_id'];
 		$object->tour_name		= $data['tour_name'];
 		$object->first_name		= $data['first_name'];
 		$object->last_name		= $data['last_name'];

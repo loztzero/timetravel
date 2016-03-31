@@ -36,7 +36,7 @@ class TourAlbum extends Emodel {
 		$object->mst001_id		= Auth::user()->id;
 		$object->line_number	= $this->getMaxLineNumber();
 		$object->title			= $data['title'];
-		$object->photo			= $data['photo'];
+		$object->photo			= $data['photo']->getClientOriginalName();
 		
 		return $object;
 	}
@@ -44,7 +44,7 @@ class TourAlbum extends Emodel {
 	private function getMaxLineNumber() {
 		$result = TourAlbum::where('mst001_id', '=', Auth::user()->id)->max('line_number');
 		
-		if($result != null) {
+		if(isset($result)) {
 			return $result+=1;
 		}
 

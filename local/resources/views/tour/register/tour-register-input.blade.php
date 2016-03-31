@@ -10,9 +10,11 @@
 		<link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}" type="text/css">
 		<link rel="stylesheet" href="{{ url('assets/css/font-awesome.min.css') }}">
 		<link rel="stylesheet" href="{{ url('assets/css/style.css') }}">
+		<link rel="stylesheet" href="{{ url('assets/css/upload_photo.css') }}" type="text/css">
 		
 		<script src="{{ url('assets/js/jquery-2.1.4.min.js') }}"></script>
 		<script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
+		<script src="{{ url('assets/js/tour-register.js') }}"></script>
 	</head>
 	
 	<body>
@@ -31,7 +33,8 @@
 			</h2>
 			<hr class="bc-persimmon">
 			<div class="space-1"></div>
-			<form role="form" method="post" action="{{ url('tour-register/save') }}" enctype="multipart/form-data">
+			<form role="form" method="post" action="{{ url('tour-register/save') }}" enctype="multipart/form-data" data-toggle="validator">
+				<input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
 				<div class="row r-vendor">
 					<div class="col-md-7">
 						<h2 class="bg-persimmon p-05 c-white md-block">
@@ -40,12 +43,10 @@
 						</h2>
 						<fieldset class="form-horizontal">
 							<div class="form-group">
-								<div class="col-sm-3 md-center">
-									<div class="space-1"></div>
-									<div class="space-1"></div>
-									<div class="space-1"></div>
+								<div class="col-sm-9 md-center">
 									<input type="text" id="logo" class="form-control" placeholder="Photo Name" disabled>
-									<div class="space-1"></div>
+								</div>
+								<div class="col-sm-3 md-center">
 									<div class="fileUpload btn form-control bg-java bc-java c-white">
 										<span><i class="fa fa-folder"></i> Browse</span>
 										<input id="file" type="file" name="logo" class="upload" />
@@ -55,37 +56,37 @@
 							<div class="form-group">
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon"> E-mail</label>
-									<input id="email" name="email" type="email" class="form-control br-0 input-lg" placeholder="john-doe@example.com">
+									<input id="email" name="email" type="email" class="form-control br-0 input-lg" placeholder="john-doe@example.com" required value='yuds_ok@yahoo.co.id'>
 								</div>
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon"> Password</label>
-									<input id="password" name="password" type="password" class="form-control input-lg br-0">
+									<input id="password" name="password" type="password" class="form-control input-lg br-0" required value='4ur0r4'>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon fa-lg">First name</label>
-									<input id="first_name" name="first_name" type="text" class="form-control br-0" placeholder="Firstname">
+									<input id="first_name" name="first_name" type="text" class="form-control br-0" placeholder="Firstname" required value='Yudha'>
 								</div>
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon fa-lg">Last name</label>
-									<input id="last_name" name="last_name" type="text" class="form-control br-0" placeholder="Lastname">
+									<input id="last_name" name="last_name" type="text" class="form-control br-0" placeholder="Lastname" required value='Proudy'>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-6">
-									<label class="control-label c-persimmon fa-lg">Travel tour name</label>
-									<input id="tour_name" name="tour_name" type="text" class="form-control br-0" placeholder="Travel tour name">
+									<label class="control-label c-persimmon fa-lg">Tour name</label>
+									<input id="tour_name" name="tour_name" type="text" class="form-control br-0" placeholder="Travel tour name" required value='YudsTour'>
 								</div>
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon fa-lg">Phone number</label>
-									<input id="phone_number" name="phone_number" type="text" class="form-control br-0" placeholder="+62123456789">
+									<input id="phone_number" name="phone_number" type="text" class="form-control br-0" placeholder="+62123456789" required value='081809734337'>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-12">
 									<label class="control-label c-persimmon fa-lg">Address</label>
-									<input id="address1" name="address1" type="text" class="form-control br-0" placeholder="Address line 1"><br>
+									<input id="address1" name="address1" type="text" class="form-control br-0" placeholder="Address line 1" required value='Jl Wahid Hasyim No 162'><br>
 									<input id="address2" name="address2" type="text" class="form-control br-0" placeholder="Address line 2"><br>
 									<input id="address3" name="address3" type="text" class="form-control br-0" placeholder="Address line 3">
 								</div>
@@ -93,13 +94,13 @@
 							<div class="form-group">
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon fa-lg">Zip Code</label>
-									<input id="zip_code" name="zip_code" type="text" class="form-control br-0" placeholder="Postal Code or Zip Code">
+									<input id="zip_code" name="zip_code" type="number" class="form-control br-0" placeholder="Postal Code or Zip Code" min="0" data-bind="value:replyNumber" required value='45312'>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon fa-lg">Country</label>
-									<select id="countryId" name="countryId" class="form-control br-0" id="sel2">
+									<select id="countryId" name="countryId" class="form-control br-0" id="sel2" required>
 										<option value="" selected></option>
 										@foreach($countries as $key => $value)
 											<option value="{{ $value->id }}">{{ $value->country_name }}</option>
@@ -108,7 +109,7 @@
 								</div>
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon fa-lg">City</label>
-									<select id="cityId" name="cityId" class="form-control br-0" id="sel5">
+									<select id="cityId" name="cityId" class="form-control br-0" id="sel5" required>
 										<option value="" selected></option>
 									</select>
 								</div>
@@ -214,11 +215,3 @@
 	<!--Footer End-->
 	</body>
 </html>
-
-@section('script')
-<script src="{{ url('assets/js/tour-register.js') }}"></script>
-@stop
-
-@section('style')
-<link rel="stylesheet" href="{{ url('assets/css/upload_photo.css') }}" type="text/css">
-@stop

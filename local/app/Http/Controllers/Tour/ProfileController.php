@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers\Tour;
 
-use Input, Session, Redirect, Auth, File;
+use Input, Session, Redirect, Auth, File, Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\TourProfile;
@@ -12,10 +12,9 @@ class ProfileController extends Controller {
 
 	public function getIndex(){
 		$tourProfile = TourProfile::where('mst001_id', '=', Auth::user()->id)->first();
-		$tourProfile['user'] = User::find($tourProfile['mst001_id'])->toArray();
 		$countries = Country::all()->sortBy('country_name');
 		$cities = City::where('mst002_id', '=', $tourProfile['mst002_id'])->orderBy('city_name')->get();
-
+		
 		return view('tour.profile.tour-profile-browse')
 				->with('tourProfile', $tourProfile)
 				->with('countries', $countries)
@@ -26,6 +25,7 @@ class ProfileController extends Controller {
 		$data = $request->all();
 		$tourProfile = new TourProfile();
 		$errorBag = $tourProfile->rules($data);
+		$photoFile;
 		
 		if(count($errorBag) > 0){
 
@@ -35,8 +35,10 @@ class ProfileController extends Controller {
 
 			if(isset($data['id'])){
 				$tourProfile = TourProfile::find($data['id']);
-				if($tourProfile == null){
+				if(isset($tourProfile)){
 					$tourProfile = new TourProfile();
+				} else {
+					$photoFile = $tourProfile->logo;
 				}
 			}
 			
@@ -46,15 +48,25 @@ class ProfileController extends Controller {
 			if($request->hasFile('logo')){
 				if($request->file('logo')->isValid()){
 
-					$path = './'.config('constants.TOUR_ALBUM').Auth::user()->id;
+					$path = $this->getPath();
 					
 					if(!File::exists($path)) {
 						File::makeDirectory($path, $mode = 0777, true, true);
 					}
 					
 					$request->file('logo')->move($path, $request->file('logo')->getClientOriginalName());
+
+					if($request->hasFile('logo')){
+						if($photoFile != $request->file('logo')){
+							File::delete($path.'/'.$photoFile);
+						}
+					}
 				}
 
+			}
+			
+			if(isset($request->password)){
+				$this->saveUser($request);
 			}
 			
 			return redirect('tour-profile')->with('message', array('Data tour profile telah berhasil di buat'))
@@ -74,5 +86,15 @@ class ProfileController extends Controller {
 		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
 		
 		return $cities;
+	}
+	
+	private function saveUser(Request $request){
+		$user = User::find(Auth::user()->id);
+		$user->password = Hash::make($request->password);
+		$user->save();
+	}
+	
+	private function getPath(){
+		return './'.config('constants.TOUR_ALBUM').Auth::user()->id;
 	}
 }

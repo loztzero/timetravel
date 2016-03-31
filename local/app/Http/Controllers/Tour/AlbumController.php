@@ -31,7 +31,7 @@ class AlbumController extends Controller {
 
 			if(isset($data['id'])){
 				$tourAlbum = TourAlbum::find($data['id']);
-				if($tourAlbum == null){
+				if(isset($tourAlbum)){
 					$tourAlbum = new TourAlbum();
 				}
 			}
@@ -40,10 +40,9 @@ class AlbumController extends Controller {
 			$tourAlbum->save();
 			
 			if($request->hasFile('photo')){
-				print_r($request->hasFile('photo'));
 				if($request->file('photo')->isValid()){
 
-					$path = './'.config('constants.TOUR_ALBUM').Auth::user()->id;
+					$path = $this->getPath();
 					
 					if(!File::exists($path)) {
 						File::makeDirectory($path, $mode = 0777, true, true);
@@ -61,8 +60,10 @@ class AlbumController extends Controller {
 	public function getDelete($id){
 		$tourAlbum = TourAlbum::find($id);
 		
-		if($tourAlbum){
+		if(isset($tourAlbum)){
 			$tourAlbum->delete();
+			File::delete($this->getPath().'/'.$tourAlbum->photo);
+			
 			return redirect('tour-album')->with('message', array('Data album telah berhasil di hapus'));
 		}
 	}
@@ -72,5 +73,9 @@ class AlbumController extends Controller {
 		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
 		
 		return $cities;
+	}
+	
+	private function getPath(){
+		return './'.config('constants.TOUR_ALBUM').Auth::user()->id;
 	}
 }

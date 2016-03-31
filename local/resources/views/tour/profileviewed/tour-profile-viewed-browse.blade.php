@@ -60,9 +60,11 @@
 				<div class="row opt-searchbar m-0">
 					<h4 class="fw-700 text-center m-0 p-1 bg-dodger-blue c-white"> SEARCH ITINERARY</h4>
 					<form role="form" class="form-horizontal" action="{{ url('tour-profile-viewed/search') }}" method="post" >
+						<input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+						<input type="hidden" id="id" name="id" value="{{ $tourProfile['id'] }}">
 						<div class="col-xs-12 mt-1 p-0">
 							<select id="category" name="category" class="well-sm br-0 bc-dodger-blue">
-								<option value="" selected></option>
+								<option value="" selected>All Category</option>
 								<option value="Backpacker">Backpacker</option>
 								<option value="Family">Family</option>
 								<option value="Honeymoon">Honeymoon</option>
@@ -70,13 +72,14 @@
 						</div>
 						<div class="col-xs-12 space-1"></div>
 						<div class="col-xs-12 text-center p-0">
-							<input id="start_period" name="start_period" type="text" class="well-sm br-0 bc-dodger-blue" placeholder="Range budget from">
+							<input id="start_period" name="start_period" type="text" class="well-sm br-0 bc-dodger-blue" placeholder="Start period">
 							<div class="c-java">s/d</div>
-							<input id="end_period" name="end_period" type="text" class="well-sm br-0 bc-dodger-blue" placeholder="Range budget to">
+							<input id="end_period" name="end_period" type="text" class="well-sm br-0 bc-dodger-blue" placeholder="End period">
 						</div>
 						<div class="col-xs-12 space-1"></div>
 						<div class="col-xs-12 text-center p-0">
 							<select id="countryId" name="countryId" class="well-sm br-0 bc-dodger-blue">
+								<option value="" selected>All Country</option>
 								@foreach($countries as $key => $value)
 									<option value="{{ $value->id }}">{{ $value->country_name }}</option>
 								@endforeach
@@ -85,13 +88,13 @@
 						<div class="col-xs-12 space-1"></div>
 						<div class="col-xs-12 text-center p-0">
 							<select id="cityId" name="cityId" class="well-sm br-0 bc-dodger-blue">
-								<option></option>
+								<option value="" selected>All City</option>
 							</select>
 						</div>
 						<div class="col-xs-12 space-1"></div>
 						<div class="col-xs-12 text-center p-0">
-							<select id="currencyId" name="currencyId" class="form-control bc-java">
-								<option value="" selected></option>
+							<select id="currencyId" name="currencyId" class="well-sm br-0 bc-dodger-blue">
+								<option value="" selected>All Currency</option>
 								@foreach($currencies as $key => $value)
 									<option value="{{ $value->id }}">{{ $value->curr_name }}</option>
 								@endforeach
@@ -99,7 +102,9 @@
 						</div>
 						<div class="col-xs-12 space-1"></div>
 						<div class="col-xs-12 text-center p-0">
-							<input id="price" name="price" type="text" class="form-control">
+							<input id="start_period" name="budget_from" type="text" class="well-sm br-0 bc-dodger-blue" placeholder="Range budget from">
+							<div class="c-java">s/d</div>
+							<input id="end_period" name="budget_to" type="text" class="well-sm br-0 bc-dodger-blue" placeholder="Range budget to">
 						</div>
 						<div class="col-xs-12 space-1"></div>
 						<div class="col-xs-12 text-center p-0">

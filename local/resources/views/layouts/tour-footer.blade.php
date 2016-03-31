@@ -11,7 +11,6 @@
 					<li><a href="#" class="c-white">About Us</a></li>
 					<li><a href="#" class="c-white">FAQ</a></li>
 					<li><a href="#" class="c-white">Contact Us</a></li>
-					<li><a href="{{ url('tour-register') }}" class="c-white">Join Us</a></li>
 				</ul>
 			</div>
 			<div class="col-md-8 text-right md-center">

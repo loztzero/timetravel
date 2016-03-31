@@ -204,7 +204,7 @@
 					<div class="col-sm-10 md-center">
 						<div class="col-sm-2">
 							<select class="form-control bc-java">
-								<option value="" selected>Semua</option>
+								<option value="" selected>All Category</option>
 								<option value="Backpacker">Backpacker</option>
 								<option value="Family">Family</option>
 								<option value="Honeymoon">Honeymoon</option>
@@ -217,7 +217,7 @@
 						</div>
 						<div class="col-sm-2">
 							<select id="countryIdSearch" name="countryIdSearch" class="form-control bc-java">
-								<option value="%" selected>Semua</option>
+								<option value="" selected>All Country</option>
 								@foreach($countries as $key => $value)
 									<option value="{{ $value->id }}">{{ $value->country_name }}</option>
 								@endforeach
@@ -225,7 +225,7 @@
 						</div>
 						<div class="col-sm-2">
 							<select id="cityIdSearch" name="cityIdSearch" class="form-control bc-java">
-								<option value="%" selected>Semua</option>
+								<option value="" selected>All City</option>
 							</select>
 						</div>
 						<div class="col-sm-2">
