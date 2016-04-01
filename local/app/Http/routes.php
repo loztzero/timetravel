@@ -18,7 +18,9 @@ Route::get('password', function(){
 Route::filter('auth', function($route, $request)
 {
     // Login check (Default)
-    if (Auth::guest()) return Redirect::guest('main');
+    if (Auth::guest()){
+		return Redirect::guest('main');
+	}
 });
 
 //script untuk menjaga apakah dia visitor atau bukan
@@ -32,7 +34,7 @@ Route::filter('isTraveler', function($route, $request){
 
 //script untuk menjaga apakah dia visitor atau bukan
 Route::filter('isTour', function($route, $request){
-	
+
 	if(Auth::user()->role != 'Tour'){
 		return redirect('/main/register');
 	}
@@ -61,7 +63,15 @@ Route::controllers([
 
 Route::get('/', function()
 {
-	return redirect('main');
+	if(Auth::check()){
+		if(Auth::user()->role == 'User'){
+			return redirect('visitor-profile');
+		} elseif(Auth::user()->role == 'Tour'){
+			return redirect('tour-profile');
+		}
+	} else {
+		return redirect('main');
+	}
 });
 
 Route::controller('tour-register', 'Tour\RegisterController');
@@ -86,7 +96,7 @@ Route::get('yo', function()
 Route::get('duck', function()
 {
 	//echo Uuid::generate();
-	
+
 	$pdf = App::make('dompdf.wrapper');
 	$pdf->loadHTML('<h1>Test</h1>');
 	return $pdf->stream();
@@ -102,5 +112,5 @@ Route::get('excel', function()
 
 	});
 
-})->export('xls'); 
+})->export('xls');
 });

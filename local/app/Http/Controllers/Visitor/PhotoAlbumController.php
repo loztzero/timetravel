@@ -3,12 +3,16 @@
 use Input, Session, Redirect;
 use App\Http\Controllers\Controller;
 use App\Models\VisitorPhotoAlbum;
+use App\Models\Country;
 class PhotoAlbumController extends Controller {
 
 	public function getIndex(){
 		//print_r($visitorPhotoAlbum);
 		$visitorPhotoAlbum = VisitorPhotoAlbum::all();
-		return view('visitorphotoalbum.visitor-photo-album-browse')->with('visitorItenary', $visitorPhotoAlbum);
+		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
+		return view('visitorphotoalbum.visitor-photo-album-browse')
+			->with('visitorItenary', $visitorPhotoAlbum)
+			->with('countryList', $countryList);
 	}
 
 	public function getInput(){
@@ -19,12 +23,12 @@ class PhotoAlbumController extends Controller {
 		$data = Input::all();
 		$visitorPhotoAlbum = new VisitorPhotoAlbum();
 		$errorBag = $visitorPhotoAlbum->rules($data);
-		
+
 		if(count($errorBag) > 0){
 
 			Session::flash('error', $errorBag);
 			return redirect('visitor-photo-album/input')
-				->withInput($data);	
+				->withInput($data);
 		} else {
 
 			if(isset($data['id'])){
@@ -36,7 +40,7 @@ class PhotoAlbumController extends Controller {
 
 			$visitorPhotoAlbum->doParams($visitorPhotoAlbum, $data);
 			$visitorPhotoAlbum->save();
-			
+
 			return redirect('visitor-photo-album')->with('message', array('Data visitor-photo-album telah berhasil di buat'));
 		}
 	}

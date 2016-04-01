@@ -26,11 +26,11 @@ class ProfileController extends Controller {
 		$data = Input::all();
 		$tourProfile = new TourProfile();
 		$errorBag = $tourProfile->rules($data);
-		
+
 		if(count($errorBag) > 0){
 
 			Session::flash('error', $errorBag);
-			return redirect('tour-profile')->withInput($data);	
+			return redirect('tour-profile')->withInput($data);
 		} else {
 
 			if(isset($data['id'])){
@@ -39,13 +39,13 @@ class ProfileController extends Controller {
 					$tourProfile = new TourProfile();
 				}
 			}
-			
+
 // 			$data = Input::hasFile('fileUpload');
 // 			Input::file('fileUpload')->move('./files/', Input::file('fileUpload')->getClientOriginalName());
 
 			$tourProfile->doParams($tourProfile, $data);
 			$tourProfile->save();
-			
+
 			return redirect('tour-profile')->with('message', array('Data tour profile telah berhasil di buat'));
 		}
 	}
@@ -53,14 +53,14 @@ class ProfileController extends Controller {
 	public function getCityByCountry(Request $request){
 		$countryId = $request->countryId;
 		$cities = City::where('mst002_id', '=', $countryId)->orderBy('city_name')->get()->toJson();
-		
+
 		return $cities;
 	}
 
 	public function getCityByCountrySearch(Request $request){
 		$countryIdSearch = $request->countryIdSearch;
 		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
-		
+
 		return $cities;
 	}
 }

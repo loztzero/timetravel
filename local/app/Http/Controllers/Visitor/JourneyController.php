@@ -4,12 +4,16 @@ use Input, Session, Redirect, Auth, File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\VisitorJourney;
+use App\Models\Country;
 class JourneyController extends Controller {
 
 	public function getIndex(){
 		//print_r($visitorJourney);
 		$visitorJourney = VisitorJourney::all();
-		return view('visitor.journey.visitor-journey-browse')->with('visitorJourney', $visitorJourney);
+		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
+		return view('visitor.journey.visitor-journey-browse')
+			->with('visitorJourney', $visitorJourney)
+			->with('countryList', $countryList);
 	}
 
 	public function getInput(){
@@ -20,12 +24,12 @@ class JourneyController extends Controller {
 		$data = $request->all();
 		$visitorJourney = new VisitorJourney();
 		$errorBag = $visitorJourney->rules($data);
-		
+
 		if(count($errorBag) > 0){
 
 			Session::flash('error', $errorBag);
 			return redirect('visitor-journey');
-			
+
 		} else {
 
 			if(isset($data['id'])){
@@ -36,7 +40,7 @@ class JourneyController extends Controller {
 			}
 
 			$visitorJourney->doParams($visitorJourney, $data);
-			
+
 
 			if($request->hasFile('photo')){
 				if($request->file('photo')->isValid()){
@@ -45,8 +49,8 @@ class JourneyController extends Controller {
 					if(!File::exists($path)) {
 					    File::makeDirectory($path, $mode = 0777, true, true);
 					}
-		            $request->file('photo')->move($path, $request->file('photo')->getClientOriginalName());					
-				
+		            $request->file('photo')->move($path, $request->file('photo')->getClientOriginalName());
+
 		            $visitorJourney->photo = $request->file('photo')->getClientOriginalName();
 				}
 
@@ -55,8 +59,8 @@ class JourneyController extends Controller {
 			}
 
 			$visitorJourney->save();
-			
-			
+
+
 			return redirect('visitor-journey')->with('message', array('Data Journey Successfully uploaded'));
 		}
 	}

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use Input, Session, Redirect;
 use App\Models\VisitorTourProfile;
+use App\Models\Country;
 class TourProfilecontroller extends Controller {
 
 	public function getIndex(){
@@ -19,12 +20,12 @@ class TourProfilecontroller extends Controller {
 		$data = Input::all();
 		$tourProfile = new VisitorTourProfile();
 		$errorBag = $tourProfile->rules($data);
-		
+
 		if(count($errorBag) > 0){
 
 			Session::flash('error', $errorBag);
 			return redirect('tour-profile/input')
-				->withInput($data);	
+				->withInput($data);
 		} else {
 
 			if(isset($data['id'])){
@@ -36,7 +37,7 @@ class TourProfilecontroller extends Controller {
 
 			$tourProfile->doParams($tourProfile, $data);
 			$tourProfile->save();
-			
+
 			return redirect('tour-profile')->with('message', array('Data tour-profile telah berhasil di buat'));
 		}
 	}
@@ -57,6 +58,6 @@ class TourProfilecontroller extends Controller {
             return Redirect::to('tour-profile/input')->withInput($tourProfile->toArray());
         }
 
-    	
+
     }
 }

@@ -19,7 +19,7 @@
             $(window).load(function() {
                 $('.flexslider').flexslider({animation: "slide"});
             });
-            
+
             //Scroll To Top plugin
             $(document).ready(function(){
                 //Check to see if the window is top if not then display button
@@ -43,7 +43,6 @@
     </head>
     <body>
 <!--scroll to top-->
-        {{-- url() --}}
         <a href="#" class="scrollToTop text-center"><i class="fa fa-arrow-circle-o-up fa-3x"></i><br>Scroll<br>To Top</a>
         <!--scroll to top end-->
         <!--Modals-->
@@ -61,7 +60,7 @@
                                 <div class="c-dodger-blue text-center"><span class="bg-white"><i class="fa fa-sign-in"></i> LOGIN</span></div>
                             </div>
                         </div>
-                       
+
                         <div class="modal-body">
                             <form role="form" class="form-horizontal" method="POST" action="{{ url('main/check') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -115,7 +114,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!--Modal Register-->
             <div class="modal fade" id="modregister" role="dialog">
                 <div class="modal-dialog">
@@ -123,13 +122,13 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span>&#215;</span></button>
-                            <img src="{{ url('assets/image/logo.png') }}" class="img-responsive" id="mod-logo">
+                            <a href="{{ url() }}"><img src="{{ url('assets/image/logo.png') }}" class="img-responsive" id="mod-logo"></a>
                             <div class="min-title text-center">
                                 <hr class="bc-dodger-blue">
                                 <div class="c-dodger-blue text-center"><span class="bg-white"><i class="fa fa-sign-in"></i> REGISTER</span></div>
                             </div>
                         </div>
-                       
+
                         <div class="modal-body">
                             <form role="form" class="form-horizontal" action="{{ url('main/register') }}" method="post">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -161,7 +160,7 @@
             </div>
         </div>
         <!--Modals End-->
-        
+
         <!--Header Section-->
         <header>
             <nav class="navbar bg-dodger-blue">
@@ -171,10 +170,10 @@
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#Navi">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span> 
+                    <span class="icon-bar"></span>
                   </button>
                     <a class="navbar-brand zi-1000" href="#" style="position:relative;">
-                        <img src="{{ url('assets/image/logo.png') }}" class="p-absolute zi-1000" style="margin:0 0 0 .4em;">
+                        <img src="{{ url('assets/image/logo.png') }}" class="p-absolute zi-1000" style="margin:0 0 0 .4em;cursor: pointer;" onclick="javascript: window.location.href = '{{ url() }}'">
                         <span class="md-none"><img src="{{ url('assets/image/pita.png') }}"></span>
                     </a>
                 </div>
@@ -185,31 +184,35 @@
                             <li><a href="#" data-toggle="modal" data-target="#modlogin" class="bg-cinnabar c-white"><i class="fa fa-sign-in"></i> Login</a></li>
                             <li><a href="vendor-register.html" class="bg-tall-poppy c-white"><i class="fa fa-users"></i> Join Us</a></li>
                         @else
-                            <li class="dropdown">
-                                 <a class="dropdown-toggle c-white" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> {{ 'Hi, '. Auth::user()->email }} <i class="fa fa-caret-down"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ url('visitor-profile') }}" class=""><i class="fa fa-user"></i> My Profile</a></li>
-                                        <li><a href="{{ url('visitor-favorite-tour') }}" class=""><i class="fa fa-heart"></i> My Favourite Tour</a></li>
-                                        <li><a href="{{ url('visitor-itenary') }}" class=""><i class="fa fa-map"></i> My Itinerary</a></li>
-                                        <li><a href="{{ url('visitor-journey') }}" class=""><i class="fa fa-location-arrow"></i> My Journey</a></li> 
-                                    </ul>
-                             </li>
-                             <li><a href="#" class="c-white"><i class="fa fa-envelope-o"></i> Messages</a></li>
-                             <li><a href="{{ url('auth/logout') }}" class="c-white"><i class="fa fa-sign-out"></i> Logout</a></li>
+                            @if(Auth::user()->role == 'Tour')
+                                <li><a href="{{ url('tour-profile') }}" class="bg-cinnabar c-white"><i class="fa fa-user-plus"></i>Go To My Tour Profile</a></li>
+                            @else
+                                <li class="dropdown">
+                                     <a class="dropdown-toggle c-white" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> {{ 'Hi, '. Auth::user()->email }} <i class="fa fa-caret-down"></i></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ url('visitor-profile') }}" class=""><i class="fa fa-user"></i> My Profile</a></li>
+                                            <li><a href="{{ url('visitor-favorite-tour') }}" class=""><i class="fa fa-heart"></i> My Favourite Tour</a></li>
+                                            <li><a href="{{ url('visitor-itenary') }}" class=""><i class="fa fa-map"></i> My Itinerary</a></li>
+                                            <li><a href="{{ url('visitor-journey') }}" class=""><i class="fa fa-location-arrow"></i> My Journey</a></li>
+                                        </ul>
+                                 </li>
+                                 <li><a href="#" class="c-white"><i class="fa fa-envelope-o"></i> Messages</a></li>
+                                 <li><a href="{{ url('auth/logout') }}" class="c-white"><i class="fa fa-sign-out"></i> Logout</a></li>
+                             @endif
                          @endif
-                    </ul> 
+                    </ul>
                 </div>
               </div>
             </nav>
         </header>
         <!--Header End-->
-        
+
         <!--Season Banner-->
         <div class="season md-none">
-            
+
         </div>
         <!--Season Banner End-->
-        
+
         <!--Slideshow-->
         <div id="section-slider" class="container">
             <div class="flexslider">
@@ -219,39 +222,32 @@
                     <li><img src="{{ url('assets/image/slide3.jpg') }}" alt="slide3"></li>
                     <li><img src="{{ url('assets/image/slide4.jpg') }}" alt="slide4"></li>
                 </ul>
-            </div> 
+            </div>
         </div>
         <!--Slideshow End-->
         <!--Form Section-->
         <div class="container-fluid" id="sb-wrapper">
             <div class="container">
-                <form class="form-inline p-0" role="form" id="SearchBar">
-                    <img src="{{ url('assets/image/logo.png') }}" class="img-responsive d-none" id="sub-logo">
+                <form class="form-inline p-0" role="form" id="SearchBar" method="get" action={{ url('main') }}>
+                    <img src="{{ url('assets/image/logo.png') }}" class="img-responsive d-none" id="sub-logo" style="cursor: pointer;" onclick="javascript: window.location = '{{ url() }}'">
                     <div class="col-sm-2 text-center" id="s-label">
                         <label class="control-label c-java">Search by</label>
                     </div>
                     <div class="col-sm-10 md-center">
                         <div class="col-sm-2">
-                            <select class="form-control bc-java">
-                                <option>Category 1</option>
-                                <option>Category 2</option>
-                            </select>
+                            {!! Form::select('category', ['' => 'All', 'Backpacker' => 'Backpacker', 'Honeymoon' => 'Honeymoon', 'Family' => 'Family'], Request::get('category'), array('class' => 'form-control bc-java')) !!}
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control bc-java" placeholder="Range budget from">
+                            <input type="text" class="form-control bc-java" placeholder="Range budget from" name="budget_from" value="{{ Request::get('budget_from') }}">
                             <label class="control-label c-java">s/d</label>
-                            <input type="text" class="form-control bc-java" placeholder="Range budget to">
+                            <input type="text" class="form-control bc-java" placeholder="Range budget to" name="budget_to" value="{{ Request::get('budget_to') }}">
                         </div>
                          <div class="col-sm-2">
-                            <select class="form-control bc-java">
-                                <option>Country 1</option>
-                                <option>Country 2</option>
-                            </select>
+                            {!! Form::select('country', ['' => 'All'] + $countryList->toArray(), Request::get('country'), array('class' => 'form-control bc-java', 'id' => 'mainCountry')) !!}
                         </div>
                         <div class="col-sm-2">
-                            <select class="form-control bc-java">
-                                <option>City 1</option>
-                                <option>City 2</option>
+                            <select class="form-control bc-java" id="mainCity" name="city">
+                                <option value>All</option>
                             </select>
                         </div>
                         <div class="col-sm-2">
@@ -278,11 +274,11 @@
             });
         </script>
         <!--Form Section End-->
-        
+
         <!--Container Section-->
         @yield('content')
         <!--Container Section End-->
-        
+
         <!--Footer Section-->
         <div class="container">
             <br>
@@ -314,7 +310,7 @@
                 <hr class="p-0 m-0-auto">
                 <div class="row">
                     <div class="col-md-4 md-center va-middle">
-                        <a href="#" class="va-middle"><img src="{{ url('assets/image/logo-white.png') }}" class="va-middle"></a>
+                        <a href="{{ url() }}" class="va-middle"><img src="{{ url('assets/image/logo-white.png') }}" class="va-middle"></a>
                     </div>
                     <div class="col-md-8 text-right md-center va-middle">
                         <ul class="list-inline  color-white">

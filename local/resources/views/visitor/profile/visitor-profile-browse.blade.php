@@ -4,7 +4,7 @@
 <section class="container">
     <div class="space-1"></div>
     <div class="row user-panel">
-        
+
         @include('layouts.visitor-dashboard')
 
         <div class="col-sm-9">
@@ -105,7 +105,7 @@
 <script>
 var firstLoad = true;
 function setCities(){
-    
+
     $.post("{{ url('visitor-profile/city-by-country') }}",
     {
         _token: '{{ csrf_token() }}',
@@ -113,7 +113,7 @@ function setCities(){
     },
     function(data, status){
         //alert("Data: " + data + "\nStatus: " + status);
-        // var id = 
+        // var id =
         //$("#city").html("<option>Only This</option>");
         //console.log(data);
 

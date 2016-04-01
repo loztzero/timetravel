@@ -4,12 +4,16 @@ use Input, Session, Redirect, Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\VisitorItenary;
+use App\Models\Country;
 class ItenaryController extends Controller {
 
 	public function getIndex(){
 		//print_r($visitorItenary);
 		$visitorItenary = VisitorItenary::from('VST030 as a')->paginate(20);
-		return view('visitor.itenary.visitor-itenary-browse')->with('visitorItenary', $visitorItenary);
+		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
+		return view('visitor.itenary.visitor-itenary-browse')
+			->with('visitorItenary', $visitorItenary)
+			->with('countryList', $countryList);;
 	}
 
 	public function getInput(){
@@ -21,12 +25,12 @@ class ItenaryController extends Controller {
 		$data = Input::all();
 		$visitorItenary = new VisitorItenary();
 		$errorBag = $visitorItenary->rules($data);
-		
+
 		if(count($errorBag) > 0){
 
 			Session::flash('error', $errorBag);
 			return redirect('visitor-itenary/input')
-				->withInput($data);	
+				->withInput($data);
 		} else {
 
 			if(isset($data['id'])){
@@ -39,7 +43,7 @@ class ItenaryController extends Controller {
 			$visitorItenary->doParams($visitorItenary, $data);
 			$visitorItenary->mst001_id = Auth::user()->id;
 			$visitorItenary->save();
-			
+
 			return redirect('visitor-itenary')->with('message', array('Data tour-profile telah berhasil di buat'));
 		}
 	}

@@ -5,6 +5,8 @@ use Illuminate\Routing\UrlGenerator;
 use Input, Auth, Session, Redirect, Hash, Mail, Validator, Exception, DB;
 use App\User;
 use App\Models\TourItinerary;
+use App\Models\Country;
+use App\Models\City;
 class MainController extends Controller {
 
 	public function getIndex(Request $request)
@@ -18,7 +20,7 @@ class MainController extends Controller {
 		}
 
 		if($request->has('budget_from')){
-			$tourItenary->where('a.price', '>=', $request->budget_from);	
+			$tourItenary->where('a.price', '>=', $request->budget_from);
 		}
 
 		if($request->has('budget_to')){
@@ -35,12 +37,15 @@ class MainController extends Controller {
 
 		$tourItenary = $tourItenary->paginate('20');
 
-		return view('main.main-page')->with('itenary', $tourItenary);
+		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
+		return view('main.main-page')
+			->with('itenary', $tourItenary)
+			->with('countryList', $countryList);
 		//->with('tourItenary', $tourItenary);
 	}
 
 	public function postCheck(Request $request){
-		
+
 		$userdata = array(
 			'email' => $request->email,
 			'password' => $request->password
@@ -75,11 +80,11 @@ class MainController extends Controller {
 			// $user->role = 'User';
 			// $user->save();
 			// return redirect('main')->with('message', 'Register success, please check your email for verification');
-		
+
 			$rules = array(
 	            'email'      => 'required|email',
 			 );
-			
+
 			$messages = array(
 				'email.required' => 'Your email is required',
 	      		'email.email' => 'Your email format must be valid',
@@ -102,7 +107,7 @@ class MainController extends Controller {
 			//send mail script
 			DB::beginTransaction();
 			try {
-				
+
 				$newPassword = str_random(6);
 				$activatedLink = Hash::make(str_random(10));
 				$user = new User();
@@ -111,8 +116,8 @@ class MainController extends Controller {
 				$user->activation_key = $activatedLink;
 	            $user->password = Hash::make($newPassword);
 	            $user->save();
-	            Mail::send('main.main-email-register', 
-	            	array('username' => $request->email, 'newPassword' => $newPassword, 'activatedLink' => $activatedLink), 
+	            Mail::send('main.main-email-register',
+	            	array('username' => $request->email, 'newPassword' => $newPassword, 'activatedLink' => $activatedLink),
 	            	function($message) use ($user, $request) {
 	                $message->to($request->email, $request->email)->subject('Your Email Activation');
 	            });
@@ -125,7 +130,7 @@ class MainController extends Controller {
 				Session::flash('error', array('There is error when process your register, please try again', $e->getMessage(), $e->getLine()));
 	            return Redirect::to('main');
 			}
-			
+
 		// }
 
 	}
@@ -145,7 +150,7 @@ class MainController extends Controller {
 
 		Session::flash('error', array('This link is not valid, please check your email for get the activation link'));
 		return Redirect::to('main');
-		
+
 	}
 
 	public function postSave(){
@@ -153,11 +158,11 @@ class MainController extends Controller {
 		$data = Input::all();
 		$user = new User();
 		$errorBag = $user->rules($data);
-		
+
 		if(count($errorBag) > 0){
 			return redirect('main/register')
 				->withInput(Request::except('password', 'repassword'))
-				->with('error', $errorBag);	
+				->with('error', $errorBag);
 		} else {
 
 			$userMail = User::where('email' , '=', $data['email'])->first();
@@ -178,7 +183,7 @@ class MainController extends Controller {
 			return redirect('main/success');
 		}
 
-		
+
 		// print_r($errorBag);
 	}
 

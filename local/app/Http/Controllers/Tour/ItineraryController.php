@@ -14,7 +14,7 @@ class ItineraryController extends Controller {
 		$tourItinerary = TourItinerary::paginate(config('constants.PAGINATION'));
 		$countries = Country::all()->sortBy('country_name');
 		$currencies = Currency::all()->sortBy('curr_name');
-		
+
 		return view('tour.itinerary.tour-itinerary-browse')
 				->with('tourItinerary', $tourItinerary)
 				->with('countries', $countries)
@@ -25,11 +25,11 @@ class ItineraryController extends Controller {
 		$data = Input::all();
 		$tourItinerary = new TourItinerary();
 		$errorBag = $tourItinerary->rules($data);
-		
+
 		if(count($errorBag) > 0){
 
 			Session::flash('error', $errorBag);
-			return redirect('tour-itinerary')->withInput($data);	
+			return redirect('tour-itinerary')->withInput($data);
 		} else {
 
 			if(isset($data['id'])){
@@ -38,13 +38,13 @@ class ItineraryController extends Controller {
 					$tourItinerary = new TourItinerary();
 				}
 			}
-			
+
 // 			$data = Input::hasFile('fileUpload');
 // 			Input::file('fileUpload')->move('./files/', Input::file('fileUpload')->getClientOriginalName());
 
 			$tourItinerary->doParams($tourItinerary, $data);
 			$tourItinerary->save();
-			
+
 			return redirect('tour-itinerary')->with('message', array('Data itinerary telah berhasil di buat'));
 		}
 	}
@@ -60,7 +60,7 @@ class ItineraryController extends Controller {
 				Session::flash('error', array('Data value dengan id ' . $id . ' tidak ditemukan'));
 				return Redirect::to('tour-itinerary');
 			}
-			
+
 			$tourItinerary['cities'] = $cities = City::where('mst002_id', '=', $tourItinerary['mst002_id'])->orderBy('city_name')->get();
 
 			return $tourItinerary->toJson();
@@ -78,14 +78,14 @@ class ItineraryController extends Controller {
 	public function getCityByCountry(Request $request){
 		$countryId = $request->countryId;
 		$cities = City::where('mst002_id', '=', $countryId)->orderBy('city_name')->get()->toJson();
-		
+
 		return $cities;
 	}
 
 	public function getCityByCountrySearch(Request $request){
 		$countryIdSearch = $request->countryIdSearch;
 		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
-		
+
 		return $cities;
 	}
 }

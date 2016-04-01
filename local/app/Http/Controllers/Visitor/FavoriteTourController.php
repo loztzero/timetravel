@@ -3,13 +3,16 @@
 use Input, Session, Redirect, Auth;
 use App\Http\Controllers\Controller;
 use App\Models\VisitorFavoriteTour;
+use App\Models\Country;
 class FavoriteTourController extends Controller {
 
 	public function getIndex(){
 		//print_r($visitorFavoriteTour);
 		$visitorFavoriteTour = VisitorFavoriteTour::where('mst001_id', '=', Auth::user()->id)->get();
+		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
 		return view('visitor.favoritetour.visitor-favorite-tour-browse')
-				->with('favoriteTours', $visitorFavoriteTour);
+				->with('favoriteTours', $visitorFavoriteTour)
+				->with('countryList', $countryList);
 	}
 
 	public function getInput(){
@@ -20,12 +23,12 @@ class FavoriteTourController extends Controller {
 		$data = Input::all();
 		$visitorFavoriteTour = new VisitorFavoriteTour();
 		$errorBag = $visitorFavoriteTour->rules($data);
-		
+
 		if(count($errorBag) > 0){
 
 			Session::flash('error', $errorBag);
 			return redirect('tour-profile/input')
-				->withInput($data);	
+				->withInput($data);
 		} else {
 
 			if(isset($data['id'])){
@@ -37,7 +40,7 @@ class FavoriteTourController extends Controller {
 
 			$visitorFavoriteTour->doParams($visitorFavoriteTour, $data);
 			$visitorFavoriteTour->save();
-			
+
 			return redirect('tour-profile')->with('message', array('Data tour-profile telah berhasil di buat'));
 		}
 	}

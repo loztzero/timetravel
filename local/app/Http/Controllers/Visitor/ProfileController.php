@@ -14,7 +14,8 @@ class ProfileController extends Controller {
 		$countries = Country::orderBy('country_name')->lists('country_name', 'id');
 		return view('visitor.profile.visitor-profile-browse')
 				->with('profile', $visitorProfile)
-				->with('countries', $countries);
+				->with('countries', $countries)
+				->with('countryList', $countries);
 	}
 
 	public function getInput(){
@@ -25,12 +26,12 @@ class ProfileController extends Controller {
 		$data = Input::all();
 		$visitorProfile = new VisitorProfile();
 		$errorBag = $visitorProfile->rules($data);
-		
+
 		if(count($errorBag) > 0){
 
 			Session::flash('error', $errorBag);
 			return redirect('visitor-profile')
-				->withInput($data);	
+				->withInput($data);
 		} else {
 
 			if(isset($data['id'])){
@@ -51,10 +52,10 @@ class ProfileController extends Controller {
 					    File::makeDirectory($path, $mode = 0777, true, true);
 					}
 		            $request->file('photo')->move($path, $request->file('photo')->getClientOriginalName());
-					
+
 				}
 			}
-			
+
 			return redirect('visitor-profile')->with('message', array('Data anda telah berhasil di simpan'))
 			->withInput($visitorProfile->toArray());
 		}
