@@ -48,7 +48,7 @@
 						</div>
 						 
 						<div class="modal-body">
-							<form role="form" class="form-horizontal" method="POST" action="check">
+							<form role="form" class="form-horizontal" method="POST" action="{{ url('main/check') }}">
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<div class="form-group">
 									<div class="modal-input">
@@ -204,7 +204,7 @@
 					<div class="col-sm-10 md-center">
 						<div class="col-sm-2">
 							<select class="form-control bc-java">
-								<option value="" selected>Semua</option>
+								<option value="" selected>All Category</option>
 								<option value="Backpacker">Backpacker</option>
 								<option value="Family">Family</option>
 								<option value="Honeymoon">Honeymoon</option>
@@ -217,7 +217,7 @@
 						</div>
 						<div class="col-sm-2">
 							<select id="countryIdSearch" name="countryIdSearch" class="form-control bc-java">
-								<option value="%" selected>Semua</option>
+								<option value="" selected>All Country</option>
 								@foreach($countries as $key => $value)
 									<option value="{{ $value->id }}">{{ $value->country_name }}</option>
 								@endforeach
@@ -225,7 +225,7 @@
 						</div>
 						<div class="col-sm-2">
 							<select id="cityIdSearch" name="cityIdSearch" class="form-control bc-java">
-								<option value="%" selected>Semua</option>
+								<option value="" selected>All City</option>
 							</select>
 						</div>
 						<div class="col-sm-2">
@@ -242,48 +242,7 @@
 		<!--Container Section End-->
 
 		<!--Footer Section-->
-		<div class="container">
-			<br>
-			<img id="footer-img" src="{{ url('assets/image/bottom-landmarks.png') }}" class="img-responsive">
-		</div>
-		<footer class="bg-dodger-blue">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 md-center">
-						<ul class="list-inline">
-							<li><ahref="#" class="c-white">About Us</a></li>
-							<li><a href="#" class="c-white">FAQ</a></li>
-							<li><a href="#" class="c-white">Contact Us</a></li>
-							<li><a href="{{ url('tour-register') }}" class="c-white">Join Us</a></li>
-						</ul>
-					</div>
-					<div class="col-md-8 text-right md-center">
-						<ul class="list-inline">
-							<li><a href="#" class="c-white"><i class="fa fa-facebook-official fa-lg"></i></a></li>
-							<li><a href="#" class="c-white"><i class="fa fa-twitter fa-lg"></i></a></li>
-							<li><a href="#" class="c-white"><i class="fa fa-instagram fa-lg"></i></a></li>
-							<li><a href="#" class="c-white"><i class="fa fa-pinterest fa-lg"></i></a></li>
-							<li><a href="#" class="c-white"><i class="fa fa-linkedin fa-lg"></i></a></li>
-							<li><a href="#" class="c-white"><i class="fa fa-youtube fa-lg"></i></a></li>
-							<li><a href="#" class="c-white"><i class="fa fa-google-plus fa-lg"></i></a></li>
-						</ul>
-					</div>
-				</div>
-				<hr class="p-0 m-0-auto">
-				<div class="row">
-					<div class="col-md-4 md-center va-middle">
-						<a href="#" class="va-middle"><img src="{{ url('assets/image/logo-white.png') }}" class="va-middle"></a>
-					</div>
-					<div class="col-md-8 text-right md-center va-middle">
-						<ul class="list-inlinecolor-white">
-							<li><a class="c-white">Terms &amp; Conditions</a></li>
-							<li><a class="c-white">Privacy Policy</a></li>
-							<li class="c-white">Copyright &copy; 2016 Holidayku. All Rights Reserved.</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</footer>
+		@include('layouts.tour-footer')
 		<!--Footer End-->
 	</body>
 		

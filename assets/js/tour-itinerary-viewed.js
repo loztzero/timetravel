@@ -10,7 +10,7 @@ function setCitiesSearch(){
 	var countryIdSearch = $('#countryIdSearch').val();
 	$.ajax({
 		type: "GET",
-		url : "tour-review/city-by-country-search",
+		url : "tour-album-viewed/city-by-country-search",
 		data : {'countryIdSearch':countryIdSearch, '_token':'"{{ csrf_token() }}"'},
 		success : function(data){
 			data = JSON.parse(data);

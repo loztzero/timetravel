@@ -1,34 +1,13 @@
 $("document").ready(function(){
+	setCities();
+	setCitiesSearch();
+
 	$("#countryId").change(function(e){
-		var countryId = this.value;
-		$.ajax({
-			type: "GET",
-			url : "tour-itinerary/city-by-country",
-			data : {'countryId':countryId, '_token':'"{{ csrf_token() }}"'},
-			success : function(data){
-				data = JSON.parse(data);
-				$("#cityId").html("<option></option>");
-				$.each(data, function(k, v) {
-					$("#cityId").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
-				});
-			}
-		},"json");
+		setCities();
 	});
-	
+
 	$("#countryIdSearch").change(function(e){
-		var countryIdSearch = this.value;
-		$.ajax({
-			type: "GET",
-			url : "tour-itinerary/city-by-country-search",
-			data : {'countryIdSearch':countryIdSearch, '_token':'"{{ csrf_token() }}"'},
-			success : function(data){
-				data = JSON.parse(data);
-				$("#cityIdSearch").html("<option value='%' selected>Semua</option>");
-				$.each(data, function(k, v) {
-					$("#cityIdSearch").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
-				});
-			}
-		},"json");
+		setCitiesSearch();
 	});
 });
 
@@ -41,12 +20,17 @@ function getData($id){
 		success : function(data){
 			data = JSON.parse(data);
 
-			$("#currency").val(data.currency);
+			$("#id").val($id);
+			$("#title").val(data.title);
+			$("#currencyId").val(data.mst004_id);
 			$("#price").val(data.price);
 			$("#category").val(data.category);
 			$("#min_pax").val(data.min_pax);
 			$("#start_period").val(data.start_period);
-			$("#end_period").val(data.end_period);
+			
+			if(data.end_period && data.end_period != '0000-00-00')
+				$("#end_period").val(data.end_period);
+			
 			$("#countryId").val(data.mst002_id);
 			$("#description").val(data.description);
 
@@ -65,3 +49,35 @@ $("#file").change(function() {
 	var photo = $('input[type=file]')[0].files[0].name;
 	$('#photo').val(photo);
 });
+
+function setCities(){
+	var countryId = $('#countryId').val();
+	$.ajax({
+		type: "GET",
+		url : "tour-itinerary/city-by-country",
+		data : {'countryId':countryId, '_token':'"{{ csrf_token() }}"'},
+		success : function(data){
+			data = JSON.parse(data);
+			$("#cityId").html("<option></option>");
+			$.each(data, function(k, v) {
+				$("#cityId").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
+			});
+		}
+	},"json");
+}
+
+function setCitiesSearch(){
+	var countryIdSearch = $('#countryIdSearch').val();
+	$.ajax({
+		type: "GET",
+		url : "tour-itinerary/city-by-country-search",
+		data : {'countryIdSearch':countryIdSearch, '_token':'"{{ csrf_token() }}"'},
+		success : function(data){
+			data = JSON.parse(data);
+			$("#cityIdSearch").html("<option value='%' selected>All City</option>");
+			$.each(data, function(k, v) {
+				$("#cityIdSearch").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
+			});
+		}
+	},"json");
+}
