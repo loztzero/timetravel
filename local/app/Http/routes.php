@@ -35,7 +35,7 @@ Route::filter('isTraveler', function($route, $request){
 //script untuk menjaga apakah dia visitor atau bukan
 Route::filter('isTour', function($route, $request){
 
-	if(Auth::user()->role != 'Tour'){
+	if(Auth::user()->role != config('constants.TOUR')){
 		return redirect('/main/register');
 	}
 });
@@ -53,6 +53,9 @@ Route::group(array('before' => 'auth'), function(){
 		Route::controller('tour-review', 'Tour\ReviewController');
 		Route::controller('tour-itinerary', 'Tour\ItineraryController');
 		Route::controller('tour-album', 'Tour\AlbumController');
+		Route::controller('tour-profile-viewed', 'Tour\ProfileViewedController');
+		Route::controller('tour-album-viewed', 'Tour\AlbumViewedController');
+		Route::controller('tour-itinerary-viewed', 'Tour\ItineraryViewedController');
 	});
 });
 

@@ -82,7 +82,7 @@ class TourItinerary extends Emodel {
 	}
 
 	private function getMaxLineNumber() {
-		$result =  TourItinerary::where('mst001_id', '=', Auth::user()->id)->max('line_number');
+		$result = TourItinerary::where('mst001_id', '=', Auth::user()->id)->max('line_number');
 		
 		if(isset($result)){
 			return $result+=1;
