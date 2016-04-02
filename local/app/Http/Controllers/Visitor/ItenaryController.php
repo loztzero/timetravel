@@ -13,11 +13,13 @@ class ItenaryController extends Controller {
 		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
 		return view('visitor.itenary.visitor-itenary-browse')
 			->with('visitorItenary', $visitorItenary)
-			->with('countryList', $countryList);;
+			->with('countryList', $countryList);
 	}
 
 	public function getInput(){
-		return view('visitor.itenary.visitor-itenary-input');
+		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
+		return view('visitor.itenary.visitor-itenary-input')
+		->with('countryList', $countryList);
 	}
 
 
