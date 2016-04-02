@@ -56,37 +56,37 @@
 							<div class="form-group">
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon"> E-mail</label>
-									<input id="email" name="email" type="email" class="form-control br-0 input-lg" placeholder="john-doe@example.com" required value='yuds_ok@yahoo.co.id'>
+									<input id="email" name="email" type="email" class="form-control br-0 input-lg" placeholder="john-doe@example.com">
 								</div>
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon"> Password</label>
-									<input id="password" name="password" type="password" class="form-control input-lg br-0" required value='4ur0r4'>
+									<input id="password" name="password" type="password" class="form-control input-lg br-0">
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon fa-lg">First name</label>
-									<input id="first_name" name="first_name" type="text" class="form-control br-0" placeholder="Firstname" required value='Yudha'>
+									<input id="first_name" name="first_name" type="text" class="form-control br-0" placeholder="Firstname">
 								</div>
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon fa-lg">Last name</label>
-									<input id="last_name" name="last_name" type="text" class="form-control br-0" placeholder="Lastname" required value='Proudy'>
+									<input id="last_name" name="last_name" type="text" class="form-control br-0" placeholder="Lastname">
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon fa-lg">Tour name</label>
-									<input id="tour_name" name="tour_name" type="text" class="form-control br-0" placeholder="Travel tour name" required value='YudsTour'>
+									<input id="tour_name" name="tour_name" type="text" class="form-control br-0" placeholder="Travel tour name">
 								</div>
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon fa-lg">Phone number</label>
-									<input id="phone_number" name="phone_number" type="text" class="form-control br-0" placeholder="+62123456789" required value='081809734337'>
+									<input id="phone_number" name="phone_number" type="text" class="form-control br-0" placeholder="+62123456789">
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-12">
 									<label class="control-label c-persimmon fa-lg">Address</label>
-									<input id="address1" name="address1" type="text" class="form-control br-0" placeholder="Address line 1" required value='Jl Wahid Hasyim No 162'><br>
+									<input id="address1" name="address1" type="text" class="form-control br-0" placeholder="Address line 1"><br>
 									<input id="address2" name="address2" type="text" class="form-control br-0" placeholder="Address line 2"><br>
 									<input id="address3" name="address3" type="text" class="form-control br-0" placeholder="Address line 3">
 								</div>
@@ -94,13 +94,13 @@
 							<div class="form-group">
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon fa-lg">Zip Code</label>
-									<input id="zip_code" name="zip_code" type="number" class="form-control br-0" placeholder="Postal Code or Zip Code" min="0" data-bind="value:replyNumber" required value='45312'>
+									<input id="zip_code" name="zip_code" type="number" class="form-control br-0" placeholder="Postal Code or Zip Code" min="0" data-bind="value:replyNumber">
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon fa-lg">Country</label>
-									<select id="countryId" name="countryId" class="form-control br-0" id="sel2" required>
+									<select id="countryId" name="countryId" class="form-control br-0" id="sel2">
 										<option value="" selected></option>
 										@foreach($countries as $key => $value)
 											<option value="{{ $value->id }}">{{ $value->country_name }}</option>
@@ -109,7 +109,7 @@
 								</div>
 								<div class="col-sm-6">
 									<label class="control-label c-persimmon fa-lg">City</label>
-									<select id="cityId" name="cityId" class="form-control br-0" id="sel5" required>
+									<select id="cityId" name="cityId" class="form-control br-0" id="sel5">
 										<option value="" selected></option>
 									</select>
 								</div>
