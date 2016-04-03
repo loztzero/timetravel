@@ -32,11 +32,19 @@ Route::filter('isTraveler', function($route, $request){
 
 });
 
-//script untuk menjaga apakah dia visitor atau bukan
+//script untuk menjaga apakah dia tour atau bukan
 Route::filter('isTour', function($route, $request){
 
 	if(Auth::user()->role != config('constants.TOUR')){
-		return redirect('/main/register');
+		return redirect('/main/tour-register');
+	}
+});
+
+//script untuk menjaga apakah dia admin atau bukan
+Route::filter('isAdmin', function($route, $request){
+
+	if(Auth::user()->role != config('constants.ADMIN')){
+		return redirect('/');
 	}
 });
 
@@ -57,6 +65,10 @@ Route::group(array('before' => 'auth'), function(){
 		Route::controller('tour-album-viewed', 'Tour\AlbumViewedController');
 		Route::controller('tour-itinerary-viewed', 'Tour\ItineraryViewedController');
 	});
+
+	Route::group(array('before' => 'isAdmin'), function(){
+		Route::controller('tour-management', 'Admin\TourManagementController');
+	});
 });
 
 Route::controllers([
@@ -69,8 +81,10 @@ Route::get('/', function()
 	if(Auth::check()){
 		if(Auth::user()->role == 'User'){
 			return redirect('visitor-profile');
-		} elseif(Auth::user()->role == 'Tour'){
+		} else if(Auth::user()->role == config('constants.TOUR')){
 			return redirect('tour-profile');
+		} else if(Auth::user()->role == config('constants.ADMIN')){
+			return redirect('tour-management');
 		}
 	} else {
 		return redirect('main');

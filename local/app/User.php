@@ -65,4 +65,8 @@ class User extends Emodel implements AuthenticatableContract, CanResetPasswordCo
         $user->role = $data['role'];
         return $object;
     }
+	
+	public function tour(){
+		return $this->hasOne('App\Models\TourProfile', 'mst001_id', 'id');
+	}
 }

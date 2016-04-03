@@ -69,16 +69,16 @@ class TourItinerary extends Emodel {
 		return $object;
 	}
 	
-	public function currencies(){
-		return $this->hasMany('App\Models\Currency', 'id', 'mst004_id');
+	public function currencie(){
+		return $this->hasOne('App\Models\Currency', 'id', 'mst004_id');
 	}
 	
-	public function countries(){
-		return $this->hasMany('App\Models\Country', 'id', 'mst002_id');
+	public function countrie(){
+		return $this->hasOne('App\Models\Country', 'id', 'mst002_id');
 	}
 	
-	public function cities(){
-		return $this->hasMany('App\Models\City', 'id', 'mst003_id');
+	public function citie(){
+		return $this->hasOne('App\Models\City', 'id', 'mst003_id');
 	}
 
 	private function getMaxLineNumber() {

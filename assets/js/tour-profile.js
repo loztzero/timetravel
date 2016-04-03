@@ -1,5 +1,4 @@
 $("document").ready(function(){
-	setCities();
 	setCitiesSearch();
 
 	$("#countryId").change(function(e){

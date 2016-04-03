@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers\Tour;
 
-use Input, Session, Redirect, Auth, File;
+use Input, Session, Redirect, Auth, File, Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\TourProfile;
@@ -36,7 +36,7 @@ class ProfileController extends Controller {
 			if(isset($data['id'])){
 				$tourProfile = TourProfile::find($data['id']);
 				
-				if(isset($tourProfile)){
+				if($tourProfile == null){
 					$tourProfile = new TourProfile();
 				} else {
 					$logoFile = $tourProfile->logo;

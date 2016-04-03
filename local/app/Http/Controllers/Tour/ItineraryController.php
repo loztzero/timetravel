@@ -36,7 +36,7 @@ class ItineraryController extends Controller {
 			if(isset($data['id'])){
 				$tourItinerary = TourItinerary::find($data['id']);
 				
-				if(isset($tourItinerary)){
+				if($tourItinerary == null){
 					$tourItinerary = new TourItinerary();
 				} else {
 					$photoFile = $tourItinerary->photo;
@@ -71,13 +71,12 @@ class ItineraryController extends Controller {
 	}
 
 	public function getData(Request $request){
-		$this->layout = null;
 		$id = $request->id;
 
 		if(isset($id)){
 			$tourItinerary = TourItinerary::find($id);
 
-			if(isset($tourItinerary)){
+			if($tourItinerary == null){
 				Session::flash('error', array('Data value dengan id ' . $id . ' tidak ditemukan'));
 				return Redirect::to('tour-itinerary');
 			}
@@ -91,7 +90,7 @@ class ItineraryController extends Controller {
 	public function getDelete($id){
 		$tourItinerary = TourItinerary::find($id);
 		
-		if(isset($tourItinerary)){
+		if($tourItinerary == null){
 			$tourItinerary->delete();
 			File::delete($this->getPath().'/'.$tourAlbum->photo);
 			return redirect('tour-itinerary')->with('message', array('Data itinerary telah berhasil di hapus'));

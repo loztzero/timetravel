@@ -11,7 +11,7 @@ class TourReview extends Emodel {
 	
 	protected $table = 'TR0020';
 	
-	public function travelers(){
-		return $this->hasMany('App\Models\VisitorProfile', 'id', 'vst001_id');
+	public function traveler(){
+		return $this->hasOne('App\Models\VisitorProfile', 'id', 'vst001_id');
 	}
 }
