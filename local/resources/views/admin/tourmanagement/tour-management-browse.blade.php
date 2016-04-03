@@ -35,17 +35,25 @@
 						<div class="col-md-4">
 							<ul class="list-unstyled vendor-album">
 								<li class="of-hidden">
-									<img src="{{ url(config('constants.TOUR_ALBUM').$value->id.'/'.$value->tour->logo) }}" class="img-responsive wh-100">
+									@if ($value->tour)
+										<img src="{{ url(config('constants.TOUR_ALBUM').$value->id.'/'.$value->tour->logo) }}" class="img-responsive wh-100">
+									@else
+										<img src="{{ url('assets/image/def-pic-vendor.png') }}" class="img-responsive wh-100">
+									@endif
 								</li>
 								<li class="text-center">
 									<div class="col-xs-8 p-1">
 										<a href="" onClick="getData('{{ $value->id }}')" class="c-white" data-toggle="modal" data-target="#modmake">
-											{{ $value->tour->tour_name }}
+											@if ($value->tour)
+												{{ $value->tour->tour_name }}
+											@else
+												&nbsp;
+											@endif
 										</a>
 									</div>
 									<div class="col-xs-4 p-1">
 										<a href="{{ url('tour-management/change-status', $value->id) }}" class="c-white">
-											{{ $value->status}}
+											{{ $value->status }}
 										</a>
 									</div>
 								</li>
