@@ -5,6 +5,7 @@ use Illuminate\Routing\UrlGenerator;
 use Input, Auth, Session, Redirect, Hash, Mail, Validator, Exception, DB;
 use App\User;
 use App\Models\TourItinerary;
+use App\Models\TourProfile;
 use App\Models\Country;
 use App\Models\City;
 class MainController extends Controller {
@@ -42,6 +43,24 @@ class MainController extends Controller {
 			->with('itenary', $tourItenary)
 			->with('countryList', $countryList);
 		//->with('tourItenary', $tourItenary);
+	}
+
+	public function getItenary($itenaryId){
+
+		$tourItenary = TourItinerary::find($itenaryId);
+		if(!$tourItenary)
+		{
+			return Redirect::to('/main');
+		}
+
+		$tourProfile = TourProfile::where('mst001_id', '=', $tourItenary->mst001_id)->first();
+		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
+		$itenaryCity = City::find($tourItenary->cityId);
+		$itenaryCountry = Country::find($tourItenary->countryId);
+		return view('main.main-selected-itenary')
+			->with('countryList', $countryList)
+			->with('tourProfile', $tourProfile)
+			->with('tourItenary', $tourItenary);
 	}
 
 	public function postCheck(Request $request){

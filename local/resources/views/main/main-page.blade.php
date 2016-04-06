@@ -83,7 +83,7 @@
                 <li><img src="{{ url('files/album/tour/') .'/'. $record->mst001_id . '/' . $record->photo }}" alt="{{ $record->photo }}" ></li>
                 <li class="inner-box">
                     <ul class="list-unstyled p-1">
-                        <li><a href="#" class="fw-400 c-white"><i class="fa fa-building-o"></i> {{ $record->Title }}</a></li>
+                        <li><a href="{{ url('main/itenary/') . '/' . $record->id }}" class="fw-400 c-white"><i class="fa fa-building-o"></i> {{ $record->Title }}</a></li>
                         <li><hr class="bc-white"></li>
                         <li><a href="#" class="fw-400 c-white"><i class="fa fa-date"></i> {{ date('d-m-Y', strtotime($record->start_period)) }} To {{ date('d-m-Y', strtotime($record->end_period)) }}</a></li>
                     </ul>
