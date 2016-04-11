@@ -182,7 +182,7 @@
                         @if(!Auth::check())
                             <li><a href="#" data-toggle="modal" data-target="#modregister" class="bg-tree-poppy c-white"><i class="fa fa-user-plus"></i> Register</a></li>
                             <li><a href="#" data-toggle="modal" data-target="#modlogin" class="bg-cinnabar c-white"><i class="fa fa-sign-in"></i> Login</a></li>
-                            <li><a href="{{ url('tour-register') }}" class="bg-tall-poppy c-white"><i class="fa fa-users"></i> Join Us</a></li>
+                            <!-- <li><a href="{{ url('tour-register') }}" class="bg-tall-poppy c-white"><i class="fa fa-users"></i> Join Us</a></li> -->
                         @else
                             @if(Auth::user()->role == 'Tour')
                                 <li><a href="{{ url('tour-profile') }}" class="bg-cinnabar c-white"><i class="fa fa-user-plus"></i>Go To My Tour Profile</a></li>
