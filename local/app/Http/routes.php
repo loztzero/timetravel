@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.x
 |
 */
-Route::get('about', function(){
+Route::get('about-us', function(){
 	$countryList = App\Models\Country::orderBy('country_name')->lists('country_name', 'id');
 	return view('main.main-about')->with('countryList', $countryList);
 });
