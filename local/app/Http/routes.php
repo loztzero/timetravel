@@ -10,6 +10,16 @@
 | and give it the controller to call when that URI is requested.x
 |
 */
+Route::get('about', function(){
+	$countryList = App\Models\Country::orderBy('country_name')->lists('country_name', 'id');
+	return view('main.main-about')->with('countryList', $countryList);
+});
+
+Route::get('faq', function(){
+	$countryList = App\Models\Country::orderBy('country_name')->lists('country_name', 'id');
+	return view('main.main-faq')->with('countryList', $countryList);
+});
+
 
 Route::get('password', function(){
 	echo Hash::make('bebek123');

@@ -16,7 +16,7 @@ return [
     */
 
     // 'driver' => env('MAIL_DRIVER', 'smtp'),
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => 'smtp',
 
     /*
     |--------------------------------------------------------------------------
@@ -43,7 +43,8 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 587),
+    //env('MAIL_PORT', 25)
+    'port' => 25, //587
 
     /*
     |--------------------------------------------------------------------------
@@ -70,7 +71,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => env('MAIL_ENCRYPTION', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +84,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => 'dev@holidayku.com', //env('MAIL_USERNAME')
 
     /*
     |--------------------------------------------------------------------------
@@ -96,7 +97,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => '(tester123', //env('MAIL_PASSWORD')
 
     /*
     |--------------------------------------------------------------------------
