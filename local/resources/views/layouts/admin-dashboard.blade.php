@@ -12,10 +12,10 @@
 				Tour Management
 			</a>
 		</li>
-		<li class="p-05 {{ Request::segment(1) == '' ? 'active vendor' : '' }}">
-			<a href="{{ url('') }}" class="c-lightgrey">
+		<li class="p-05 {{ Request::segment(1) == 'email-blast' ? 'active vendor' : '' }}">
+			<a href="{{ url('email-blast') }}" class="c-lightgrey">
 				<i class="fa fa-comments"></i>
-				My Review
+				Email Blast
 			</a>
 		</li>
 		<li class="p-05 {{ Request::segment(1) == '' ? 'active vendor' : '' }}">

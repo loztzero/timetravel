@@ -75,7 +75,7 @@
 					<div class="form-group">
 						<div class="col-sm-6">
 							<label class="control-label c-persimmon">Zip Code</label>
-							<input id="zip_code" name="zip_code" type="text" class="form-control input-lg br-0" placeholder="Zip Code/Postal Code" value="{{ Input::old('zip_code', $tourProfile != null ? $tourProfile->zip_code : '') }}" required><br>
+							<input id="zip_code" name="zip_code" type="text" class="form-control input-lg br-0" placeholder="Zip Code/Postal Code" value="{{ Input::old('zip_code', $tourProfile != null ? $tourProfile->zip_code : '') }}" min="0" data-bind="value:replyNumber" required>
 						</div>
 					</div>
 					<div class="form-group">

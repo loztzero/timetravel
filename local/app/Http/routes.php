@@ -61,13 +61,11 @@ Route::group(array('before' => 'auth'), function(){
 		Route::controller('tour-review', 'Tour\ReviewController');
 		Route::controller('tour-itinerary', 'Tour\ItineraryController');
 		Route::controller('tour-album', 'Tour\AlbumController');
-		Route::controller('tour-profile-viewed', 'Tour\ProfileViewedController');
-		Route::controller('tour-album-viewed', 'Tour\AlbumViewedController');
-		Route::controller('tour-itinerary-viewed', 'Tour\ItineraryViewedController');
 	});
 
 	Route::group(array('before' => 'isAdmin'), function(){
 		Route::controller('tour-management', 'Admin\TourManagementController');
+		Route::controller('email-blast', 'Admin\EmailBlastController');
 	});
 });
 
@@ -90,6 +88,11 @@ Route::get('/', function()
 		return redirect('main');
 	}
 });
+
+Route::controller('tour-profile-viewed', 'Tour\ProfileViewedController');
+Route::controller('tour-album-viewed', 'Tour\AlbumViewedController');
+Route::controller('tour-itinerary-viewed', 'Tour\ItineraryViewedController');
+Route::controller('tour-review-viewed', 'Tour\ReviewViewedController');
 
 Route::controller('tour-register', 'Tour\RegisterController');
 Route::get('/facebook', 'FacebookController@facebook');

@@ -32,9 +32,8 @@ class TourManagementController extends Controller {
 			$userTour = User::where('role', '=', config('constants.TOUR'))->paginate(config('constants.PAGINATION_TOUR_MANAGEMENT'));
 			$countries = Country::all()->sortBy('country_name');
 			
-			return view('admin.tourmanagement.tour-management-browse')->with('message', array('Data album telah berhasil di hapus'))
-					->with('userTour', $userTour)
-					->with('countries', $countries);
+			return redirect('tour-management')->with('message', array('Status telah berhasil di ubah'))
+					->withInput($userTour->toArray());
 		}
 	}
 

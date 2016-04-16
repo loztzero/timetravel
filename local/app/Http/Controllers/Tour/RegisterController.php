@@ -81,15 +81,15 @@ class RegisterController extends Controller {
 					$tourProfile = new TourProfile();
 				}
 			}
-			
-			$data['mst001_id'] = $user->id;
+			$userData = User::where('email', '=', $user->email)->first();
+			$data['mst001_id'] = $userData->id;
 			$tourProfile->doParams($tourProfile, $data);
 			$tourProfile->save();
 			
 			if($request->hasFile('logo')){
 				if($request->file('logo')->isValid()){
 
-					$path = './'.config('constants.TOUR_ALBUM').Auth::user()->id;
+					$path = './'.config('constants.TOUR_ALBUM').$userData->id;
 					
 					if(!File::exists($path)) {
 						File::makeDirectory($path, $mode = 0777, true, true);

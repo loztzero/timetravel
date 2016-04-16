@@ -21,17 +21,23 @@
 					</a>
 				</h3>
 				<hr class="bc-white">
-				<h4 class="c-white text-center">{{ $tourProfile['address1'] }} {{ $tourProfile['address2'] }} {{ $tourProfile['address3'] }}</h4>
+				<h4 class="c-white text-center">
+					<i class="fa fa-phone"></i>
+					{{ $tourProfile['phone_number'] }}
+				</h4>
+				<h4 class="c-white text-center">
+					{{ $tourProfile['address1'] }} {{ $tourProfile['address2'] }} {{ $tourProfile['address3'] }}
+				</h4>
 				<hr>
 				<div class="fa-lg c-white vendor-contact">
 					<div class="mb-1">
-						<a href="#" class="c-white">
-							<i class="fa fa-phone"></i>
-							{{ $tourProfile['phone_number'] }}
+						<a href="{{ url('tour-review-viewed/index', $tourProfile['mst001_id']) }}" class="c-white">
+							<i class="fa fa-commenting"></i>
+							Review
 						</a>
 					</div>
 					<div class="mb-1">
-						<a href="#" class="c-white">
+						<a href="" class="c-white">
 							<i class="fa fa-plane"></i>
 							Ask Itinerary
 						</a>

@@ -12,9 +12,10 @@ class MainController extends Controller {
 
 	public function getIndex(Request $request)
 	{
-		$tourItenary = TourItinerary::from('TR0040 as a')
-						->join('MST002 as b', 'a.mst002_id', '=', 'b.id')
-						->join('MST003 as c', 'a.mst003_id', '=', 'c.id');
+		$tourItenary = TourItinerary::from('TR0040 AS A')
+						->join('MST002 AS B', 'A.mst002_id', '=', 'B.id')
+						->join('MST003 AS C', 'A.mst003_id', '=', 'C.id')
+						->join('MST004 AS D', 'A.mst004_id', '=', 'D.id');
 
 		if($request->has('category')){
 			$tourItenary->where('a.category', '=', $request->category);
@@ -42,7 +43,6 @@ class MainController extends Controller {
 		return view('main.main-page')
 			->with('itenary', $tourItenary)
 			->with('countryList', $countryList);
-		//->with('tourItenary', $tourItenary);
 	}
 
 	public function getItenary($itenaryId){

@@ -20,15 +20,21 @@
 						{{ $tourProfile['tour_name'] }}
 					</a>
 				</h2>
+				<h4 class="c-white">
+					<i class="fa fa-phone"></i>
+					{{ $tourProfile['phone_number'] }}
+				</h4>
 				<h4 class="c-white">{{ $tourProfile['address1'] }} {{ $tourProfile['address2'] }} {{ $tourProfile['address3'] }}</h4>
 				<hr>
 				<div class="fa-lg c-white vendor-contact">
 					<div class="col-md-3">
-						<i class="fa fa-phone"></i>
-						{{ $tourProfile['phone_number'] }}
+						<a href="{{ url('tour-review-viewed/index', $tourProfile['mst001_id']) }}" class="c-white">
+							<i class="fa fa-commenting"></i>
+							Review
+						</a>
 					</div>
 					<div class="col-md-3">
-						<a href="#" class="c-white">
+						<a href="" class="c-white">
 							<i class="fa fa-plane"></i>
 							Ask Itinerary
 						</a>
@@ -144,19 +150,19 @@
 							</div>
 							<div class="col-md-2">
 								<h4 class="c-lightgrey fw-700 md-block c-java">PRICE</h4>
-								<h4 class="c-lightgrey">{{ $value->price }}</h4>
+								<h4 class="c-lightgrey">{{ number_format($value->price, 0, ',', '.') }}</h4>
 							</div>
 							<div class="col-md-2 col-xs-6">
 								<h4 class="c-lightgrey fw-700 md-block c-java">COUNTRY</h4>
-								<h4 class="c-lightgrey">{{ $value->countries[0]->country_name }}</h4>
+								<h4 class="c-lightgrey">{{ $value->country->country_name }}</h4>
 							</div>
 							<div class="col-md-2 col-xs-6">
 								<h4 class="c-lightgrey fw-700 md-block c-java">CITY</h4>
-								<h4 class="c-lightgrey">{{ $value->cities[0]->city_name }}</h4>
+								<h4 class="c-lightgrey">{{ $value->city->city_name }}</h4>
 							</div>
 							<div class="col-md-4">
 								<h4 class="c-lightgrey fw-700 md-block c-java">PERIODE</h4>
-								<h4 class="c-lightgrey">{{ $value->start_period }} <span class="badge bg-dodger-blue">s/d</span> {{ $value->end_period }}</h4>
+								<h4 class="c-lightgrey">{{ date('d-m-Y', strtotime($value->start_period)) }} <span class="badge bg-dodger-blue">s/d</span> {{ date('d-m-Y', strtotime($value->end_period)) }}</h4>
 							</div>
 						</div>
 					</a>
