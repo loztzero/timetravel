@@ -139,7 +139,7 @@
 							<span class="badge bg-java ">{{ $value->currencie->curr_code }}</span>
 						</div>
 						<div class="col-md-2">
-							<span>{{ $value->price }}</span>
+							<span>{{ number_format($value->price, 0, ',', '.') }}</span>
 						</div>
 						<div class="col-md-1 col-xs-6">
 							<a href="" onClick="getData('{{ $value->id }}')" class="bg-cinnabar" data-toggle="modal" data-target="#modmake"><i class="fa fa-edit"></i></a>

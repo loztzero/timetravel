@@ -69,20 +69,20 @@ class TourItinerary extends Emodel {
 		return $object;
 	}
 	
-	public function currencie(){
+	public function currency(){
 		return $this->hasOne('App\Models\Currency', 'id', 'mst004_id');
 	}
 	
-	public function countrie(){
+	public function country(){
 		return $this->hasOne('App\Models\Country', 'id', 'mst002_id');
 	}
 	
-	public function citie(){
+	public function city(){
 		return $this->hasOne('App\Models\City', 'id', 'mst003_id');
 	}
 
 	private function getMaxLineNumber() {
-		$result = TourItinerary::where('mst001_id', '=', Auth::user()->id)->max('line_number');
+		$result = TourReview::where('mst001_id', '=', Auth::user()->id)->max('line_number');
 		
 		if(isset($result)){
 			return $result+=1;

@@ -12,9 +12,9 @@ use App\Models\Currency;
 
 class AlbumViewedController extends Controller {
 
-	public function getIndex($profileId){
-		$tourProfile = TourProfile::where('mst001_id', '=', $profileId)->first();
-		$tourAlbum = TourAlbum::where('mst001_id', '=', $profileId)->paginate(config('constants.PAGINATION_VIEWED'));
+	public function getIndex($userId){
+		$tourProfile = TourProfile::where('mst001_id', '=', $userId)->first();
+		$tourAlbum = TourAlbum::where('mst001_id', '=', $userId)->paginate(config('constants.PAGINATION_VIEWED'));
 		$countries = Country::all()->sortBy('country_name');
 		$currencies = Currency::all()->sortBy('curr_name');
 

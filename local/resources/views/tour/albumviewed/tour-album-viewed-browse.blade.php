@@ -28,7 +28,7 @@
 						{{ $tourProfile['phone_number'] }}
 					</div>
 					<div class="col-md-3">
-						<a href="#" class="c-white">
+						<a href="" class="c-white">
 							<i class="fa fa-plane"></i>
 							Ask Itinerary
 						</a>
