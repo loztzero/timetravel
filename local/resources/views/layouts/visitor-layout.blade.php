@@ -54,7 +54,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span>&#215;</span></button>
-                            <img src="{{ url('assets/image/logo.png') }}" class="img-responsive" id="mod-logo">
+                            <a href="{{ url() }}"><img src="{{ url('assets/image/logo.png') }}" class="img-responsive" id="mod-logo"></a>
                             <div class="min-title text-center">
                                 <hr class="bc-dodger-blue">
                                 <div class="c-dodger-blue text-center"><span class="bg-white"><i class="fa fa-sign-in"></i> LOGIN</span></div>

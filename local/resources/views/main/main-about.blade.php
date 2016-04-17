@@ -5,68 +5,39 @@
     @include('layouts.message-helper')
     <!--Mengapa Holidayku Section-->
     <h2 class="section-title c-java text-center"><span><i class="fa fa-check"></i> About Us</span></h2>
-    <hr class="bc-java s-title">
-    <div class="row">
-        <div class="col-md-4 col-sm-6">
-            <ul class="feat-box list-unstyled">
-                <li><h3 class="fw-700 c-java"><span class="feature-no bg-java c-white">1</span> Feature</h3></li>
-                <li><hr class="bc-java"></li>
-                <li>
-                    <p class="text-justify c-midgrey">
-                        Holidaykudidirikanoleh3 orangpemuda yang memiliki passion atauhobiuntuk traveling. Namunkarenakesibukankesibukansetiap travellers, makauntukmencaripaketliburan yang diinginkansangatlahterbatasdariwaktudanjarak, Olehkarenaitu Founder kitayaitu Ardian Tjandradiredja, GekkoUtomodanYuanitaLegianmenyatukan ide mereka yang padaakhirnyajadilah Holidayku.com
-                    </p>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <ul class="feat-box list-unstyled">
-                <li><h3 class="fw-700 c-java"><span class="feature-no bg-java c-white">2</span> Feature</h3></li>
-                <li><hr class="bc-java"></li>
-                <li>
-                    <p class="text-justify c-midgrey">
-                        HolidaykumerupakansebuahwadahdimanaHolidaykudapatmembantusetiap travellers mencaripaket-paketliburan yang diinginkanataudiimpikandenganharga / budget yang dapatdisesuaikan.
-                    </p>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <ul class="feat-box list-unstyled">
-                <li><h3 class="fw-700 c-java"><span class="feature-no bg-java c-white">3</span> Feature</h3></li>
-                <li><hr class="bc-java"></li>
-                <li>
-                    <p class="text-justify c-midgrey">
-                        SelainituHolidaykujugamerupakansaranapromosibagipara travel agent, dimanamerekadapatdenganmudahmenjadi member Vendor danmempostsetiaopaket yang inginmerekatawarkan.
-                    </p>
-                </li>
-            </ul>
-        </div>
+    <ul>
+        <li>
+            Holidayku didirikan oleh3 orang pemuda yang memiliki passion atau hobi untuk traveling. Namun karena
+             kesibukan kesibukan setiap travellers, maka untuk mencari paket liburan yang diinginkan
+             sangatlah terbatas dari waktu dan jarak, Oleh karena itu Founder kita ya itu Ardian Tjandradiredja,
+             Gekko Utomo dan Yuanita Legian menyatukan ide mereka yang pada akhirnya jadilah Holidayku.com
+        </li>
+        <li>
+            Holidayku merupakan sebuah wadah dimana Holiday kudapat membantu
+            setiap travellers mencari paket-paket liburan yang diinginkan atau diimpikan dengan harga / budget yang dapat disesuaikan.
+        </li>
+        <li>
+            Selain itu Holidayku juga merupakan sarana promosi bagi para travel agent, dimana mereka dapat dengan mudah menjadi member Vendor dan mempost setia paket yang ingin mereka tawarkan.
+        </li>
+    </ul>
 
-    </div>
+
+    <h2 class="section-title c-java text-center"><span><i class="fa fa-check"></i> FAQ</span></h2>
+    <ul>
+        <li>
+            Q : Berapa harga yang harus dibayarkan oleh Vendor untuk bergabung dan membuat listing di Holidayku?
+        </li>
+        <li>
+            A : Untuk membuat listing danmenjadi member di Holidaykuadalah gratis (FREE) dan berlaku sampai kapanpun
+        </li>
+        <li>
+            Q : Apa yang membedakan Holidayku dengan travel fair?
+        </li>
+        <li>
+            A : Yang membedakan adalah para Customer dapat mencari paket-paket yang diinginkan seperti pada travel fair, tapi tidak usah datang kelokasi, dan dapat diakses dimanapun
+        </li>
+    </ul>
     <!--Mengapa Holidayku Section End-->
-
-    <!--Featured Destinations Section-->
-    <h2 class="section-title c-dodger-blue text-center"><span><i class="fa fa-plane"></i> Featured Destinations</span></h2>
-    <hr class="bc-java s-title">
-    <div class="row">
-        <div class="col-md-3 col-sm-6 pop-wrapper">
-            <ul class="pop-box list-unstyled">
-                <li class="ask-it c-white"><a href="#"><i class="fa fa-plane"></i> Price</a></li>
-                <li><img src="{{ url('assets/image/hk.jpg') }}" ></li>
-                <li class="inner-box">
-                    <ul class="list-unstyled p-1">
-                        <li><a href="#" class="fw-400 c-white"><i class="fa fa-building-o"></i> PT. TravelMate Indonesia</a></li>
-                        <!--<li><hr class="bc-white"></li>
-                         <li class="row text-center">
-                            <a class="col-xs-4"><span class="badge bg-tree-poppy"><i class="fa fa-save"></i> Save</span></a>
-                            <a class="col-xs-4 b-lr-dotted"><span class="badge bg-cinnabar"><i class="fa fa-eye"></i> 1700x</span></a>
-                            <a class="col-xs-4"><span class="badge bg-java"><i class="fa fa-thumbs-up"></i> 1024</span></a>
-                        </li> -->
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <br>
 </section>
 @stop
 
