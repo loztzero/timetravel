@@ -6,6 +6,7 @@ use Input;
 use DateTime;
 use App\Emodel;
 use Validator;
+use App\Models\VisitorProfile;
 
 class TourReview extends Emodel {
 	
@@ -35,7 +36,7 @@ class TourReview extends Emodel {
 
 	public function doParams($object, $data) {
 		$object->mst001_id		= $data['mst001_id'];
-		$object->vst001_id		= Auth::user()->id;
+		$object->vst001_id		= $this->getVisitorId(Auth::user()->id);
 		$object->line_number	= $this->getMaxLineNumber($data['mst001_id']);
 		$object->review			= $data['review'];
 		$object->range			= $data['range'];
@@ -48,12 +49,18 @@ class TourReview extends Emodel {
 	}
 
 	private function getMaxLineNumber($mst001_id) {
-		$result = TourReview::where('mst001_id', '=', $mst001_id)->where('vst001_id', '=', Auth::user()->id)->max('line_number');
+		$result = TourReview::where('mst001_id', '=', $mst001_id)->where('vst001_id', '=', $this->getVisitorId(Auth::user()->id))->max('line_number');
 		
 		if(isset($result)){
 			return $result+=1;
 		}
 
 		return 1;
+	}
+
+	private function getVisitorId($mst001_id) {
+		$result = VisitorProfile::where('mst001_id', '=', $mst001_id)->first();
+		
+		return $result->id;
 	}
 }

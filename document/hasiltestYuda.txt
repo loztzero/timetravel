@@ -8,7 +8,7 @@ SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'f88e6c6e-
 
 
 album:
-2. ukuranya minta di fixed kaya main page jd bs streach* >> masih berantakan
+2. ukuranya minta di fixed kaya main page jd bs streach* >> masih berantakan*
 
 make a review sudah login errornya pas mau submit
 Trying to get property of non-object (View: /home/holidayk/public_html/tester/local/resources/views/tour/reviewviewed/tour-review-viewed-browse.blade.php) *
@@ -19,9 +19,9 @@ di halaman tour-album-viewed
 tombol comment sama like di hide dl *
 
 
-dihalaman tour-itinerary-viewed , klik review error
-dihalaman tour-album , klik review error
-dihalaman tour-album , klik my itenary error
+dihalaman tour-itinerary-viewed , klik review error*
+dihalaman tour-album , klik review error*
+dihalaman tour-album , klik my itenary error*
 
 
 menu my itenary error di drop down jg

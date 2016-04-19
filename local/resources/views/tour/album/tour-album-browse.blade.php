@@ -41,7 +41,7 @@
 						<div class="col-md-4">
 							<ul class="list-unstyled vendor-album">
 								<li class="of-hidden">
-									<img src="{{ url(config('constants.TOUR_ALBUM').Auth::user()->id.'/'.$value->photo) }}" class="img-responsive wh-100">
+									<img src="{{ url(config('constants.TOUR_ALBUM').Auth::user()->id.'/'.$value->photo) }}" style="width:262px !important;height:240px !important">
 								</li>
 								<li class="text-center">
 									<a href="{{ url('tour-album/delete', $value->id) }}" class="c-white">

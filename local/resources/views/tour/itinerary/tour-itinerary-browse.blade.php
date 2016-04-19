@@ -136,7 +136,7 @@
 							<span>{{ $value->category }}</span>
 						</div>
 						<div class="col-md-1 col-xs-3">
-							<span class="badge bg-java ">{{ $value->currencie->curr_code }}</span>
+							<span class="badge bg-java ">{{ $value->currency->curr_code }}</span>
 						</div>
 						<div class="col-md-2">
 							<span>{{ number_format($value->price, 0, ',', '.') }}</span>

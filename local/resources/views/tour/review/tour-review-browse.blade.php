@@ -20,7 +20,9 @@
 							</p>
 							<hr class="md-block">
 							<div class="space-1"></div>
-							<a class="fw-700 c-java fa-lg">{{ $value->traveler->first_name }} {{ $value->traveler->last_name }}</a>
+							@if($value->traveler != null)
+								<a class="fw-700 c-java fa-lg">{{ $value->traveler->first_name }} {{ $value->traveler->last_name != null ? $value->traveler->last_name : '' }}</a>
+							@endif
 						</div>
 						<div class="col-md-3 text-center">
     						@for($i = 0; $i < $value->range; $i++)
