@@ -8,59 +8,59 @@ use App\Models\TourItinerary;
 use App\Models\TourProfile;
 use App\Models\Country;
 use App\Models\City;
+
 class MainController extends Controller {
 
-	public function getIndex(Request $request)
-	{
-		$tourItenary = TourItinerary::from('TR0040 AS A')
+	public function getIndex(Request $request) {
+		$tourItinerary = TourItinerary::from('TR0040 AS A')
 						->join('MST002 AS B', 'A.mst002_id', '=', 'B.id')
 						->join('MST003 AS C', 'A.mst003_id', '=', 'C.id')
 						->join('MST004 AS D', 'A.mst004_id', '=', 'D.id');
 
 		if($request->has('category')){
-			$tourItenary->where('a.category', '=', $request->category);
+			$tourItinerary->where('A.category', '=', $request->category);
 		}
 
 		if($request->has('budget_from')){
-			$tourItenary->where('a.price', '>=', $request->budget_from);
+			$tourItinerary->where('A.price', '>=', $request->budget_from);
 		}
 
 		if($request->has('budget_to')){
-			$tourItenary->where('a.price', '<=', $request->budget_to);
+			$tourItinerary->where('A.price', '<=', $request->budget_to);
 		}
 
 		if($request->has('country')){
-			$tourItenary->where('b.country_name', '=', $request->country);
+			$tourItinerary->where('B.country_name', '=', $request->country);
 		}
 
 		if($request->has('city')){
-			$tourItenary->where('c.city_name', '=', $request->city);
+			$tourItinerary->where('B.city_name', '=', $request->city);
 		}
 
-		$tourItenary = $tourItenary->paginate('20');
+		$tourItinerary = $tourItinerary->paginate(config('constants.PAGING_MAIN'));
 
 		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
 		return view('main.main-page')
-			->with('itenary', $tourItenary)
+			->with('tourItinerary', $tourItinerary)
 			->with('countryList', $countryList);
 	}
 
 	public function getItenary($itenaryId){
 
-		$tourItenary = TourItinerary::find($itenaryId);
-		if(!$tourItenary)
+		$tourItinerary = TourItinerary::find($itenaryId);
+		if(!$tourItinerary)
 		{
 			return Redirect::to('/main');
 		}
 
-		$tourProfile = TourProfile::where('mst001_id', '=', $tourItenary->mst001_id)->first();
+		$tourProfile = TourProfile::where('mst001_id', '=', $tourItinerary->mst001_id)->first();
 		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
-		$itenaryCity = City::find($tourItenary->cityId);
-		$itenaryCountry = Country::find($tourItenary->countryId);
+		$itenaryCity = City::find($tourItinerary->cityId);
+		$itenaryCountry = Country::find($tourItinerary->countryId);
 		return view('main.main-selected-itenary')
 			->with('countryList', $countryList)
 			->with('tourProfile', $tourProfile)
-			->with('tourItenary', $tourItenary);
+			->with('tourItinerary', $tourItinerary);
 	}
 
 	public function postCheck(Request $request){

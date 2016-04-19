@@ -76,7 +76,7 @@
                 </li>
             </ul>
         </div>
-        @foreach($itenary as $record)
+        @foreach($tourItinerary as $record)
         <div class="col-md-3 col-sm-6 pop-wrapper">
             <ul class="pop-box list-unstyled">
                 <li class="ask-it c-white">
@@ -98,9 +98,9 @@
     <br>
     <!--Featured Destinations Section End-->
     <div class="pagination">
-        {!! $itenary->appends(Request::only('category', 'budget_from', 'budget_to', 'country', 'city'))->render() !!}
+        {!! $tourItinerary->appends(Request::only('category', 'budget_from', 'budget_to', 'country', 'city'))->render() !!}
 
-        {{-- {!! $itenary->render() !!} --}}
+        {{-- {!! $tourItinerary->render() !!} --}}
     </div>
     <!-- <div class="row load-more">
         <div class="col-sm-5 md-none"><hr class="bc-dodger-blue"></div>

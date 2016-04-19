@@ -8,6 +8,7 @@ return [
 	'PAGINATION'		=> 5,
 	'PAGINATION_TOUR_MANAGEMENT'	=> 12,
 	'PAGINATION_VIEWED'	=> 10,
+	'PAGING_MAIN'		=> 20,
 	'SPACE'				=> ' ',
 	'TOUR'				=> 'Tour',
 	'TOUR_ALBUM'		=> 'files/album/tour/'
