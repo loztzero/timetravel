@@ -20,12 +20,15 @@
 						{{ $tourProfile['tour_name'] }}
 					</a>
 				</h2>
+				<h4 class="c-white">{{ $tourProfile['phone_number'] }}</h4>
 				<h4 class="c-white">{{ $tourProfile['address1'] }} {{ $tourProfile['address2'] }} {{ $tourProfile['address3'] }}</h4>
 				<hr>
 				<div class="fa-lg c-white vendor-contact">
 					<div class="col-md-3">
-						<i class="fa fa-phone"></i>
-						{{ $tourProfile['phone_number'] }}
+						<a href="{{ url('tour-review-viewed/index', $tourProfile['mst001_id']) }}" class="c-white">
+							<i class="fa fa-commenting"></i>
+							Review
+						</a>
 					</div>
 					<div class="col-md-3">
 						<a href="" class="c-white">
@@ -57,24 +60,10 @@
 		<br>
 		<div class="row">
 			@foreach($tourAlbum as $key => $value)
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<ul class="list-unstyled vendor-album">
 						<li class="of-hidden">
-							<img src="{{ url(config('constants.TOUR_ALBUM').$tourProfile['mst001_id'].'/'.$value->photo) }}" class="img-responsive wh-100">
-						</li>
-						<li class="text-center">
-							<div class="col-xs-6 p-1">
-								<a href="#" class="c-white">
-									<i class="fa fa-thumbs-up"></i>
-									Like it
-								</a>
-							</div>
-							<div class="col-xs-6 p-1">
-								<a href="#" class="c-white" data-toggle="modal" data-target="#commento">
-									<i class="fa fa-comment"></i>
-									{{ $value->tittle }}
-								</a>
-							</div>
+							<img src="{{ url(config('constants.TOUR_ALBUM').$tourProfile['mst001_id'].'/'.$value->photo) }}" style="width:262px !important;height:240px !important">
 						</li>
 					</ul>
 				</div>

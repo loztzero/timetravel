@@ -36,23 +36,23 @@ class ProfileViewedController extends Controller {
 						->join('MST004 AS D', 'A.mst004_id', '=', 'D.id');
 	
 		if($request->has('category')){
-			$tourItinerary->where('a.category', '=', $request->category);
+			$tourItinerary->where('A.category', '=', $request->category);
 		}
 	
 		if($request->has('start_period')){
-			$tourItinerary->where('a.start_period', '>=', $request->budget_from);
+			$tourItinerary->where('A.start_period', '>=', $request->budget_from);
 		}
 	
 		if($request->has('end_period')){
-			$tourItinerary->where('a.end_period', '<=', $request->budget_to);
+			$tourItinerary->where('A.end_period', '<=', $request->budget_to);
 		}
 	
 		if($request->has('countryId')){
-			$tourItinerary->where('b.id', '=', $request->countryId);
+			$tourItinerary->where('B.id', '=', $request->countryId);
 		}
 	
 		if($request->has('cityId')){
-			$tourItinerary->where('c.id', '=', $request->cityId);
+			$tourItinerary->where('C.id', '=', $request->cityId);
 		}
 	
 		if($request->has('currencyId')){
@@ -60,11 +60,11 @@ class ProfileViewedController extends Controller {
 		}
 	
 		if($request->has('budget_from')){
-			$tourItinerary->where('a.price', '>=', $request->budget_from);
+			$tourItinerary->where('A.price', '>=', $request->budget_from);
 		}
 	
 		if($request->has('budget_to')){
-			$tourItinerary->where('a.price', '<=', $request->budget_to);
+			$tourItinerary->where('A.price', '<=', $request->budget_to);
 		}
 	
 		$tourItinerary = $tourItinerary->paginate(config('constants.PAGINATION'));

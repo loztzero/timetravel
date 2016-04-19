@@ -166,8 +166,7 @@
 							@if(!Auth::check())
 								<li><a href="#" data-toggle="modal" data-target="#modregister" class="bg-tree-poppy c-white"><i class="fa fa-user-plus"></i> Register</a></li>
 								<li><a href="#" data-toggle="modal" data-target="#modlogin" class="bg-cinnabar c-white"><i class="fa fa-sign-in"></i> Login</a></li>
-								<li><a href="{{ url('tour-register') }}" class="bg-tall-poppy c-white"><i class="fa fa-users"></i> Join Us</a></li>
-								@else
+							@else
 								<li class="dropdown">
 									<a class="dropdown-toggle c-white" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> {{ 'Hi, '. Auth::user()->email }} <i class="fa fa-caret-down"></i></a>
 									<ul class="dropdown-menu">

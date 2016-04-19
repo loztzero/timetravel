@@ -3,58 +3,6 @@
 
 <section class="container">
     @include('layouts.message-helper')
-    <!--Mengapa Holidayku Section-->
-    <h2 class="section-title c-java text-center"><span><i class="fa fa-check"></i> Mengapa Holidayku?</span></h2>
-    <hr class="bc-java s-title">
-    <div class="row">
-        <div class="col-md-3 col-sm-6">
-            <ul class="feat-box list-unstyled">
-                <li><h3 class="fw-700 c-java"><span class="feature-no bg-java c-white">1</span> Feature</h3></li>
-                <li><hr class="bc-java"></li>
-                <li>
-                    <p class="text-justify c-midgrey">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac commodo urna. Donec volutpat mi id nibh blandit pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                    </p>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <ul class="feat-box list-unstyled">
-                <li><h3 class="fw-700 c-java"><span class="feature-no bg-java c-white">2</span> Feature</h3></li>
-                <li><hr class="bc-java"></li>
-                <li>
-                    <p class="text-justify c-midgrey">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac commodo urna. Donec volutpat mi id nibh blandit pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                    </p>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <ul class="feat-box list-unstyled">
-                <li><h3 class="fw-700 c-java"><span class="feature-no bg-java c-white">3</span> Feature</h3></li>
-                <li><hr class="bc-java"></li>
-                <li>
-                    <p class="text-justify c-midgrey">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac commodo urna. Donec volutpat mi id nibh blandit pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                    </p>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <ul class="feat-box list-unstyled">
-                <li><h3 class="fw-700 c-java"><span class="feature-no bg-java c-white">4</span> Feature</h3></li>
-                <li><hr class="bc-java"></li>
-                <li>
-                    <p class="text-justify c-midgrey">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac commodo urna. Donec volutpat mi id nibh blandit pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                    </p>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-    <!--Mengapa Holidayku Section End-->
-
     <!--Featured Destinations Section-->
     <h2 class="section-title c-dodger-blue text-center"><span><i class="fa fa-plane"></i> Featured Destinations</span></h2>
     <hr class="bc-java s-title">
@@ -97,16 +45,11 @@
     </div>
     <br>
     <!--Featured Destinations Section End-->
-    <div class="pagination">
+	<div class="col-md-offset-0 col-md-12 p-0 text-center">
         {!! $tourItinerary->appends(Request::only('category', 'budget_from', 'budget_to', 'country', 'city'))->render() !!}
 
         {{-- {!! $tourItinerary->render() !!} --}}
     </div>
-    <!-- <div class="row load-more">
-        <div class="col-sm-5 md-none"><hr class="bc-dodger-blue"></div>
-        <div class="col-sm-2 text-center" style="margin-top:.25em;"><a href="#">Load More</a></div>
-        <div class="col-sm-5 md-none"><hr class="bc-dodger-blue"></div>
-    </div> -->
     <br>
 </section>
 @stop

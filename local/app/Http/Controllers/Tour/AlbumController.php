@@ -61,7 +61,7 @@ class AlbumController extends Controller {
 	public function getDelete($id){
 		$tourAlbum = TourAlbum::find($id);
 		
-		if($tourAlbum == null){
+		if(!$tourAlbum == null){
 			$tourAlbum->delete();
 			File::delete($this->getPath().'/'.$tourAlbum->photo);
 			

@@ -24,7 +24,6 @@ class TourItinerary extends Emodel {
 			'start_period'	=> 'required',
 			'end_period'	=> 'required',
 			'countryId'		=> 'required',
-			'cityId'		=> 'required',
 			'description'	=> 'required',
 		);
 
@@ -38,7 +37,6 @@ class TourItinerary extends Emodel {
 			'start_period.required'	=> 'Start period harus diisi',
 			'end_period.required'	=> 'End period harus diisi',
 			'countryId.required'	=> 'Negara harus diisi',
-			'cityId.required'		=> 'Kota harus diisi',
 			'description.required'	=> 'Description harus diisi',
 		);
 		
@@ -57,7 +55,7 @@ class TourItinerary extends Emodel {
 		$object->title			= $data['title'];
 		$object->category		= $data['category'];
 		$object->mst002_id		= $data['countryId'];
-		$object->mst003_id		= $data['cityId'];
+		$object->mst003_id		= isset($data['cityId']) ? $data['cityId'] : null;
 		$object->mst004_id		= $data['currencyId'];
 		$object->price			= $data['price'];
 		$object->description	= $data['description'];

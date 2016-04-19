@@ -84,7 +84,7 @@
 						<div class="mb-1">
 							<a href="" class="c-white">
 								<i class="fa fa-plane"></i>
-								Ask Review
+								Ask Itinerary
 							</a>
 						</div>
 						<div class="mb-1">
@@ -134,7 +134,11 @@
 						{!! $tourReview->render() !!}
 					</div>
 					<div class="col-md-offset-8 col-md-4 p-0">
-						<a href="#" class="bc-persimmon bg-persimmon c-white p-1 md-w-100" data-toggle="modal" data-target="#modmake">Make Review</a>
+						@if(Auth::check())
+							<a href="#" class="bc-persimmon bg-persimmon c-white p-1 md-w-100" data-toggle="modal" data-target="#modmake">Make Review</a>
+						@else
+							<a href="#" class="bc-persimmon bg-persimmon c-white p-1 md-w-100" data-toggle="modal" data-target="#modlogin">Make Review</a>
+						@endif
 					</div>
 				</div>
 				<!--My Review End-->

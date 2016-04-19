@@ -30,15 +30,5 @@
 				My Album
 			</a>
 		</li>
-		<li class="p-05 c-lightgrey">
-			<i class="fa fa-signal"></i>
-			Profile Strength
-			<div class="space-1"></div>
-				<div class="progress">
-				<div class="progress-bar bg-java" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width:72%">
-					<span class="fa-lg">72%</span>
-				</div>
-			</div>
-		</li>
 	</ul>
 </div>

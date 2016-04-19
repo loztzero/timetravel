@@ -37,8 +37,8 @@ class MainController extends Controller {
 			$tourItinerary->where('B.city_name', '=', $request->city);
 		}
 
-		$tourItenary = $tourItenary->select('A.id', 'A.price', 'A.mst001_id', 'A.photo', 'A.title', 'A.start_period', 'A.end_period');
-		$tourItenary = $tourItenary->paginate(config('constants.PAGING_MAIN'));
+		$tourItinerary = $tourItinerary->select('A.id', 'A.price', 'A.mst001_id', 'A.photo', 'A.title', 'A.category', 'D.curr_code', 'A.start_period', 'A.end_period');
+		$tourItinerary = $tourItinerary->paginate(config('constants.PAGINATION_VIEWED'));
 
 		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
 		return view('main.main-page')

@@ -84,23 +84,23 @@
 							<div class="col-xs-12"><hr></div>
 							<div class="col-xs-6">
 								<div class="fw-600 c-cinnabar">Min. Pax</div>
-								<div class="fa-lg c-lightgrey">{{ $tourItinerary['min_pax'] }} Pax</div>
+								<div class="fa-lg c-lightgrey">{{ number_format($tourItinerary['min_pax'], 0, ',', '.') }} Pax</div>
 							</div>
 							<div class="col-xs-6">
 							</div>
 							<div class="col-xs-12"><hr></div>
 							<div class="col-xs-6">
 								<div class="fw-600 c-facebook">Tanggal Awal</div>
-								<div class="fa-lg  c-lightgrey">{{ $tourItinerary['start_period'] }}</div>
+								<div class="fa-lg  c-lightgrey">{{ date('d-m-Y', strtotime($tourItinerary['start_period'])) }}</div>
 							</div>
 							<div class="col-xs-6">
 								<div class="fw-600 c-instagram">Tanggal Akhir</div>
-								<div class="fa-lg  c-lightgrey">{{ $tourItinerary['end_period'] }}</div>
+								<div class="fa-lg  c-lightgrey">{{ date('d-m-Y', strtotime($tourItinerary['end_period'])) }}</div>
 							</div>
 							<div class="col-xs-12"><hr></div>
 							<div class="col-xs-12">
 								<span><i class="fa fa-tags"></i> Harga per pax:</span>
-								<span class="fw-600 fa-lg">{{ $currency['curr_code'] }} 499.00</span>
+								<span class="fw-600 fa-lg">{{ $currency['curr_code'] }} {{ number_format($tourItinerary['price'], 0, ',', '.') }}</span>
 							</div>
 						</div>
 					</div>

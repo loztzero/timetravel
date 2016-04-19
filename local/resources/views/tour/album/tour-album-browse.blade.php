@@ -44,23 +44,11 @@
 									<img src="{{ url(config('constants.TOUR_ALBUM').Auth::user()->id.'/'.$value->photo) }}" class="img-responsive wh-100">
 								</li>
 								<li class="text-center">
-									<div class="col-xs-4 p-1">
-										<a href="#" class="c-white">
-											<i class="fa fa-thumbs-up"></i>
-											Like it
-										</a>
-									</div>
-									<div class="col-xs-4 p-1">
-										<a href="#" class="c-white" data-toggle="modal" data-target="#commento">
-											<i class="fa fa-comment"></i>
-											{{ $value->tittle }}
-										</a>
-									</div>
-									<div class="col-xs-4 p-1">
-										<a href="{{ url('tour-album/delete', $value->id) }}" class="c-white">
-											<i class="fa fa-trash">
-										</a></i>
-									</div>
+									<a href="{{ url('tour-album/delete', $value->id) }}" class="c-white">
+										<div class="col-xs-12 p-1">
+											<i class="fa fa-trash"></i>
+										</div>
+									</a>
 								</li>
 							</ul>
 						</div>

@@ -88,7 +88,7 @@
 							</div>
 							<div class="col-md-6" style="padding:0 2.1em;">
 								<label class="control-label c-dodger-blue fa-lg fw-400">City</label>
-								<select id="cityId" name="cityId" class="form-control br-0" required>
+								<select id="cityId" name="cityId" class="form-control br-0">
 									<option></option>
 								</select>
 							</div>
