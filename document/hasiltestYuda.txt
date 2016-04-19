@@ -1,0 +1,31 @@
+Main Page:
+1.waktu login error ga ada pesan error..
+
+make itenary:
+1. city bisa kosong soalnya kaya hongkong ga ada citynya cm negara doank
+2. submit itenary error
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'f88e6c6e-fcc2-420a-8cc4-cb5b21afed5f-1' for key 'TUC_TR0040_1' (SQL: insert into `TR0040` (`mst001_id`, `line_number`, `title`, `category`, `mst002_id`, `mst003_id`, `mst004_id`, `price`, `description`, `start_period`, `end_period`, `min_pax`, `photo`, `id`, `updated_at`, `created_at`) values (f88e6c6e-fcc2-420a-8cc4-cb5b21afed5f, 1, Paris Romantic, Family, 34d11a68-0ab0-40ed-8c84-2f73a76a4b21, f23109e2-6adf-4e7c-997f-5eab45dc96a9, 1, 8500000, assaa asasas fsdsdsd, 2015-10-01, 2015-10-05, 2, paris.jpg, bedae122-7f95-41a8-abfa-3632915eb716, 2016-04-19 13:42:56, 2016-04-19 13:42:56)) 
+
+
+album:
+1. delete foto error blank screen
+2. ukuranya minta di fixed kaya main page jd bs streach
+
+profile strength di invisble aja
+
+make a review sudah login errornya pas mau submit
+Trying to get property of non-object (View: /home/holidayk/public_html/tester/local/resources/views/tour/reviewviewed/tour-review-viewed-browse.blade.php) 
+
+
+
+di halaman tour-album-viewed
+tombol comment sama like di hide dl 
+
+
+yang masih ada join usnya
+tour-album-viewed
+tour-profile-viewed
+tour-itinerary-viewed
+
+
+

@@ -1,13 +1,21 @@
-Untuk semua menu
-1. jika sudah berhasi simpan tolong beri pesan submited success!!
+halaman my profile:
+1. combo kota tidak berfungsi(test ulang)
+2. pesan error tidak jelas (coba buat error).css error mardi blm ada
 
-di my profile
-1. sudah diisi, submit, terus pilih menu lain, lalu kembali ke my profile data setelah disimpan tidak ada
 
-my itenary
-1. klik salah satu itenary yang sudah ada (edit), lalu klik menu itenary kembali di sebelah kiri
-   tanpa menyimpan data dulu, harapan dapat kembali ke halama awal itenary, tetapi error
-2. upload gbr msh blm berhasil
+My journey:
+1. diklik error dari dashboard kiri bukan menu atas tapi yang kiri
+NotFoundHttpException in Controller.php line 269: Controller method not found.
+2. klik tombol silang di fotonya, foto ga delete.ga ada yg terjadi
 
-my favourite tour
-1. salah link ini.. cb liat contoh si mardy bukan ini
+
+logo holidayku,com diklik ga ke main page sbb:
+http://holidayku.com/tester/visitor-profile
+http://holidayku.com/tester/visitor-favorite-tour
+http://holidayku.com/tester/visitor-itenary
+
+
+setelah login ga bs ke main page??gmn crnya , dicb tembak url selalu blk ke profile, kecuali klik search
+
+
+
