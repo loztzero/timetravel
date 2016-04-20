@@ -44,7 +44,7 @@ class VisitorProfile extends Emodel {
 		$object->country       = isset($data['country']) ? $data['country'] : null;
 		$object->zip_code      = isset($data['zipCode']) ? $data['zipCode'] : null;
 		$object->phone_number  = $data['phoneNumber'];
-		$object->photo  	   = isset($data['photo']) ? $data['photo']->getClientOriginalName() : $object->photo;
+		//$object->photo  	   = isset($data['photo']) ? $data['photo']->getClientOriginalName() : $object->photo;
 		return $object;
 	}
 

@@ -8,21 +8,54 @@
         @include('layouts.visitor-dashboard')
 
         <div class="col-sm-9">
-
-            @include('layouts.message-helper')
+            
             <!--My Profile-->
             <h3 class="section-title c-dodger-blue text-center"><span class="c-lightgrey">MY PROFILE</span></h3>
             <hr class="s-title">
-            <form role="form" method="POST" class="form-horizontal" id="edit-profile" action="visitor-profile/save">
+            
+            @include('layouts.message-helper')
+            <form role="form" method="POST" class="form-horizontal" id="edit-profile" action="visitor-profile/save" enctype="multipart/form-data">
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @if($profile != null)
                     <input type="hidden" name="id" value="{{ $profile->id }}">
                 @endif
 
+
                 <div class="form-group">
                     <div class="col-sm-3 md-center">
-                        <img src="image/def-pic-traveller.png">
+                        <img src="{{ url('files/visitor/' . Auth::user()->id . '/' . $profile->photo) }}" alt="My Profile Picture" width="200px">
+                        
+                        <style>
+                            .fileUpload {
+                                position: relative;
+                                overflow: hidden;
+                                margin: 0px;
+                            }
+
+                            .fileUpload input.upload {
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                margin: 0;
+                                padding: 0;
+                                font-size: 20px;
+                                cursor: pointer;
+                                opacity: 0;
+                                filter: alpha(opacity=0);
+                            }
+                        </style>
+                        <div class="fileUpload">
+                            <div class="col-sm-12">
+                                <input type="text" id="photo" class="form-control"  placeholder="Photo Name" disabled>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="fileUpload btn form-control bg-java bc-java c-white">
+                                    <span><i class="fa fa-folder"></i> Browse</span>
+                                    <input id="file" type="file" name="photo" class="upload" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-9">
                         <label class="control-label c-java"> E-mail</label>
@@ -141,6 +174,10 @@ $(document).ready(function () {
     setCities();
 });
 
+$( "#file" ).change(function() {
+    var photo = $('input[type=file]')[0].files[0].name;
+    $('#photo').val(photo);
+});
 
 </script>
 @stop

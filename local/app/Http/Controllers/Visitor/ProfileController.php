@@ -42,20 +42,23 @@ class ProfileController extends Controller {
 			}
 
 			$visitorProfile->doParams($visitorProfile, $data);
-			$visitorProfile->save();
+			
 
 			if($request->hasFile('photo')){
 				if($request->file('photo')->isValid()){
 
-					$path = './files/visitor/'.$visitorProfile->id;
+					$path = './files/visitor/'.Auth::user()->id;
 					if(!File::exists($path)) {
 					    File::makeDirectory($path, $mode = 0777, true, true);
 					}
-		            $request->file('photo')->move($path, $request->file('photo')->getClientOriginalName());
-
+					
+					$visitorProfile->photo = $request->file('photo')->getClientOriginalName();
+		            $request->file('photo')->move($path, $visitorProfile->photo);
+					
 				}
-			}
-
+			} 
+			
+			$visitorProfile->save();
 			return redirect('visitor-profile')->with('message', array('Data anda telah berhasil di simpan'))
 			->withInput($visitorProfile->toArray());
 		}
@@ -80,7 +83,7 @@ class ProfileController extends Controller {
 
     public function postCityByCountry(Request $request){
     	$country = $request->country;
-    	$cities = City::where('country_id', '=', $country)->orderBy('city_name')->get(['id', 'city_name'])->toArray();
+    	$cities = City::where('mst002_id', '=', $country)->orderBy('city_name')->get(['id', 'city_name'])->toArray();
     	return json_encode($cities);
     }
 }
