@@ -54,7 +54,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span>&#215;</span></button>
-                            <a href="{{ url() }}"><img src="{{ url('assets/image/logo.png') }}" class="img-responsive" id="mod-logo"></a>
+                            <a href="{{ url('main') }}"><img src="{{ url('assets/image/logo.png') }}" class="img-responsive" id="mod-logo"></a>
                             <div class="min-title text-center">
                                 <hr class="bc-dodger-blue">
                                 <div class="c-dodger-blue text-center"><span class="bg-white"><i class="fa fa-sign-in"></i> LOGIN</span></div>
@@ -122,7 +122,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span>&#215;</span></button>
-                            <a href="{{ url() }}"><img src="{{ url('assets/image/logo.png') }}" class="img-responsive" id="mod-logo"></a>
+                            <a href="{{ url('main') }}"><img src="{{ url('assets/image/logo.png') }}" class="img-responsive" id="mod-logo"></a>
                             <div class="min-title text-center">
                                 <hr class="bc-dodger-blue">
                                 <div class="c-dodger-blue text-center"><span class="bg-white"><i class="fa fa-sign-in"></i> REGISTER</span></div>
@@ -172,7 +172,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                    <a class="navbar-brand zi-1000" href="#" style="position:relative;">
+                    <a class="navbar-brand zi-1000" href="{{ url('main') }}" style="position:relative;">
                         <img src="{{ url('assets/image/logo.png') }}" class="p-absolute zi-1000" style="margin:0 0 0 .4em;cursor: pointer;" onclick="javascript: window.location.href = '{{ url() }}'">
                         <span class="md-none"><img src="{{ url('assets/image/pita.png') }}"></span>
                     </a>
@@ -320,7 +320,7 @@
                 <hr class="p-0 m-0-auto">
                 <div class="row">
                     <div class="col-md-4 md-center va-middle">
-                        <a href="{{ url() }}" class="va-middle"><img src="{{ url('assets/image/logo-white.png') }}" class="va-middle"></a>
+                        <a href="{{ url('main') }}" class="va-middle"><img src="{{ url('assets/image/logo-white.png') }}" class="va-middle"></a>
                     </div>
                     <div class="col-md-8 text-right md-center va-middle">
                         <ul class="list-inline  color-white">

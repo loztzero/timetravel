@@ -1,10 +1,6 @@
 Main Page:
 1.waktu login error ga ada pesan error..
 
-make itenary:
-2. submit itenary error
-SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'f88e6c6e-fcc2-420a-8cc4-cb5b21afed5f-1' for key 'TUC_TR0040_1' (SQL: insert into `TR0040` (`mst001_id`, `line_number`, `title`, `category`, `mst002_id`, `mst003_id`, `mst004_id`, `price`, `description`, `start_period`, `end_period`, `min_pax`, `photo`, `id`, `updated_at`, `created_at`) values (f88e6c6e-fcc2-420a-8cc4-cb5b21afed5f, 1, hongkong 7 hari 6 malam, Honeymoon, 845d2046-2505-4156-8500-1c9da4d6587d, , 1, 3000000, asasas, 2015-10-01, 2015-10-05, 1, hk.jpg, 443b57f2-20a8-4c12-86ab-9607d373bbbd, 2016-04-20 14:19:28, 2016-04-20 14:19:28)) 
-
 
 make a review sudah login errornya pas mau submit
 Trying to get property of non-object (View: /home/holidayk/public_html/tester/local/resources/views/tour/reviewviewed/tour-review-viewed-browse.blade.php) *
