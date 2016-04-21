@@ -4,6 +4,7 @@ use Input, Session, Redirect;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Models\TourProfile;
 use App\Models\Country;
 use App\Models\City;
 
@@ -41,16 +42,14 @@ class TourManagementController extends Controller {
 		$id = $request->id;
 
 		if(isset($id)){
-			$userTour = User::find($id);
+			$tourProfile = TourProfile::where('mst001_id', '=', $id);
 
-			if(isset($userTour)){
+			if(isset($tourProfile)){
 				Session::flash('error', array('Data value dengan id ' . $id . ' tidak ditemukan'));
-				return Redirect::to('tour-itinerary');
+				return Redirect::to('tour-management');
 			}
 
-			$userTour['cities'] = $cities = City::where('mst002_id', '=', $userTour['mst002_id'])->orderBy('city_name')->get();
-
-			return $userTour->toJson();
+			return $tourProfile->toJson();
 		}
 	}
 }

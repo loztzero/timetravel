@@ -185,7 +185,17 @@
                             <!-- <li><a href="{{ url('tour-register') }}" class="bg-tall-poppy c-white"><i class="fa fa-users"></i> Join Us</a></li> -->
                         @else
                             @if(Auth::user()->role == 'Tour')
-                                <li><a href="{{ url('tour-profile') }}" class="bg-cinnabar c-white"><i class="fa fa-user-plus"></i>Go To My Tour Profile</a></li>
+								<li class="dropdown">
+									<a class="dropdown-toggle c-white" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> {{ 'Hi, '. Auth::user()->email }} <i class="fa fa-caret-down"></i></a>
+									<ul class="dropdown-menu">
+										<li><a href="{{ url('tour-profile') }}" class=""><i class="fa fa-user"></i> My Profile</a></li>
+										<li><a href="{{ url('tour-review') }}" class=""><i class="fa fa-comments-o"></i> My Review</a></li>
+										<li><a href="{{ url('tour-itinerary') }}" class=""><i class="fa fa-map"></i> My Itinerary</a></li>
+										<li><a href="{{ url('tour-album') }}" class=""><i class="fa fa-location-arrow"></i> My Album</a></li> 
+									</ul>
+								</li>
+								<li><a href="#" class="c-white"><i class="fa fa-envelope-o"></i> Messages</a></li>
+								<li><a href="{{ url('auth/logout') }}" class="c-white"><i class="fa fa-sign-out"></i> Logout</a></li>
                             @else
                                 <li class="dropdown">
                                      <a class="dropdown-toggle c-white" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> {{ 'Hi, '. Auth::user()->email }} <i class="fa fa-caret-down"></i></a>

@@ -36,7 +36,7 @@
 							<ul class="list-unstyled vendor-album">
 								<li class="of-hidden">
 									@if ($value->tour)
-										<img src="{{ url(config('constants.TOUR_ALBUM').$value->id.'/'.$value->tour->logo) }}" class="img-responsive wh-100">
+										<img src="{{ url(config('constants.TOUR_ALBUM').$value->id.'/'.$value->tour->logo) }}" style="width:262px !important;height:240px !important">
 									@else
 										<img src="{{ url('assets/image/def-pic-vendor.png') }}" class="img-responsive wh-100">
 									@endif

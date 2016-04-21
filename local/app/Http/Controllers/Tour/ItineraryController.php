@@ -25,7 +25,7 @@ class ItineraryController extends Controller {
 		$data = $request->all();
 		$tourItinerary = new TourItinerary();
 		$errorBag = $tourItinerary->rules($data);
-		$photoFile;
+		$photoFile = null;
 
 		if(count($errorBag) > 0){
 
@@ -57,7 +57,7 @@ class ItineraryController extends Controller {
 					
 					$request->file('photo')->move($path, $request->file('photo')->getClientOriginalName());
 					
-					if($request->hasFile('photo')){
+					if($photoFile != null){
 						if($photoFile != $request->file('photo')){
 							File::delete($path.'/'.$photoFile);
 						}

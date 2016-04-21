@@ -21,14 +21,13 @@
 		<style>
 			.stickk{top: 0;position: fixed;z-index: 100;width: 100%;background: white;border-bottom: 6px solid #20b1c5;box-shadow: 0 2px 4px rgba(18,99,110,.75);}
 			.fs1-right{font-size: .75em;text-align: right;padding-top: 1em;}
-			.bg-light-java{background: rgb(250,250,250);}
+            .bg-light-java{background: rgba(32, 177, 197,.05);}
 		</style>
 		
 		@yield('style')
 	</head>
 	<body>
 		<!--scroll to top-->
-		{{-- url() --}}
 		<a href="#" class="scrollToTop text-center"><i class="fa fa-arrow-circle-o-up fa-3x"></i><br>Scroll<br>To Top</a>
 		<!--scroll to top end-->
 		<!--Modals-->
@@ -40,7 +39,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"><span>&#215;</span></button>
-							<img src="{{ url('assets/image/logo.png') }}" class="img-responsive" id="mod-logo">
+                            <a href="{{ url() }}"><img src="{{ url('assets/image/logo.png') }}" class="img-responsive" id="mod-logo"></a>
 							<div class="min-title text-center">
 								<hr class="bc-dodger-blue">
 								<div class="c-dodger-blue text-center"><span class="bg-white"><i class="fa fa-sign-in"></i> LOGIN</span></div>
@@ -79,8 +78,8 @@
 										<label class="control-label c-lightgrey">- OR -</label>
 									</div>
 									<div class="col-sm-5">
-										<button type="submit" class="btn btn-default bg-facebook"><i class="fa fa-facebook-official"></i> Login with Facebook</button>
-									</div>
+                                        <button type="button" onclick="javascript: window.location = '{{ url('facebook') }}'" class="btn btn-default bg-facebook"><i class="fa fa-facebook-official"></i> Login with Facebook</button>
+                                    </div>
 								</div>
 								<div class="space-1"></div>
 								<div class="row form-group">
@@ -108,7 +107,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"><span>&#215;</span></button>
-						<img src="{{ url('assets/image/logo.png') }}" class="img-responsive" id="mod-logo">
+                            <a href="{{ url() }}"><img src="{{ url('assets/image/logo.png') }}" class="img-responsive" id="mod-logo"></a>
 						<div class="min-title text-center">
 							<hr class="bc-dodger-blue">
 							<div class="c-dodger-blue text-center"><span class="bg-white"><i class="fa fa-sign-in"></i> REGISTER</span></div>
@@ -116,14 +115,15 @@
 					</div>
 					 
 					<div class="modal-body">
-						<form role="form" class="form-horizontal">
+						<form role="form" class="form-horizontal" action="{{ url('main/register') }}" method="post">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 								<div class="modal-input">
 									<div class="col-xs-4">
 										<label class="c-dodger-blue"><i class="fa fa-envelope-o"></i> E-mail</label>
 									</div>
 									<div class="col-xs-8">
-										<input type="email" class="form-control" placeholder="Your e-mail address">
+										<input type="email" name="email" class="form-control" placeholder="Your e-mail address">
 									</div>
 								</div>
 							</div>
@@ -157,7 +157,7 @@
 							<span class="icon-bar"></span> 
 						</button>
 						<a class="navbar-brand zi-1000" href="#" style="position:relative;">
-							<img src="{{ url('assets/image/logo.png') }}" class="p-absolute zi-1000" style="margin:0 0 0 .4em;">
+							<img src="{{ url('assets/image/logo.png') }}" class="p-absolute zi-1000" style="margin:0 0 0 .4em;cursor: pointer;" onclick="javascript: window.location.href = '{{ url() }}'">
 							<span class="md-none"><img src="{{ url('assets/image/pita.png') }}"></span>
 						</a>
 					</div>
@@ -192,11 +192,24 @@
 		</div>
 		<!--Season Banner End-->
 
+        <!--Slideshow-->
+        <div id="section-slider" class="container">
+            <div class="flexslider">
+                <ul class="slides" >
+                    <li><img src="{{ url('assets/image/slide1.jpg') }}" alt="slide1"></li>
+                    <li><img src="{{ url('assets/image/slide2.jpg') }}" alt="slide2"></li>
+                    <li><img src="{{ url('assets/image/slide3.jpg') }}" alt="slide3"></li>
+                    <li><img src="{{ url('assets/image/slide4.jpg') }}" alt="slide4"></li>
+                </ul>
+            </div>
+        </div>
+        <!--Slideshow End-->
+
 		<!--Form Section-->
 		<div class="container-fluid" id="sb-wrapper">
 			<div class="container">
-				<form class="form-inline p-0" role="form" id="SearchBar">
-					<img src="{{ url('assets/image/logo.png') }}" class="img-responsive d-none" id="sub-logo">
+				<form class="form-inline p-0" role="form" id="SearchBar" method="get" action={{ url('main') }}>
+					<img src="{{ url('assets/image/logo.png') }}" class="img-responsive d-none" id="sub-logo" style="cursor: pointer;" onclick="javascript: window.location = '{{ url('main') }}'">
 					<div class="col-sm-2 text-center" id="s-label">
 						<label class="control-label c-java">Search by</label>
 					</div>
@@ -210,9 +223,9 @@
 							</select>
 						</div>
 						<div class="col-sm-4">
-							<input type="text" class="form-control bc-java" placeholder="Range budget from">
+							<input type="text" class="form-control bc-java" placeholder="Range budget from" name="budget_from" value="{{ Request::get('budget_from') }}">
 							<label class="control-label c-java">s/d</label>
-							<input type="text" class="form-control bc-java" placeholder="Range budget to">
+							<input type="text" class="form-control bc-java" placeholder="Range budget to" name="budget_to" value="{{ Request::get('budget_to') }}">
 						</div>
 						<div class="col-sm-2">
 							<select id="countryIdSearch" name="countryIdSearch" class="form-control bc-java">
