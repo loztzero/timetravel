@@ -7,17 +7,32 @@
         @include('layouts.visitor-dashboard')
         <div class="col-sm-9">
 
-            @include('layouts.message-helper')
+           
             <!--My Journey-->
             <h3 class="section-title text-center"><span class="c-lightgrey">MY JOURNEY</span></h3>
             <hr class="s-title">
+            @include('layouts.message-helper')
             <div class="row">
                 @foreach($visitorJourney as $record)
-                <div class="col-md-4 col-sm-6 pop-wrapper">
+                <!--<div class="col-md-4 col-sm-6 pop-wrapper">
                     <ul class="pop-box list-unstyled">
                         <li class="ask-it c-white"><a href="#"><i class="fa fa-times"></i></a></li>
                         <li><img src="{{ url('files/visitor/'.  Auth::user()->id .'/'. $record->photo) }}" ></li>
                         <li class="j-title"><a href="#" class="fw-400 c-white"><i class="fa fa-map-marker"></i> {{ $record->title }}</a></li>
+                    </ul>
+                </div>-->
+                <div class="col-md-4">
+                    <ul class="list-unstyled vendor-album">
+                        <li class="of-hidden">
+                            <img src="{{ url('files/visitor/'.  Auth::user()->id .'/'. $record->photo) }}" style="width:262px !important;height:240px !important">
+                        </li>
+                        <li class="text-center">
+                            <a href="{{ url('visitor-journey/delete', $record->id) }}" class="c-white" onclick="javascript: return confirm('Are you sure want to delete this file?')">
+                                <div class="col-xs-12 p-1">
+                                    <i class="fa fa-trash"></i>
+                                </div>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 @endforeach
@@ -26,7 +41,8 @@
             <!--My Journey End-->
             <div class="row load-more">
                 <div class="col-sm-4 md-none"><hr class="bc-dodger-blue"></div>
-                <div class="col-sm-4 text-center" style="margin-top:.25em;"><a href="#">Load More</a></div>
+                <!--<div class="col-sm-4 text-center" style="margin-top:.25em;"><a href="#">Load More</a></div>-->
+                <div class="col-sm-4 md-none"><hr class="bc-dodger-blue"></div>
                 <div class="col-sm-4 md-none"><hr class="bc-dodger-blue"></div>
             </div>
             <div class="space-2"></div>

@@ -81,4 +81,33 @@ class JourneyController extends Controller {
             return Redirect::to('visitor-journey/input')->withInput($visitorJourney->toArray());
         }
     }
+	
+	public function getDelete($id)
+	{
+		if(!empty($id)){
+			$master = VisitorJourney::find($id);
+			if($master != null){
+
+				try {
+					
+					$existsFile = './files/visitor/'.Auth::user()->id .'/'. $master->photo;
+					if(File::exists($existsFile)) {
+					    File::delete($existsFile);
+					}
+					$master->delete();
+					
+				} catch (\Illuminate\Database\QueryException $e) {
+					Session::flash('error', array('This data already used by others'));
+					return redirect('visitor-journey');
+				}
+				Session::flash('message', array('Data successfully deleted'));
+			} else {
+				Session::flash('error', array('Data does not exists'));
+			}
+		} else {
+			Session::flash('error', array('There is a problem, please try again or contact our support if you feel this is error.'));
+		}
+
+		return redirect('visitor-journey');
+	}
 }
