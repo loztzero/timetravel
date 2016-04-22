@@ -24,7 +24,9 @@
 
                 <div class="form-group">
                     <div class="col-sm-3 md-center">
+                        @if($profile != null)
                         <img src="{{ url('files/visitor/' . Auth::user()->id . '/' . $profile->photo) }}" alt="My Profile Picture" width="200px">
+                        @endif
                         
                         <style>
                             .fileUpload {
