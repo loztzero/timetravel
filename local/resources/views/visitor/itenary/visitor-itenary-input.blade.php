@@ -19,12 +19,12 @@
                     <input type="hidden" name="id" value="{{ Input::old('id') }}">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" placeholder="title" name="title" value="{{ Input::old('title') }}">
+                        <input type="text" class="form-control" id="title" placeholder="title" name="title" value="{{ Input::old('title') }}" required>
                     </div>
 
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" name="description" placeholder="Description">{{ Input::old('description') }}</textarea>
+                        <textarea class="form-control" id="description" name="description" placeholder="Description" required>{{ Input::old('description') }}</textarea>
                     </div>
 
                     <!--My Journey End-->

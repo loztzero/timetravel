@@ -27,7 +27,8 @@
                         @if($profile != null)
                         <img src="{{ url('files/visitor/' . Auth::user()->id . '/' . $profile->photo) }}" alt="My Profile Picture" width="200px">
                         @endif
-                        
+                    </div>
+                    <div class="col-sm-3 md-center">
                         <style>
                             .fileUpload {
                                 position: relative;
@@ -52,6 +53,7 @@
                                 <input type="text" id="photo" class="form-control"  placeholder="Photo Name" disabled>
                             </div>
                             <div class="col-sm-12">
+                                <br>
                                 <div class="fileUpload btn form-control bg-java bc-java c-white">
                                     <span><i class="fa fa-folder"></i> Browse</span>
                                     <input id="file" type="file" name="photo" class="upload" />
@@ -59,7 +61,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-9">
+                    <div class="col-sm-6">
                         <label class="control-label c-java"> E-mail</label>
                         <input type="email" class="form-control br-0 input-lg" placeholder="john-doe@example.com" value="{{ Auth::user()->email }}" readonly>
                         <div class="space-1"></div>
@@ -72,7 +74,7 @@
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label class="control-label c-java">First name</label>
-                        <input type="text" class="form-control input-lg br-0" placeholder="Your First Name" name="firstName" value="{{ Input::old('firstName', $profile != null ? $profile->first_name : '') }}">
+                        <input type="text" class="form-control input-lg br-0" placeholder="Your First Name" name="firstName" value="{{ Input::old('firstName', $profile != null ? $profile->first_name : '') }}" required>
                     </div>
                     <div class="col-sm-6">
                         <label class="control-label c-java">Last name</label>
@@ -83,7 +85,7 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <label class="control-label c-java">Address</label>
-                        <input type="text" class="form-control input-lg br-0" placeholder="Address line 1" name="address1" value="{{ Input::old('address1', $profile != null ? $profile->address1 : '') }}"><br>
+                        <input type="text" class="form-control input-lg br-0" placeholder="Address line 1" name="address1" value="{{ Input::old('address1', $profile != null ? $profile->address1 : '') }}" required><br>
                         <input type="text" class="form-control input-lg br-0" placeholder="Address line 2" name="address2" value="{{ Input::old('address2', $profile != null ? $profile->address2 : '') }}">
                     </div>
                 </div>
@@ -110,7 +112,7 @@
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label class="control-label c-java">Phone number</label>
-                        <input type="tel" class="form-control input-lg br-0" placeholder="e.g. +628711000" name="phoneNumber" value="{{ Input::old('phoneNumber', $profile != null ? $profile->phone_number : '') }}"><br>
+                        <input type="tel" class="form-control input-lg br-0" placeholder="e.g. +628711000" name="phoneNumber" value="{{ Input::old('phoneNumber', $profile != null ? $profile->phone_number : '') }}" required><br>
                     </div>
                 </div>
                 <div class="form-group">
@@ -126,7 +128,12 @@
                     <button type="submit" class="btn btn-default bg-java bc-java c-white fw-700"><i class="fa fa-check-circle-o"></i> SUBMIT</button>
                 </div>
                 <div class="col-md-offset-1 col-md-3 p-0">
-                    <button type="submit" class="btn btn-default bg-tall-poppy bc-tall-poppy c-white fw-700"><i class="fa fa-times-circle-o"></i> CANCEL</button>
+                    <button type="button" 
+                        class="btn btn-default bg-tall-poppy bc-tall-poppy c-white fw-700"
+                        onclick="javascript: window.location.assign('{{ url('main') }}')"
+                        >
+                        <i class="fa fa-times-circle-o"></i> CANCEL
+                    </button>
                 </div>
             </form>
             <!--My Profile End-->
