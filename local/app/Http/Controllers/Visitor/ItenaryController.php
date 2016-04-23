@@ -10,10 +10,11 @@ class ItenaryController extends Controller {
 	public function getIndex(){
 		//print_r($visitorItenary);
 		$visitorItenary = VisitorItenary::from('VST030 as a')->paginate(20);
-		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
+		$countries = Country::all()->sortBy('country_name');
+		
 		return view('visitor.itenary.visitor-itenary-browse')
 			->with('visitorItenary', $visitorItenary)
-			->with('countryList', $countryList);
+				->with('countries', $countries);
 	}
 
 	public function getInput(){

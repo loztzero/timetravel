@@ -40,16 +40,26 @@ class TourManagementController extends Controller {
 
 	public function getData(Request $request){
 		$id = $request->id;
-
+		
 		if(isset($id)){
-			$tourProfile = TourProfile::where('mst001_id', '=', $id);
+			$tourProfile = TourProfile::where('mst001_id', '=', $id)->first();
 
-			if(isset($tourProfile)){
+			if($tourProfile == null){
 				Session::flash('error', array('Data value dengan id ' . $id . ' tidak ditemukan'));
 				return Redirect::to('tour-management');
 			}
 
+			$tourProfile['country'] = Country::where('id', '=', $tourProfile['mst002_id'])->first();
+			$tourProfile['city'] = City::where('id', '=', $tourProfile['mst003_id'])->first();
+
 			return $tourProfile->toJson();
 		}
+	}
+
+	public function getCityByCountrySearch(Request $request){
+		$countryIdSearch = $request->countryIdSearch;
+		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
+
+		return $cities;
 	}
 }

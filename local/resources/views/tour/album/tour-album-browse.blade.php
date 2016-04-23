@@ -1,6 +1,5 @@
-@extends('layouts.tour-layout')
+@extends('layouts.main-layout')
 @section('content')
-@include('layouts.message-helper')
 
 	<!--Container Section-->
 	<section class="container">
@@ -9,6 +8,7 @@
 			@include('layouts.tour-dashboard')
 			<!--My Album-->
 			<div class="col-sm-9">
+				@include('layouts.message-helper')
 				<!--My Album-->
 				<h3 class="section-title text-center"><span class="c-lightgrey">MY ALBUM</span></h3>
 				<hr class="s-title">
@@ -43,12 +43,15 @@
 								<li class="of-hidden">
 									<img src="{{ url(config('constants.TOUR_ALBUM').Auth::user()->id.'/'.$value->photo) }}" style="width:262px !important;height:240px !important">
 								</li>
-								<li class="text-center">
-									<a href="{{ url('tour-album/delete', $value->id) }}" class="c-white">
-										<div class="col-xs-12 p-1">
+								<li class="text-left">
+									<div class="col-xs-10 p-1 c-white">
+										{{ $value->title }}
+									</div>
+									<div class="col-xs-2 p-1">
+										<a href="{{ url('tour-album/delete', $value->id) }}" class="fw-400 c-white">
 											<i class="fa fa-trash"></i>
-										</div>
-									</a>
+										</a>
+									</div>
 								</li>
 							</ul>
 						</div>
@@ -66,9 +69,9 @@
 @stop
 
 @section('script')
-<script src="{{ url('assets/js/tour-album.js') }}"></script>
+	<script src="{{ url('assets/js/tour-album.js') }}"></script>
 @stop
 
 @section('style')
-<link rel="stylesheet" href="{{ url('assets/css/upload_photo.css') }}" type="text/css">
+	<link rel="stylesheet" href="{{ url('assets/css/upload_photo.css') }}" type="text/css">
 @stop

@@ -20,6 +20,10 @@ class MainController extends Controller {
 		if($request->has('category')){
 			$tourItinerary->where('A.category', '=', $request->category);
 		}
+	
+		if($request->has('departure_date')){
+			$tourItinerary->where(date('Y-m-d', strtotime($request->departure_date)), 'between', 'A.start_period', 'AND', 'A.end_period');
+		}
 
 		if($request->has('budget_from')){
 			$tourItinerary->where('A.price', '>=', $request->budget_from);
@@ -38,7 +42,7 @@ class MainController extends Controller {
 		}
 
 		$tourItinerary = $tourItinerary->select('A.id', 'A.price', 'A.mst001_id', 'A.photo', 'A.title', 'A.category', 'D.curr_code', 'A.start_period', 'A.end_period');
-		$tourItinerary = $tourItinerary->paginate(config('constants.PAGINATION_VIEWED'));
+		$tourItinerary = $tourItinerary->paginate(config('constants.PAGINATION_MAIN'));
 
 		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
 		return view('main.main-page')
@@ -215,5 +219,10 @@ class MainController extends Controller {
 		return view('layouts.common-layout');
 	}
 
-
+	public function getCityByCountrySearch(Request $request){
+		$countryIdSearch = $request->countryIdSearch;
+		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
+	
+		return $cities;
+	}
 }

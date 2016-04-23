@@ -1,10 +1,10 @@
-@extends('layouts.tour-layout')
+@extends('layouts.main-layout')
 @section('content')
-@include('layouts.message-helper')
 			
 	<!--Container Section-->
 	<section class="container">
 		<div class="row vendor-header">
+			@include('layouts.message-helper')
 			<div class="col-md-3">
 				<div class="public-profile">
 					@if (isset($tourProfile['logo']))
@@ -65,6 +65,11 @@
 						<li class="of-hidden">
 							<img src="{{ url(config('constants.TOUR_ALBUM').$tourProfile['mst001_id'].'/'.$value->photo) }}" style="width:262px !important;height:240px !important">
 						</li>
+						<li class="text-left">
+							<div class="col-xs-12 p-1 c-white">
+								{{ $value->title }}
+							</div>
+						</li>
 					</ul>
 				</div>
 			@endforeach
@@ -77,5 +82,5 @@
 @stop
 
 @section('script')
-<script src="{{ url('assets/js/tour-album-viewed.js') }}"></script>
+	<script src="{{ url('assets/js/tour-album-viewed.js') }}"></script>
 @stop

@@ -1,6 +1,5 @@
-@extends('layouts.tour-layout')
+@extends('layouts.main-layout')
 @section('content')
-@include('layouts.message-helper')
 
 	<!--Modal Make Package-->
 	<div id="modals-vendor">
@@ -67,13 +66,13 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="col-md-6" style="padding:0 2.1em;">
+							<div class="col-md-6 input-daterange" id="datepicker" style="padding:0 2.1em;">
 								<label class="control-label c-dodger-blue fa-lg fw-400">Start Period</label>
-								<input id="start_period" name="start_period" type="text" class="form-control" placeholder="YYYY-MM-DD" required>
+								<input id="start_period" name="start_period" type="text" class="form-control" placeholder="DD-MM-YYYY" required>
 							</div>
-							<div class="col-md-6" style="padding:0 2.1em;">
+							<div class="col-md-6 input-daterange" id="datepicker" style="padding:0 2.1em;">
 								<label class="control-label c-dodger-blue fa-lg fw-400">End Period</label>
-								<input id="end_period" name="end_period" type="text" class="form-control" placeholder="YYYY-MM-DD" required>
+								<input id="end_period" name="end_period" type="text" class="form-control" placeholder="DD-MM-YYYY" required>
 							</div>
 						</div>
 						<div class="form-group">
@@ -118,6 +117,7 @@
 			@include('layouts.tour-dashboard')
 			<!--My Itinerary-->
 			<div class="col-sm-9">
+				@include('layouts.message-helper')
 				<h3 class="section-title text-center"><span class="c-lightgrey">MY ITINERARY</span></h3>
 				<hr class="s-title">
 				@foreach($tourItinerary as $key => $value)
@@ -164,9 +164,9 @@
 @stop
 
 @section('script')
-<script src="{{ url('assets/js/tour-itinerary.js') }}"></script>
+	<script src="{{ url('assets/js/tour-itinerary.js') }}"></script>
 @stop
 
 @section('style')
-<link rel="stylesheet" href="{{ url('assets/css/upload_photo.css') }}" type="text/css">
+	<link rel="stylesheet" href="{{ url('assets/css/upload_photo.css') }}" type="text/css">
 @stop

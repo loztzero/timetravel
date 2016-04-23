@@ -65,4 +65,12 @@ class TourProfile extends Emodel {
 		
 		return $object;
 	}
+	
+	public function country(){
+		return $this->hasOne('App\Models\Country', 'id', 'mst002_id');
+	}
+	
+	public function city(){
+		return $this->hasOne('App\Models\City', 'id', 'mst003_id');
+	}
 }

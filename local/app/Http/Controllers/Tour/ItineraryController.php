@@ -11,7 +11,7 @@ use App\Models\Currency;
 class ItineraryController extends Controller {
 
 	public function getIndex(){
-		$tourItinerary = TourItinerary::where('mst001_id', '=', Auth::user()->id)->paginate(config('constants.PAGINATION'));
+		$tourItinerary = TourItinerary::where('mst001_id', '=', Auth::user()->id)->paginate(config('constants.PAGINATION_ITINERARY'));
 		$countries = Country::all()->sortBy('country_name');
 		$currencies = Currency::all()->sortBy('curr_name');
 
@@ -81,7 +81,7 @@ class ItineraryController extends Controller {
 				return Redirect::to('tour-itinerary');
 			}
 
-			$tourItinerary['cities'] = $cities = City::where('mst002_id', '=', $tourItinerary['mst002_id'])->orderBy('city_name')->get();
+			$tourItinerary['cities'] = City::where('mst002_id', '=', $tourItinerary['mst002_id'])->orderBy('city_name')->get();
 
 			return $tourItinerary->toJson();
 		}
@@ -100,13 +100,6 @@ class ItineraryController extends Controller {
 	public function getCityByCountry(Request $request){
 		$countryId = $request->countryId;
 		$cities = City::where('mst002_id', '=', $countryId)->orderBy('city_name')->get()->toJson();
-
-		return $cities;
-	}
-
-	public function getCityByCountrySearch(Request $request){
-		$countryIdSearch = $request->countryIdSearch;
-		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
 
 		return $cities;
 	}

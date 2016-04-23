@@ -9,10 +9,11 @@ class FavoriteTourController extends Controller {
 	public function getIndex(){
 		//print_r($visitorFavoriteTour);
 		$visitorFavoriteTour = VisitorFavoriteTour::where('mst001_id', '=', Auth::user()->id)->get();
-		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
+		$countries = Country::all()->sortBy('country_name');
+		
 		return view('visitor.favoritetour.visitor-favorite-tour-browse')
 				->with('favoriteTours', $visitorFavoriteTour)
-				->with('countryList', $countryList);
+				->with('countries', $countries);
 	}
 
 	public function getInput(){

@@ -1,6 +1,5 @@
-@extends('layouts.tour-layout')
+@extends('layouts.main-layout')
 @section('content')
-@include('layouts.message-helper')
 
 	<!--Container Section-->
 	<section class="container">
@@ -9,6 +8,7 @@
 			@include('layouts.tour-dashboard')
 			<!--My Review-->
 			<div class="col-sm-9">
+				@include('layouts.message-helper')
 				<h3 class="section-title text-center"><span class="c-lightgrey">MY REVIEW</span></h3>
 				<hr class="s-title">
 				@foreach($tourReview as $key => $value)
@@ -21,7 +21,7 @@
 							<hr class="md-block">
 							<div class="space-1"></div>
 							@if($value->traveler != null)
-								<a class="fw-700 c-java fa-lg">{{ $value->traveler->first_name }} {{ $value->traveler->last_name != null ? $value->traveler->last_name : '' }}</a>
+								<i class="fw-700 c-java fa-lg">{{ $value->traveler->first_name }} {{ $value->traveler->last_name != null ? $value->traveler->last_name : '' }}</i>
 							@endif
 						</div>
 						<div class="col-md-3 text-center">
@@ -47,5 +47,5 @@
 @stop
 
 @section('script')
-<script src="{{ url('assets/js/tour-review.js') }}"></script>
+	<script src="{{ url('assets/js/tour-review.js') }}"></script>
 @stop

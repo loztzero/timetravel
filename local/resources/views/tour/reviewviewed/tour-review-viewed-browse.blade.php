@@ -1,6 +1,5 @@
-@extends('layouts.tour-layout')
+@extends('layouts.main-layout')
 @section('content')
-@include('layouts.message-helper')
 
 	<!--Modal Make Package-->
 	<div id="modals-vendor">
@@ -103,6 +102,7 @@
 				</div>
 			</div>
 			<div class="col-sm-9">
+				@include('layouts.message-helper')
 				<div class="row m-0">
 					<h2 class="c-dodger-blue text-center p-0 m-0">Tour Review</h2>
 					<hr class="bc-dodger-blue">
@@ -118,7 +118,7 @@
 								<hr class="md-block">
 								<div class="space-1"></div>
 								@if($value->traveler != null)
-									<a class="fw-700 c-java fa-lg">{{ $value->traveler->first_name }} {{ $value->traveler->last_name != null ? $value->traveler->last_name : '' }}</a>
+									<i class="fw-700 c-java fa-lg">{{ $value->traveler->first_name }} {{ $value->traveler->last_name != null ? $value->traveler->last_name : '' }}</i>
 								@endif
 							</div>
 							<div class="col-md-3 text-center">
@@ -152,5 +152,5 @@
 @stop
 
 @section('script')
-<script src="{{ url('assets/js/tour-review-viewed.js') }}"></script>
+	<script src="{{ url('assets/js/tour-review-viewed.js') }}"></script>
 @stop

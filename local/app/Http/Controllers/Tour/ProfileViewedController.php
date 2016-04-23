@@ -14,7 +14,7 @@ class ProfileViewedController extends Controller {
 
 	public function getIndex($userId){
 		$tourProfile = TourProfile::where('mst001_id', '=', $userId)->first();
-		$tourItinerary = TourItinerary::where('mst001_id', '=', $userId)->paginate(config('constants.PAGINATION'));
+		$tourItinerary = TourItinerary::where('mst001_id', '=', $userId)->paginate(config('constants.PAGINATION_PROFILE_VIEWED'));
 		$countries = Country::all()->sortBy('country_name');
 		$currencies = Currency::all()->sortBy('curr_name');
 
@@ -29,7 +29,7 @@ class ProfileViewedController extends Controller {
 		$tourProfile = TourProfile::find($request['id']);
 		$countries = Country::all()->sortBy('country_name');
 		$currencies = Currency::all()->sortBy('curr_name');
-
+		
 		$tourItinerary = TourItinerary::from('TR0040 AS A')
 						->join('MST002 AS B', 'A.mst002_id', '=', 'B.id')
 						->join('MST003 AS C', 'A.mst003_id', '=', 'C.id')
@@ -39,12 +39,8 @@ class ProfileViewedController extends Controller {
 			$tourItinerary->where('A.category', '=', $request->category);
 		}
 	
-		if($request->has('start_period')){
-			$tourItinerary->where('A.start_period', '>=', $request->budget_from);
-		}
-	
-		if($request->has('end_period')){
-			$tourItinerary->where('A.end_period', '<=', $request->budget_to);
+		if($request->has('departure_date')){
+			$tourItinerary->where(date('Y-m-d', strtotime($request->departure_date)), 'between', 'A.start_period', 'AND', 'A.end_period');
 		}
 	
 		if($request->has('countryId')){
@@ -66,8 +62,9 @@ class ProfileViewedController extends Controller {
 		if($request->has('budget_to')){
 			$tourItinerary->where('A.price', '<=', $request->budget_to);
 		}
-	
-		$tourItinerary = $tourItinerary->paginate(config('constants.PAGINATION'));
+
+		$tourItinerary = $tourItinerary->select('A.id', 'A.price', 'A.mst001_id', 'A.photo', 'A.title', 'A.category', 'D.curr_code', 'A.start_period', 'A.end_period');
+		$tourItinerary = $tourItinerary->paginate(config('constants.PAGINATION_PROFILE_VIEWED'));
 	
 		return view('tour.profileviewed.tour-profile-viewed-browse')
 				->with('tourProfile', $tourProfile)
@@ -79,13 +76,6 @@ class ProfileViewedController extends Controller {
 	public function getCityByCountry(Request $request){
 		$countryId = $request->countryId;
 		$cities = City::where('mst002_id', '=', $countryId)->orderBy('city_name')->get()->toJson();
-		
-		return $cities;
-	}
-
-	public function getCityByCountrySearch(Request $request){
-		$countryIdSearch = $request->countryIdSearch;
-		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
 		
 		return $cities;
 	}

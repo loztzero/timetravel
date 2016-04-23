@@ -9,6 +9,8 @@ class TourProfilecontroller extends Controller {
 	public function getIndex(){
 		//print_r($tourProfile);
 		$tourProfile = VisitorTourProfile::all();
+		$countries = Country::all()->sortBy('country_name');
+		
 		return view('tour-profile.tour-profile-browse')->with('tour-profile', $tourProfile);
 	}
 

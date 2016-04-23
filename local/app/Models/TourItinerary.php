@@ -59,8 +59,8 @@ class TourItinerary extends Emodel {
 		$object->mst004_id		= $data['currencyId'];
 		$object->price			= $data['price'];
 		$object->description	= $data['description'];
-		$object->start_period	= $data['start_period'];
-		$object->end_period		= $data['end_period'];
+		$object->start_period	= date('Y-m-d', strtotime($data['start_period']));
+		$object->end_period		= date('Y-m-d', strtotime($data['end_period']));
 		$object->min_pax		= $data['min_pax'];
 		$object->photo			= $data['photo']->getClientOriginalName();
 		

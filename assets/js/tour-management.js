@@ -1,13 +1,5 @@
-$("document").ready(function(){
-	setCitiesSearch();
-
-	$("#countryIdSearch").change(function(e){
-		setCitiesSearch();
-	});
-});
-
 function getData($id){
-	var token =  '"{{ csrf_token() }}"';
+	var token = '"{{ csrf_token() }}"';
 	$.ajax({
 		type: "GET",
 		url : "tour-management/data",
@@ -15,43 +7,16 @@ function getData($id){
 		success : function(data){
 			data = JSON.parse(data);
 
-			$("#id").val($id);
-			$("#title").val(data.title);
-			$("#currencyId").val(data.mst004_id);
-			$("#price").val(data.price);
-			$("#category").val(data.category);
-			$("#min_pax").val(data.min_pax);
-			$("#start_period").val(data.start_period);
-			
-			if(data.end_period && data.end_period != '0000-00-00')
-				$("#end_period").val(data.end_period);
-			
-			$("#countryId").val(data.mst002_id);
-			$("#description").val(data.description);
-
-			$("#cityId").html("<option></option>");
-			$.each(data.cities, function(k, v) {
-				if(data.mst003_id == v.id)
-					$("#cityId").append("<option value='"+v.id+"' selected>"+v.city_name+"</option>");
-				else
-					$("#cityId").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
-			});
-		}
-	},"json");
-}
-
-function setCitiesSearch(){
-	var countryIdSearch = $('#countryIdSearch').val();
-	$.ajax({
-		type: "GET",
-		url : "tour-management/city-by-country-search",
-		data : {'countryIdSearch':countryIdSearch, '_token':'"{{ csrf_token() }}"'},
-		success : function(data){
-			data = JSON.parse(data);
-			$("#cityIdSearch").html("<option value='%' selected>All City</option>");
-			$.each(data, function(k, v) {
-				$("#cityIdSearch").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
-			});
+			$("#first_name").val(data.first_name);
+			$("#last_name").val(data.last_name);
+			$("#tour_name").val(data.tour_name);
+			$("#phone_number").val(data.phone_number);
+			$("#address1").val(data.address1);
+			$("#address2").val(data.address2);
+			$("#address3").val(data.address3);
+			$("#zip_code").val(data.zip_code);
+			$("#country_name").val(data.country.country_name);
+			$("#city_name").val(data.city.city_name);
 		}
 	},"json");
 }

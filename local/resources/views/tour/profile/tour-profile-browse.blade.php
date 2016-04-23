@@ -1,6 +1,5 @@
-@extends('layouts.tour-layout')
+@extends('layouts.main-layout')
 @section('content')
-@include('layouts.message-helper')
 
 	<!--Container Section-->
 	<section class="container">
@@ -9,6 +8,7 @@
 			@include('layouts.tour-dashboard')
 			<!--My Profile-->
 			<div class="col-sm-9">
+				@include('layouts.message-helper')
 				<h3 class="section-title text-center"><span class="c-lightgrey">MY PROFILE</span></h3>
 				<hr class="s-title">
 				<form role="form" class="form-horizontal" method="post" action="{{ url('tour-profile/save') }}" enctype="multipart/form-data" data-toggle="validator">
@@ -167,9 +167,9 @@
 @stop
 
 @section('script')
-<script src="{{ url('assets/js/tour-profile.js') }}"></script>
+	<script src="{{ url('assets/js/tour-profile.js') }}"></script>
 @stop
 
 @section('style')
-<link rel="stylesheet" href="{{ url('assets/css/upload_photo.css') }}" type="text/css">
+	<link rel="stylesheet" href="{{ url('assets/css/upload_photo.css') }}" type="text/css">
 @stop

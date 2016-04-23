@@ -81,13 +81,6 @@ class ProfileController extends Controller {
 		return $cities;
 	}
 
-	public function getCityByCountrySearch(Request $request){
-		$countryIdSearch = $request->countryIdSearch;
-		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
-
-		return $cities;
-	}
-	
 	private function saveUser(Request $request){
 		$user = User::find(Auth::user()->id);
 		$user->password = Hash::make($request->password);

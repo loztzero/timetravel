@@ -46,7 +46,7 @@ Route::filter('isTraveler', function($route, $request){
 Route::filter('isTour', function($route, $request){
 
 	if(Auth::user()->role != config('constants.TOUR')){
-		return redirect('/main/tour-register');
+		return redirect('/tour-register');
 	}
 });
 

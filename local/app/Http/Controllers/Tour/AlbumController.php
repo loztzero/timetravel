@@ -5,12 +5,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\TourAlbum;
 use App\Models\Country;
-use App\Models\City;
 
 class AlbumController extends Controller {
 
 	public function getIndex(){
-		$tourAlbum = TourAlbum::where('mst001_id', '=', Auth::user()->id)->paginate(config('constants.PAGINATION'));
+		$tourAlbum = TourAlbum::where('mst001_id', '=', Auth::user()->id)->paginate(config('constants.PAGINATION_ALBUM'));
 		$countries = Country::all()->sortBy('country_name');
 
 		return view('tour.album.tour-album-browse')
@@ -69,13 +68,6 @@ class AlbumController extends Controller {
 		}
 	}
 
-	public function getCityByCountrySearch(Request $request){
-		$countryIdSearch = $request->countryIdSearch;
-		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
-		
-		return $cities;
-	}
-	
 	private function getPath(){
 		return './'.config('constants.TOUR_ALBUM').Auth::user()->id;
 	}

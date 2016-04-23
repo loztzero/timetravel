@@ -12,7 +12,7 @@ use App\Models\Currency;
 class ReviewViewedController extends Controller {
 
 	public function getIndex($userId){
-		$tourReview = TourReview::where('mst001_id', '=', $userId)->paginate(config('constants.PAGINATION'));
+		$tourReview = TourReview::where('mst001_id', '=', $userId)->paginate(config('constants.PAGINATION_REVIEW_VIEWED'));
 		$tourProfile = TourProfile::where('mst001_id', '=', $userId)->first();
 		$country = Country::where('id', '=', $tourReview['mst002_id'])->first();
 		$city = City::where('id', '=', $tourReview['mst003_id'])->first();
@@ -55,12 +55,5 @@ class ReviewViewedController extends Controller {
 			return redirect('tour-review-viewed/index/'.$data['mst001_id'])->with('message', array('Data review telah berhasil di buat'))
 					->withInput($tourReview->toArray());
 		}
-	}
-
-	public function getCityByCountrySearch(Request $request){
-		$countryIdSearch = $request->countryIdSearch;
-		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
-		
-		return $cities;
 	}
 }

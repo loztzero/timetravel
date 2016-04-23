@@ -7,23 +7,6 @@
     <h2 class="section-title c-dodger-blue text-center"><span><i class="fa fa-plane"></i> Featured Destinations</span></h2>
     <hr class="bc-java s-title">
     <div class="row">
-        <div class="col-md-3 col-sm-6 pop-wrapper">
-            <ul class="pop-box list-unstyled">
-                <li class="ask-it c-white"><a href="#"><i class="fa fa-plane"></i> Price</a></li>
-                <li><img src="{{ url('assets/image/hk.jpg') }}" ></li>
-                <li class="inner-box">
-                    <ul class="list-unstyled p-1">
-                        <li><a href="#" class="fw-400 c-white"><i class="fa fa-building-o"></i> PT. TravelMate Indonesia</a></li>
-                        <!--<li><hr class="bc-white"></li>
-                         <li class="row text-center">
-                            <a class="col-xs-4"><span class="badge bg-tree-poppy"><i class="fa fa-save"></i> Save</span></a>
-                            <a class="col-xs-4 b-lr-dotted"><span class="badge bg-cinnabar"><i class="fa fa-eye"></i> 1700x</span></a>
-                            <a class="col-xs-4"><span class="badge bg-java"><i class="fa fa-thumbs-up"></i> 1024</span></a>
-                        </li> -->
-                    </ul>
-                </li>
-            </ul>
-        </div>
         @foreach($tourItinerary as $record)
         <div class="col-md-3 col-sm-6 pop-wrapper">
             <ul class="pop-box list-unstyled">
@@ -92,6 +75,27 @@ $('#mainCountry').on('change', function(){
 
 $(document).ready(function () {
     setMainCities();
+	setCitiesSearch();
+
+	$("#countryIdSearch").change(function(e){
+		setCitiesSearch();
+	});
 });
+
+function setCitiesSearch(){
+	var countryIdSearch = $('#countryIdSearch').val();
+	$.ajax({
+		type: "GET",
+		url : "main/city-by-country-search",
+		data : {'countryIdSearch':countryIdSearch, '_token':'"{{ csrf_token() }}"'},
+		success : function(data){
+			data = JSON.parse(data);
+			$("#cityIdSearch").html("<option value='%' selected>All City</option>");
+			$.each(data, function(k, v) {
+				$("#cityIdSearch").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
+			});
+		}
+	},"json");
+}
 </script>
 @endsection

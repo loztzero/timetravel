@@ -1,10 +1,10 @@
-@extends('layouts.tour-layout')
+@extends('layouts.main-layout')
 @section('content')
-@include('layouts.message-helper')
 			
 	<!--Container Section-->
 	<section class="container">
 		<div class="row vendor-header">
+			@include('layouts.message-helper')
 			<div class="col-md-3">
 				<div class="public-profile">
 					@if (isset($tourProfile['logo']))
@@ -77,10 +77,8 @@
 							</select>
 						</div>
 						<div class="col-xs-12 space-1"></div>
-						<div class="col-xs-12 text-center p-0">
-							<input id="start_period" name="start_period" type="text" class="well-sm br-0 bc-dodger-blue" placeholder="Start period">
-							<div class="c-java">s/d</div>
-							<input id="end_period" name="end_period" type="text" class="well-sm br-0 bc-dodger-blue" placeholder="End period">
+						<div class="col-xs-12 text-center p-0 input-daterange" id="datepicker">
+							<input id="departure_date" name="departure_date" type="text" class="well-sm br-0 bc-dodger-blue" placeholder="Departure date">
 						</div>
 						<div class="col-xs-12 space-1"></div>
 						<div class="col-xs-12 text-center p-0">
@@ -178,5 +176,5 @@
 @stop
 
 @section('script')
-<script src="{{ url('assets/js/tour-profile-viewed.js') }}"></script>
+	<script src="{{ url('assets/js/tour-profile-viewed.js') }}"></script>
 @stop

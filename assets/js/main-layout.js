@@ -19,6 +19,12 @@ $(document).ready(function(){
 		$('html, body').animate({scrollTop : 0},800);
 		return false;
 	});
+	
+	setCitiesSearch();
+
+	$("#countryIdSearch").change(function(e){
+		setCitiesSearch();
+	});
 });
 
 $(document).scroll(function() {
@@ -34,3 +40,19 @@ $(document).scroll(function() {
 		$("#SearchBar").css({"background":"rgb(250,250,250)"});
 	}
 });
+
+function setCitiesSearch(){
+	var countryIdSearch = $('#countryIdSearch').val();
+	$.ajax({
+		type: "GET",
+		url : "main/city-by-country-search",
+		data : {'countryIdSearch':countryIdSearch, '_token':'"{{ csrf_token() }}"'},
+		success : function(data){
+			data = JSON.parse(data);
+			$("#cityIdSearch").html("<option value='%' selected>All City</option>");
+			$.each(data, function(k, v) {
+				$("#cityIdSearch").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
+			});
+		}
+	},"json");
+}

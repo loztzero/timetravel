@@ -1,4 +1,4 @@
-@extends('layouts.admin-layout')
+@extends('layouts.main-layout')
 @section('content')
 @include('layouts.message-helper')
 
@@ -12,9 +12,55 @@
 						<button type="button" class="close" data-dismiss="modal"><span>&#215;</span></button>
 						<div class="min-title text-center">
 							<h2 class="c-dodger-blue fa-2x">Profile Data</h2>
+							<input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+						</div>
+						<hr class="bc-lightgrey">
+						<div class="form-group">
+							<div class="col-md-6" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">First name</label>
+								<input id="first_name" name="first_name" type="text" class="form-control" readonly>
+							</div>
+							<div class="col-md-6" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">Last name</label>
+								<input id="last_name" name="last_name" type="text" class="form-control" readonly>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">Tour Name</label>
+								<input id="tour_name" name="tour_name" type="text" class="form-control" readonly>
+							</div>
+							<div class="col-md-6" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">Phone number</label>
+								<input id="phone_number" name="phone_number" type="tel" class="form-control" readonly>
+							</div>
+						</div>
+						<div class="space-1"></div>
+						<div class="form-group">
+							<div class="col-md-12" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">Address</label>
+								<input id="address1" name="address1" type="text" class="form-control" readonly><br>
+								<input id="address2" name="address2" type="text" class="form-control" readonly><br>
+								<input id="address3" name="address3" type="text" class="form-control" readonly>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">Zip Code</label>
+								<input id="zip_code" name="zip_code" type="text" class="form-control" readonly>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">Country</label>
+								<input id="country_name" name="country_name" type="text" class="form-control" readonly>
+							</div>
+							<div class="col-md-6" style="padding:0 2.1em;">
+								<label class="control-label c-dodger-blue fa-lg fw-400">City</label>
+								<input id="city_name" name="city_name" type="text" class="form-control" readonly>
+							</div>
 						</div>
 					</div>
-					<div class="space-1"></div>
 				</div>
 			</div>
 		</div>

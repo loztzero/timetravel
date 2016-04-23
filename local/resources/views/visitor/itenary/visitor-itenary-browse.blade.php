@@ -1,4 +1,4 @@
-@extends('layouts.visitor-layout')
+@extends('layouts.main-layout')
 @section('content')
 
     <!--Container Section-->

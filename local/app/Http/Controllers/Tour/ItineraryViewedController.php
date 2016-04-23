@@ -29,11 +29,4 @@ class ItineraryViewedController extends Controller {
 				->with('countries', $countries)
 				->with('currencies', $currencies);
 	}
-
-	public function getCityByCountrySearch(Request $request){
-		$countryIdSearch = $request->countryIdSearch;
-		$cities = City::where('mst002_id', '=', $countryIdSearch)->orderBy('city_name')->get()->toJson();
-		
-		return $cities;
-	}
 }

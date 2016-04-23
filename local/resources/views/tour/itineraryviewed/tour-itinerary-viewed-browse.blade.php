@@ -1,11 +1,11 @@
-@extends('layouts.tour-layout')
+@extends('layouts.main-layout')
 @section('content')
-@include('layouts.message-helper')
 			
 	<!--Container Section-->
 	<section class="container">
 		<div class="space-1"></div>
 		<div class="row user-panel vendor">
+			@include('layouts.message-helper')
 			<div class="col-sm-3">
 				<div class=" vendor-header">
 					<div class="public-profile">
@@ -124,5 +124,5 @@
 @stop
 
 @section('script')
-<script src="{{ url('assets/js/tour-itinerary-viewed.js') }}"></script>
+	<script src="{{ url('assets/js/tour-itinerary-viewed.js') }}"></script>
 @stop
