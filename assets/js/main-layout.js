@@ -28,7 +28,7 @@ $(document).ready(function(){
 });
 
 $(document).scroll(function() {
-	if($(window).scrollTop() > $("header").height() && $(window).width() > 768) {
+	if($(window).scrollTop() > 400 && $(window).width() > 768) {
 		$("#sb-wrapper").addClass("stickk");
 		$("#sub-logo").removeClass("d-none");
 		$("#s-label").addClass("fs1-right");

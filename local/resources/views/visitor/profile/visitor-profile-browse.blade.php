@@ -1,4 +1,4 @@
-@extends('layouts.visitor-layout')
+@extends('layouts.main-layout')
 @section('content')
 
 <section class="container">
@@ -99,7 +99,7 @@
                 <div class="form-group">
                     <div class="col-sm-6">
                         <label class="control-label c-java">Country</label>
-                        {!! Form::select('country', ([null => 'Select Your Country'] + $countries->toArray()), Input::old('country', $profile != null ? $profile->country : null), array('class'=>'form-control input-lg br-0', 'id' => 'country')) !!}
+                        {!! Form::select('country', ([null => 'Select Your Country'] + $countryList->toArray()), Input::old('country', $profile != null ? $profile->country : null), array('class'=>'form-control input-lg br-0', 'id' => 'country')) !!}
                     </div>
                     <div class="col-sm-6">
                         <label class="control-label c-java">City</label>

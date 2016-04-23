@@ -11,11 +11,13 @@ class ProfileController extends Controller {
 	public function getIndex(){
 		//print_r($visitorProfile);
 		$visitorProfile = VisitorProfile::where('mst001_id', '=', Auth::user()->id)->first();
-		$countries = Country::orderBy('country_name')->lists('country_name', 'id');
+		$countries = Country::all()->sortBy('country_name');
+		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
+		
 		return view('visitor.profile.visitor-profile-browse')
 				->with('profile', $visitorProfile)
 				->with('countries', $countries)
-				->with('countryList', $countries);
+				->with('countryList', $countryList);
 	}
 
 	public function getInput(){
