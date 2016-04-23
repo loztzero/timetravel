@@ -1,24 +1,3 @@
-halaman my profile:
-1. combo kota tidak berfungsi(test ulang)
-2. pesan error tidak jelas (coba buat error).css error mardi blm ada
-
-
-My journey:
-
-2. klik tombol silang di fotonya, foto ga delete.ga ada yg terjadi >. diganti tombolnya ky di my album yg tour
-http://holidayku.com/tester/tour-album
-
-
-logo holidayku,com diklik ga ke main page sbb:
-http://holidayku.com/tester/visitor-profile
-http://holidayku.com/tester/visitor-favorite-tour
-http://holidayku.com/tester/visitor-itenary
-
-
-setelah login ga bs ke main page??gmn crnya , dicb tembak url selalu blk ke profile, kecuali klik search
-
-klik menu my prifile error
-Trying to get property of non-object (View: /home/holidayk/public_html/tester/local/resources/views/visitor/profile/visitor-profile-browse.blade.php) 
 
 
 

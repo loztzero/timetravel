@@ -2,7 +2,15 @@ Main Page:
 1.waktu login error ga ada pesan error..
 
 
-make a review sudah login errornya pas mau submit
-Trying to get property of non-object (View: /home/holidayk/public_html/tester/local/resources/views/tour/reviewviewed/tour-review-viewed-browse.blade.php) *
+dihalaman berikut logonya belum ada link ke home page:
+http://holidayku.com/tester/tour-itinerary-viewed
+http://holidayku.com/tester/tour-review-viewed
+http://holidayku.com/tester/tour-album-viewed
+directnya ke visitor profile, g posisi lg login visitor
+
+review:
+masih bisa buat review pada tour yang sama,padahal dah penah buat review
 
 
+kalau klik ,  Not a member yet? Please click here 
+masih ga ada linknya. hrsnya direct ke dialog satu lg yg register
