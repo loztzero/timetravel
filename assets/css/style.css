@@ -7,6 +7,20 @@
 .navbar-brand span img{-webkit-filter: drop-shadow(0px 8px 8px #1a5a80);filter: drop-shadow(0px 8px 8px #1a5a80);}
 .navbar-brand:hover > img{-webkit-filter: sepia(100%);filter: sepia(100%);}
 
+/*Error Message Style*/
+.err-msg,.err-msg-o,.err-msg-alert,.success-msg-info{font-size:16px;font-weight: 400;border-radius: .25em;}
+.err-msg,.err-msg-alert{color: white;background: #c1272d;width: auto;}
+.err-msg-o{color: red;border: 1px solid red;background-color: white;}
+.err-msg,.err-msg-o{padding: .25em 1em;display: inline-block;position: relative;float: right;margin-right: 8px;margin-top: -38px}
+.err-msg-alert,.success-msg-info{padding: .5em 1em;}
+.err-msg-alert:before{font-family: fontawesome;content: "\f071";padding-right: 1em;}
+
+/*Success Message Style*/
+.success-msg,.success-msg-info{color: white;background: yellowgreen;width: auto;font-size:16px;}
+.success-msg-info:before{font-family: fontawesome; content: "\f058";padding-right: 1em;}
+.success-msg-o{color: yellowgreen;border: 1px solid yellowgreen;background-color: white;}
+.success-msg,.success-msg-o{font-size:16px;font-weight: 400;padding: .25em 1em;border-radius: .25em;display: inline-block;}
+
 /*Global Attributes*/
 html,body{font-family: 'Josefin sans','Arial',sans-serif;}
 section{min-height: 768px;}
@@ -14,6 +28,7 @@ a:hover{cursor: pointer;}
 a:focus,a.md-w-100:hover,.pop-box a:hover,.user-panel ul li.p-05:hover a,.load-more div a:hover,a.scrollToTop:hover,.iti-box a:hover{text-decoration: none;}
 p,.md-w-100,.pop-box a,.user-panel ul li.p-05,.iti-box,form#edit-profile label{font-size: 1.25em;}
 input{border-style: solid;border-width: 1px;}
+
 /*Global Transitions*/
 a, .navbar-brand img,.feat-box,.feature-no,.feat-box li hr,.feat-box li p,.pop-box,.pop-box a,.load-more div a, .ask-it, .ask-it a,.pop-box span.badge,.inner-box,#SearchBar button,#modals button.close,.modal-input,.modal-body button,li.j-title,li.j-title a,.user-panel button.btn,.fav-wrapper li:first-child,.iti-box,.vendor-album li div,.vendor-album li div a,.vendor-album,.rev-box,.tour-list
 {-webkit-transition: all .25s ease-in-out;transition: all .25s ease-in-out;}
@@ -378,6 +393,8 @@ input.chk-flag ~ label:hover{cursor: pointer;}
     a.scrollToTop{color: white;box-shadow: 0 0 4px black;padding: .5em;right: 0;background: rgba(0,0,0,.75);}
     a.scrollToTop:hover{color: black;background: rgba(255,255,255,.75);}
 
+    .err-msg,.err-msg-o{margin-top: -2.9em;}
+    
     /*Modals*/
     .modal-input div{padding: 0;padding-left: .5em}
     .modal-input div label{font-size: .75em;}
