@@ -15,8 +15,9 @@ class MainController extends Controller {
 		$tourItinerary = TourItinerary::from('TR0040 AS A')
 						->join('MST002 AS B', 'A.mst002_id', '=', 'B.id')
 						->join('MST003 AS C', 'A.mst003_id', '=', 'C.id')
-						->join('MST004 AS D', 'A.mst004_id', '=', 'D.id');
-
+						->join('MST004 AS D', 'A.mst004_id', '=', 'D.id')
+						->where('A.end_period', '>=', date('Y-m-d'));
+		
 		if($request->has('category')){
 			$tourItinerary->where('A.category', '=', $request->category);
 		}
@@ -33,21 +34,21 @@ class MainController extends Controller {
 			$tourItinerary->where('A.price', '<=', $request->budget_to);
 		}
 
-		if($request->has('country')){
-			$tourItinerary->where('B.country_name', '=', $request->country);
+		if($request->has('countryIdSearch')){
+			$tourItinerary->where('B.id', '=', $request->countryIdSearch);
 		}
 
-		if($request->has('city')){
-			$tourItinerary->where('B.city_name', '=', $request->city);
+		if($request->has('cityIdSearch')){
+			$tourItinerary->where('B.id', '=', $request->cityIdSearch);
 		}
 
 		$tourItinerary = $tourItinerary->select('A.id', 'A.price', 'A.mst001_id', 'A.photo', 'A.title', 'A.category', 'D.curr_code', 'A.start_period', 'A.end_period');
 		$tourItinerary = $tourItinerary->paginate(config('constants.PAGINATION_MAIN'));
 
-		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
+		$countries = Country::all()->sortBy('country_name');
 		return view('main.main-page')
-			->with('tourItinerary', $tourItinerary)
-			->with('countryList', $countryList);
+				->with('tourItinerary', $tourItinerary)
+				->with('countries', $countries);
 	}
 
 	public function getItenary($itenaryId){
@@ -79,7 +80,7 @@ class MainController extends Controller {
 			return Redirect::to('/');
 		} else {
 			Session::flash('error', 'User atau password salah');
-			return Redirect::to('/');
+			return redirect('main');
 		}
 	}
 

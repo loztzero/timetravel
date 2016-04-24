@@ -7,23 +7,23 @@
 			</div>
 			<div class="col-sm-10 md-center">
 				<div class="col-sm-2">
-					<select class="form-control bc-java">
-						<option value="" selected>All Category</option>
-						<option value="Backpacker">Backpacker</option>
-						<option value="Family">Family</option>
-						<option value="Honeymoon">Honeymoon</option>
+					<select class="form-control bc-java" name="category" id="category" value="{{ Request::get('category') }}">
+						<option value="" {{ Request::get('category') == "" ? 'selected' : '' }}>All Category</option>
+						<option value="Backpacker" {{ Request::get('category') == 'Backpacker' ? 'selected=true' : '' }}>Backpacker</option>
+						<option value="Family" {{ Request::get('category') == 'Family' ? 'selected=true' : '' }}>Family</option>
+						<option value="Honeymoon" {{ Request::get('category') == 'Honeymoon' ? 'selected=true' : '' }}>Honeymoon</option>
 					</select>
 				</div>
 				<div class="col-sm-4">
-					<input type="text" class="form-control bc-java" placeholder="Range budget from" name="budget_from" value="{{ Request::get('budget_from') }}">
+					<input type="text" class="form-control bc-java" placeholder="Range budget from" name="budget_from" id="budget_from" value="{{ Request::get('budget_from') }}">
 					<label class="control-label c-java">s/d</label>
-					<input type="text" class="form-control bc-java" placeholder="Range budget to" name="budget_to" value="{{ Request::get('budget_to') }}">
+					<input type="text" class="form-control bc-java" placeholder="Range budget to" name="budget_to" id="budget_to" value="{{ Request::get('budget_to') }}">
 				</div>
 				<div class="col-sm-2">
 					<select id="countryIdSearch" name="countryIdSearch" class="form-control bc-java">
-						<option value="" selected>All Country</option>
+						<option value="" {{ Request::get('countryIdSearch') == "" ? 'selected' : '' }}>All Country</option>
 						@foreach($countries as $key => $value)
-							<option value="{{ $value->id }}">{{ $value->country_name }}</option>
+							<option value="{{ $value->id }}" {{ Request::get('countryIdSearch') == $value->id ? 'selected=true' : '' }}>{{ $value->country_name }}</option>
 						@endforeach
 					</select>
 				</div>

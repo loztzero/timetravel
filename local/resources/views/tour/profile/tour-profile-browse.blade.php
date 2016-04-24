@@ -8,7 +8,7 @@
 			@include('layouts.tour-dashboard')
 			<!--My Profile-->
 			<div class="col-sm-9">
-				@include('layouts.message-helper')
+         	   @include('layouts.message-helper')
 				<h3 class="section-title text-center"><span class="c-lightgrey">MY PROFILE</span></h3>
 				<hr class="s-title">
 				<form role="form" class="form-horizontal" method="post" action="{{ url('tour-profile/save') }}" enctype="multipart/form-data" data-toggle="validator">
@@ -82,26 +82,18 @@
 						<div class="col-sm-6">
 							<label class="control-label c-persimmon">Country</label>
 							<select id="countryId" name="countryId" class="form-control br-0" required>
-								<option value="" selected></option>
+								<option value=""></option>
 								@foreach($countries as $key => $value)
-									@if ($tourProfile['mst002_id'] == $value->id)
-										<option value="{{ $value->id }}" selected>{{ $value->country_name }}</option>
-									@else
-										<option value="{{ $value->id }}">{{ $value->country_name }}</option>
-									@endif
+									<option value="{{ $value->id }}" {{ $tourProfile['mst002_id'] == $value->id ? 'selected=true' : '' }}>{{ $value->country_name }}</option>
 								@endforeach
 							</select>
 						</div>
 						<div class="col-sm-6">
 							<label class="control-label c-persimmon">City</label>
 							<select id="cityId" name="cityId" class="form-control br-0" required>
-								<option value="" selected></option>
+								<option value=""></option>
 								@foreach($cities as $key => $value)
-									@if ($tourProfile['mst003_id'] == $value->id)
-										<option value="{{ $value->id }}" selected>{{ $value->city_name }}</option>
-									@else
-										<option value="{{ $value->id }}">{{ $value->city_name }}</option>
-									@endif
+									<option value="{{ $value->id }}" {{ $tourProfile['mst003_id'] == $value->id ? 'selected=true' : '' }}>{{ $value->city_name }}</option>
 								@endforeach
 							</select>
 						</div>

@@ -49,7 +49,7 @@ function setCitiesSearch(){
 		data : {'countryIdSearch':countryIdSearch, '_token':'"{{ csrf_token() }}"'},
 		success : function(data){
 			data = JSON.parse(data);
-			$("#cityIdSearch").html("<option value='%' selected>All City</option>");
+			$("#cityIdSearch").html("<option value='' selected>All City</option>");
 			$.each(data, function(k, v) {
 				$("#cityIdSearch").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
 			});

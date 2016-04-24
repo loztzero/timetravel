@@ -14,7 +14,7 @@ class ProfileViewedController extends Controller {
 
 	public function getIndex($userId){
 		$tourProfile = TourProfile::where('mst001_id', '=', $userId)->first();
-		$tourItinerary = TourItinerary::where('mst001_id', '=', $userId)->paginate(config('constants.PAGINATION_PROFILE_VIEWED'));
+		$tourItinerary = TourItinerary::where('mst001_id', '=', $userId)->where('end_period', '>=', date('Y-m-d'))->paginate(config('constants.PAGINATION_PROFILE_VIEWED'));
 		$countries = Country::all()->sortBy('country_name');
 		$currencies = Currency::all()->sortBy('curr_name');
 
@@ -33,7 +33,8 @@ class ProfileViewedController extends Controller {
 		$tourItinerary = TourItinerary::from('TR0040 AS A')
 						->join('MST002 AS B', 'A.mst002_id', '=', 'B.id')
 						->join('MST003 AS C', 'A.mst003_id', '=', 'C.id')
-						->join('MST004 AS D', 'A.mst004_id', '=', 'D.id');
+						->join('MST004 AS D', 'A.mst004_id', '=', 'D.id')
+						->where('A.end_period', '>=', date('Y-m-d'));
 	
 		if($request->has('category')){
 			$tourItinerary->where('A.category', '=', $request->category);
