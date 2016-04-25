@@ -1,8 +1,6 @@
-Main Page:
-1.waktu login error ga ada pesan error..
 
 
-dihalaman berikut logonya belum ada link ke home page:
+dihalaman berikut logonya belum ada link ke home page malah ke profile:
 http://holidayku.com/tester/tour-itinerary-viewed
 http://holidayku.com/tester/tour-review-viewed
 http://holidayku.com/tester/tour-album-viewed
@@ -13,4 +11,4 @@ masih bisa buat review pada tour yang sama,padahal dah penah buat review
 
 
 kalau klik ,  Not a member yet? Please click here 
-masih ga ada linknya. hrsnya direct ke dialog satu lg yg register
+Sorry, the page you are looking for could not be found.
