@@ -7,7 +7,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span> 
 				</button>
-				<a class="navbar-brand zi-1000" href="#" style="position:relative;">
+				<a class="navbar-brand zi-1000" href="{{ url('main') }}" style="position:relative;">
 					<img src="{{ url('assets/image/logo.png') }}" class="p-absolute zi-1000" style="margin:0 0 0 .4em;cursor: pointer;" onclick="javascript: window.location.href = '{{ url() }}'">
 					<span class="md-none"><img src="{{ url('assets/image/pita.png') }}"></span>
 				</a>
