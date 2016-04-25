@@ -33,6 +33,12 @@ class ReviewViewedController extends Controller {
 	public function postSave(Request $request){
 		$data = $request->all();
 		$tourReview = new TourReview();
+		
+		if($tourReview->getMaxLineNumber($data['mst001_id']) > 1){
+			Session::flash('error', 'Anda sudah pernah memberi review');
+			return redirect('tour-review-viewed/index/'.$data['mst001_id']);
+		}
+		
 		$errorBag = $tourReview->rules($data);
 
 		if(count($errorBag) > 0){

@@ -48,7 +48,7 @@ class TourReview extends Emodel {
 		return $this->hasOne('App\Models\VisitorProfile', 'id', 'vst001_id');
 	}
 
-	private function getMaxLineNumber($mst001_id) {
+	public function getMaxLineNumber($mst001_id) {
 		$result = TourReview::where('mst001_id', '=', $mst001_id)->where('vst001_id', '=', $this->getVisitorId(Auth::user()->id))->max('line_number');
 		
 		if(isset($result)){
