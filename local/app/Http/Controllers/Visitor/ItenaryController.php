@@ -19,8 +19,11 @@ class ItenaryController extends Controller {
 
 	public function getInput(){
 		$countryList = Country::orderBy('country_name')->lists('country_name', 'id');
+		$countries = Country::all()->sortBy('country_name');
+		
 		return view('visitor.itenary.visitor-itenary-input')
-		->with('countryList', $countryList);
+		->with('countryList', $countryList)
+				->with('countries', $countries);
 	}
 
 
