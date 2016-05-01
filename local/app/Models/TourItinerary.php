@@ -21,8 +21,8 @@ class TourItinerary extends Emodel {
 			'currencyId'	=> 'required',
 			'price'			=> 'required',
 			'min_pax'		=> 'required',
-			'start_period'	=> 'required',
-			'end_period'	=> 'required',
+			'start_period'	=> 'required|date|after:yesterday',
+			'end_period'	=> 'required|date|after:start_date',
 			'countryId'		=> 'required',
 			'description'	=> 'required',
 		);
