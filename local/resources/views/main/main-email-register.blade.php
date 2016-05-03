@@ -1,6 +1,6 @@
 <h3>Holidayku.com</h3>
 
-Hello {{$username}}<br>
+Hello {{$tour_name}}<br>
 Please Activate this mail by click this link<br><br>
 
 <a href="{{ url('main/activate-email').'?key='. $activatedLink }}">{{ url('main/activate-email').'?key='. $activatedLink }}</a>

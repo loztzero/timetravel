@@ -81,7 +81,7 @@
 							</a>
 						</div>
 						<div class="mb-1">
-							<a href="" class="c-white">
+							<a href="{{ url('ask-itinerary/index', $tourProfile['mst001_id']) }}" class="c-white">
 								<i class="fa fa-plane"></i>
 								Ask Itinerary
 							</a>

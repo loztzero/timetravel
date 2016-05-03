@@ -102,6 +102,7 @@ Route::controller('tour-profile-viewed', 'Tour\ProfileViewedController');
 Route::controller('tour-album-viewed', 'Tour\AlbumViewedController');
 Route::controller('tour-itinerary-viewed', 'Tour\ItineraryViewedController');
 Route::controller('tour-review-viewed', 'Tour\ReviewViewedController');
+Route::controller('ask-itinerary', 'Tour\AskItineraryController');
 
 Route::controller('tour-register', 'Tour\RegisterController');
 Route::get('/facebook', 'FacebookController@facebook');
