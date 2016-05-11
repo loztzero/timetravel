@@ -1,14 +1,26 @@
+a.link aktivasi blm berhasil
 
-
-dihalaman berikut logonya belum ada link ke home page malah ke profile:
-http://holidayku.com/tester/tour-itinerary-viewed
-http://holidayku.com/tester/tour-review-viewed
-http://holidayku.com/tester/tour-album-viewed
-directnya ke visitor profile, g posisi lg login visitor
-
-review:
-masih bisa buat review pada tour yang sama,padahal dah penah buat review
-
-
-kalau klik ,  Not a member yet? Please click here 
+b.kalau klik ,  Not a member yet? Please click here 
 Sorry, the page you are looking for could not be found.
+
+
+c.why us sesuai di foto line
+isinya:
+1.Mudah
+disini anda dapat mencari paket liburan
+dari berbagai vendor tour dengan mudah
+2. Murah
+tidak memerlukan tiket masuk untuk mencari tour sesuai budget anda
+3. cepat
+holidayku memberikan layanan cepat kapanpun anda ingin mencari tour 
+yang anda inginkan dimanapun anda berada
+4. aman
+setiap tour yang bergabung dengan holidayku adalah tour berpengalaman
+dan terpercaya karena melalui verifikasi terlebih dahulu.
+
+d. query di mainpage masih salah, g coba query ga muncul padahal baru masukin untuk akhir mei
+
+e. di itenary waku edit categorynya ga muncl padahal dah di save family sebelumnya
+	
+
+
