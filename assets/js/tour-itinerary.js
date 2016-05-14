@@ -20,6 +20,7 @@ function getData($id){
 			$("#currencyId").val(data.mst004_id);
 			$("#price").val(data.price);
 			$("#category").val(data.category);
+			$("#category option[value='"+data.category+"']").prop('selected', true);
 			$("#min_pax").val(data.min_pax);
 			$("#start_period").val(new Date(data.start_period).toString("dd-MM-yyyy"));
 			$("#end_period").val(new Date(data.end_period).toString("dd-MM-yyyy"));

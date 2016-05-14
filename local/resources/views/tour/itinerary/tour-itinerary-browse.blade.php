@@ -37,7 +37,7 @@
 							<div class="col-md-6" style="padding:0 2.1em;">
 								<label class="control-label c-dodger-blue fa-lg fw-400">Category</label>
 								<select id="category" name="category" class="form-control br-0" required>
-									<option value="" selected></option>
+									<option value=""></option>
 									<option value="Backpacker">Backpacker</option>
 									<option value="Family">Family</option>
 									<option value="Honeymoon">Honeymoon</option>
@@ -48,7 +48,7 @@
 							<div class="col-md-6" style="padding:0 2.1em;">
 								<label class="control-label c-dodger-blue fa-lg fw-400">Currency</label>
 								<select id="currencyId" name="currencyId" class="form-control bc-java" required>
-									<option value="" selected></option>
+									<option value=""></option>
 									@foreach($currencies as $key => $value)
 										<option value="{{ $value->id }}">{{ $value->curr_name }}</option>
 									@endforeach

@@ -3,6 +3,77 @@
 
 <section class="container">
     @include('layouts.message-helper')
+	<!--Mengapa Holidayku Section-->
+	<h2 class="section-title c-java text-center"><span><i class="fa fa-check"></i> Mengapa Holidayku?</span></h2>
+	<hr class="bc-java s-title">
+	<div class="row">
+		<div class="col-md-3 col-sm-6">
+			<ul class="feat-box list-unstyled">
+				<li>
+					<h3 class="fw-700 c-java">
+						<span class="feature-no bg-java c-white">1</span>
+						Mudah
+					</h3>
+				</li>
+				<li><hr class="bc-java"></li>
+				<li>
+					<p class="text-justify c-midgrey">
+						Disini anda dapat mencari paket liburan dari berbagai vendor tour dengan mudah.
+					</p>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-3 col-sm-6">
+			<ul class="feat-box list-unstyled">
+				<li>
+					<h3 class="fw-700 c-java">
+						<span class="feature-no bg-java c-white">2</span>
+						Murah
+					</h3>
+				</li>
+				<li><hr class="bc-java"></li>
+				<li>
+					<p class="text-justify c-midgrey">
+						Tidak memerlukan tiket masuk untuk mencari tour sesuai budget anda.
+					</p>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-3 col-sm-6">
+			<ul class="feat-box list-unstyled">
+				<li>
+					<h3 class="fw-700 c-java">
+						<span class="feature-no bg-java c-white">3</span>
+						Cepat
+					</h3>
+				</li>
+				<li><hr class="bc-java"></li>
+				<li>
+					<p class="text-justify c-midgrey">
+						Holidayku memberikan layanan cepat kapanpun anda ingin mencari tour yang anda inginkan dimanapun anda berada.
+					</p>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-3 col-sm-6">
+			<ul class="feat-box list-unstyled">
+				<li>
+					<h3 class="fw-700 c-java">
+						<span class="feature-no bg-java c-white">4</span>
+						Aman
+					</h3>
+				</li>
+				<li><hr class="bc-java"></li>
+				<li>
+					<p class="text-justify c-midgrey">
+						Setiap tour yang bergabung dengan holidayku adalah tour berpengalaman dan terpercaya karena melalui verifikasi terlebih dahulu.
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--Mengapa Holidayku Section End-->
+    
     <!--Featured Destinations Section-->
     <h2 class="section-title c-dodger-blue text-center"><span><i class="fa fa-plane"></i> Featured Destinations</span></h2>
     <hr class="bc-java s-title">

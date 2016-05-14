@@ -32,7 +32,7 @@ class ProfileViewedController extends Controller {
 		
 		$tourItinerary = TourItinerary::from('TR0040 AS A')
 						->join('MST002 AS B', 'A.mst002_id', '=', 'B.id')
-						->join('MST003 AS C', 'A.mst003_id', '=', 'C.id')
+						->leftJoin('MST003 AS C', 'A.mst003_id', '=', 'C.id')
 						->join('MST004 AS D', 'A.mst004_id', '=', 'D.id')
 						->where('A.end_period', '>=', date('Y-m-d'));
 	
