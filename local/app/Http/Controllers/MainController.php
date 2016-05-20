@@ -16,6 +16,7 @@ class MainController extends Controller {
 						->join('MST002 AS B', 'A.mst002_id', '=', 'B.id')
 						->leftJoin('MST003 AS C', 'A.mst003_id', '=', 'C.id')
 						->join('MST004 AS D', 'A.mst004_id', '=', 'D.id')
+						->join('TR0010 AS E', 'A.mst001_id', '=', 'E.mst001_id')
 						->where('A.end_period', '>=', date('Y-m-d'));
 		
 		if($request->has('category')){
@@ -42,7 +43,7 @@ class MainController extends Controller {
 			$tourItinerary->where('B.id', '=', $request->cityIdSearch);
 		}
 
-		$tourItinerary = $tourItinerary->select('A.id', 'A.price', 'A.mst001_id', 'A.photo', 'A.title', 'A.category', 'D.curr_code', 'A.start_period', 'A.end_period');
+		$tourItinerary = $tourItinerary->select('A.id', 'A.price', 'A.mst001_id', 'E.tour_name', 'A.photo', 'A.title', 'A.category', 'D.curr_code', 'A.start_period', 'A.end_period');
 		$tourItinerary = $tourItinerary->paginate(config('constants.PAGINATION_MAIN'));
 
 		$countries = Country::all()->sortBy('country_name');
