@@ -1,4 +1,5 @@
 $("document").ready(function(){
+	setDataIfError();
 	setCities();
 
 	$("#countryId").change(function(e){
@@ -53,7 +54,11 @@ function setCities(){
 			data = JSON.parse(data);
 			$("#cityId").html("<option></option>");
 			$.each(data, function(k, v) {
-				$("#cityId").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
+				if($('div').hasClass('err-msg-alert') && $("#old_cityId").val() == v.id){
+					$("#cityId").append("<option value='"+v.id+"' selected='true'>"+v.city_name+"</option>");
+				} else {
+					$("#cityId").append("<option value='"+v.id+"'>"+v.city_name+"</option>");
+				}
 			});
 		}
 	},"json");
@@ -64,3 +69,29 @@ $('.input-daterange').datepicker({
 	todayHighlight: true,
 	format: "dd-mm-yyyy"
 });
+
+function setDataIfError(){
+	if($('div').hasClass('err-msg-alert')){
+		$("#title").val($("#old_title").val());
+		$("#price").val($("#old_price").val());
+		$("#min_pax").val($("#old_min_pax").val());
+		$("#start_period").val($("#old_start_period").val());
+		$("#end_period").val($("#old_end_period").val());
+		$("#description").val($("#old_description").val());
+		
+		$("#currencyId option[value='"+$("#old_currencyId").val()+"']").prop('selected', true);
+		$("#category option[value='"+$("#old_category").val()+"']").prop('selected', true);
+		$("#countryId option[value='"+$("#old_countryId").val()+"']").prop('selected', true);
+	} else {
+		$("#title").val("");
+		$("#price").val("");
+		$("#min_pax").val("");
+		$("#start_period").val("");
+		$("#end_period").val("");
+		$("#description").val("");
+		
+		$("#currencyId option[value='']").prop('selected', true);
+		$("#category option[value='']").prop('selected', true);
+		$("#countryId option[value='']").prop('selected', true);
+	}
+}

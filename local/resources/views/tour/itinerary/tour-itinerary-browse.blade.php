@@ -17,6 +17,16 @@
 					<form role="form" class="form-horizontal" action="{{ url('tour-itinerary/save') }}" method="post" enctype="multipart/form-data" data-toggle="validator">
 						<input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
 						<input type="hidden" id="id" name="id">
+						<input type="hidden" id="old_title" name="old_title" value="{{ Input::old('title') }}" >
+						<input type="hidden" id="old_category" name="old_category" value="{{ Input::old('category') }}" >
+						<input type="hidden" id="old_currencyId" name="old_currencyId" value="{{ Input::old('currencyId') }}" >
+						<input type="hidden" id="old_price" name="old_price" value="{{ Input::old('price') }}" >
+						<input type="hidden" id="old_min_pax" name="old_min_pax" value="{{ Input::old('min_pax') }}" >
+						<input type="hidden" id="old_start_period" name="old_start_period" value="{{ Input::old('start_period') }}" >
+						<input type="hidden" id="old_end_period" name="old_end_period" value="{{ Input::old('end_period') }}" >
+						<input type="hidden" id="old_countryId" name="old_countryId" value="{{ Input::old('countryId') }}" >
+						<input type="hidden" id="old_cityId" name="old_cityId" value="{{ Input::old('cityId') }}" >
+						<input type="hidden" id="old_description" name="old_description" value="{{ Input::old('description') }}" >
 						<div class="fileUpload row form-group" style="padding:0 2.1em;">
 							<div class="col-sm-8">
 								<input type="text" id="photo" class="form-control" placeholder="Photo Name" disabled>
@@ -25,7 +35,7 @@
 							<div class="col-sm-3">
 								<div class="fileUpload btn form-control bg-java bc-java c-white">
 									<span><i class="fa fa-folder"></i> Browse</span>
-									<input id="file" type="file" name="photo" class="upload" />
+									<input id="file" type="file" name="photo" class="upload" required/>
 								</div>
 							</div>
 						</div>

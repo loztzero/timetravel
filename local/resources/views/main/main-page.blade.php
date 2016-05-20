@@ -7,7 +7,7 @@
 	<h2 class="section-title c-java text-center"><span><i class="fa fa-check"></i> Mengapa Holidayku?</span></h2>
 	<hr class="bc-java s-title">
 	<div class="row">
-		<div class="col-md-3 col-sm-6">
+		<div class="col-md-4 col-sm-6">
 			<ul class="feat-box list-unstyled">
 				<li>
 					<h3 class="fw-700 c-java">
@@ -23,7 +23,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="col-md-3 col-sm-6">
+		<div class="col-md-4 col-sm-6">
 			<ul class="feat-box list-unstyled">
 				<li>
 					<h3 class="fw-700 c-java">
@@ -39,7 +39,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="col-md-3 col-sm-6">
+		<div class="col-md-4 col-sm-6">
 			<ul class="feat-box list-unstyled">
 				<li>
 					<h3 class="fw-700 c-java">
@@ -51,22 +51,6 @@
 				<li>
 					<p class="text-justify c-midgrey">
 						Holidayku memberikan layanan cepat kapanpun anda ingin mencari tour yang anda inginkan dimanapun anda berada.
-					</p>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-3 col-sm-6">
-			<ul class="feat-box list-unstyled">
-				<li>
-					<h3 class="fw-700 c-java">
-						<span class="feature-no bg-java c-white">4</span>
-						Aman
-					</h3>
-				</li>
-				<li><hr class="bc-java"></li>
-				<li>
-					<p class="text-justify c-midgrey">
-						Setiap tour yang bergabung dengan holidayku adalah tour berpengalaman dan terpercaya karena melalui verifikasi terlebih dahulu.
 					</p>
 				</li>
 			</ul>

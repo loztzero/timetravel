@@ -21,8 +21,8 @@ class TourItinerary extends Emodel {
 			'currencyId'	=> 'required',
 			'price'			=> 'required',
 			'min_pax'		=> 'required',
-			'start_period'	=> 'required|date|after:yesterday',
-			'end_period'	=> 'required|date|after:start_date',
+			'start_period'	=> 'required|date|date_format:d-m-Y|after:yesterday',
+			'end_period'	=> 'required|date|date_format:d-m-Y|after:start_period',
 			'countryId'		=> 'required',
 			'description'	=> 'required',
 		);
@@ -35,7 +35,10 @@ class TourItinerary extends Emodel {
 			'price.required'		=> 'Price harus diisi',
 			'min_pax.required'		=> 'Min pax harus diisi',
 			'start_period.required'	=> 'Start period harus diisi',
+			'start_period.date'		=> 'Start period harus diisi',
+			'end_period.date'		=> 'End period harus diisi',
 			'end_period.required'	=> 'End period harus diisi',
+			'end_period.after'		=> 'End period harus lebih besar dari start period',
 			'countryId.required'	=> 'Negara harus diisi',
 			'description.required'	=> 'Description harus diisi',
 		);
