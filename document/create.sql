@@ -5,7 +5,7 @@
 # Project name:                                                          #
 # Author:                                                                #
 # Script type:           Database creation script                        #
-# Created on:            2016-04-26 19:41                                #
+# Created on:            2016-05-23 22:29                                #
 # ---------------------------------------------------------------------- #
 
 
@@ -23,12 +23,13 @@ CREATE TABLE `TR0050` (
     `ask_date` DATE,
     `mst002_id` VARCHAR(100) NOT NULL,
     `mst003_id` VARCHAR(100) NOT NULL,
-    `period_date` DATE,
+    `departure_date` DATE,
+    `days` INTEGER(5),
     `pax` INTEGER(5) NOT NULL,
     `updated_at` TIMESTAMP NOT NULL,
     `created_at` TIMESTAMP NOT NULL,
     CONSTRAINT `PK_TR0050` PRIMARY KEY (`id`),
-    CONSTRAINT `TUC_TR0050_1` UNIQUE (`mst001_id`, `ask_date`, `mst003_id`, `mst002_id`, `period_date`)
+    CONSTRAINT `TUC_TR0050_1` UNIQUE (`mst001_id`, `ask_date`, `mst003_id`, `mst002_id`)
 )
 ENGINE=InnoDB;;
 
