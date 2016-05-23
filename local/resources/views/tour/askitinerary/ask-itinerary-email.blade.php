@@ -50,6 +50,11 @@
 		<td>{{$phone_number}}</td>
 	</tr>
 	<tr>
+		<td colspan='3'>
+			atau
+		</td>
+	</tr>
+	<tr>
 		<td>Email</td>
 		<td>:</td>
 		<td>{{$email}}</td>

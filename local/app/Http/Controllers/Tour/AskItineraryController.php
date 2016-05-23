@@ -52,7 +52,7 @@ class AskItineraryController extends Controller {
 						$message->to($user->email)->subject('Permintaan Itinerary');
 					});
 			
-			return redirect('ask-itinerary/index/'.$data['mst001_id'])->with('message', array('Data permintaan itinerary telah berhasil di buat'))
+			return redirect('ask-itinerary/index/'.$data['mst001_id'])->with('message', array('Data permintaan itinerary telah berhasil di buat dan di kirim ke tour'))
 					->withInput($askItinerary->toArray());
 		}
 	}

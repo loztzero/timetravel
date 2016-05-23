@@ -42,7 +42,7 @@ class AskItinerary extends Emodel {
 		$object->ask_date		= date('Y-m-d');
 		$object->mst002_id		= $data['countryId'];
 		$object->mst003_id		= empty($data['cityId']) ? null : $data['cityId'];
-		$object->period_date	= date('Y-m-d', strtotime($data['departure_date']));
+		$object->departure_date	= date('Y-m-d', strtotime($data['departure_date']));
 		$object->days			= $data['days'];
 		$object->pax			= $data['pax'];
 		

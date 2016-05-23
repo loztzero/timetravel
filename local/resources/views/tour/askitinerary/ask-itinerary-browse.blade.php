@@ -95,7 +95,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-md-6" style="padding:0 2.1em;">
-								<label class="control-label c-dodger-blue fa-lg fw-400">Min Pax</label>
+								<label class="control-label c-dodger-blue fa-lg fw-400">Pax</label>
 								<input id="pax" name="pax" type="number" class="form-control" min="0" data-bind="value:replyNumber" required>
 							</div>
 						</div>
