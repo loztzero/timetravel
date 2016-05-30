@@ -1,26 +1,9 @@
-a.link aktivasi blm berhasil
-
-b.kalau klik ,  Not a member yet? Please click here 
-Sorry, the page you are looking for could not be found.
-
-
-c.why us sesuai di foto line
-isinya:
-1.Mudah
-disini anda dapat mencari paket liburan
-dari berbagai vendor tour dengan mudah
-2. Murah
-tidak memerlukan tiket masuk untuk mencari tour sesuai budget anda
-3. cepat
-holidayku memberikan layanan cepat kapanpun anda ingin mencari tour 
-yang anda inginkan dimanapun anda berada
-4. aman
-setiap tour yang bergabung dengan holidayku adalah tour berpengalaman
-dan terpercaya karena melalui verifikasi terlebih dahulu.
-
-d. query di mainpage masih salah, g coba query ga muncul padahal baru masukin untuk akhir mei
-
-e. di itenary waku edit categorynya ga muncl padahal dah di save family sebelumnya
+1. coba login sebelumnya bisa,tapi pas cb login lg ga bs
+email : tjandra.tourntravel@gmail.com
+pass : Ardian1987
+sebagai vendor
+2. ask itenary
+3. mau ubah inputan itenary ga dialog, jadi ga?
 	
 
 
