@@ -8,8 +8,8 @@
 		<div class="row">
 			<div class="col-md-4 md-center">
 				<ul class="list-inline">
-					<li><a href="#" class="c-white">About Us</a></li>
-					<li><a href="#" class="c-white">FAQ</a></li>
+					<li><a href="{{ url('about-us') }}" class="c-white">About Us</a></li>
+					<li><a href="{{ url('faq') }}" class="c-white">FAQ</a></li>
 					<li><a href="#" class="c-white">Contact Us</a></li>
 				</ul>
 			</div>

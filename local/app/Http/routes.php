@@ -11,13 +11,15 @@
 |
 */
 Route::get('about-us', function(){
-	$countryList = App\Models\Country::orderBy('country_name')->lists('country_name', 'id');
-	return view('main.main-about')->with('countryList', $countryList);
+	//$countryList = App\Models\Country::orderBy('country_name')->lists('country_name', 'id');
+	$countries = App\Models\Country::all()->sortBy('country_name');
+	return view('main.main-about')->with('countries', $countries);
 });
 
 Route::get('faq', function(){
-	$countryList = App\Models\Country::orderBy('country_name')->lists('country_name', 'id');
-	return view('main.main-faq')->with('countryList', $countryList);
+	//$countryList = App\Models\Country::orderBy('country_name')->lists('country_name', 'id');
+	$countries = App\Models\Country::all()->sortBy('country_name');
+	return view('main.main-faq')->with('countries', $countries);
 });
 
 
