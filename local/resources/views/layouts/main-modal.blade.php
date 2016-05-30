@@ -61,7 +61,9 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<span>Not a member yet? Please click </span><a href="traveller-register.html" class="fw-700">here</a>
+					<span>Not a member yet? Please click </span>
+					<!-- <a href="traveller-register.html" class="fw-700">here</a> -->
+					<a href="#" data-toggle="modal" data-target="#modregister" data-dismiss="modal" class="fw-700">here</a>
 				</div>
 			</div>
 		</div>
