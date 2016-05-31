@@ -55,7 +55,7 @@
 								<label for="keep-in" class="fw-200">Biarkan saya tetap masuk</label>
 							</div>
 							<div class="col-sm-4 text-right md-center" >
-								<a href="#">Forgot Password?</a>
+								<a href="#" data-toggle="modal" data-target="#modPassword" data-dismiss="modal">Forgot Password</a>
 							</div>
 						</div>
 					</form>
@@ -108,6 +108,48 @@
 			</div>
 			<div class="modal-footer">
 				<span>Are you a vendor? Please click </span><a href="{{ url('tour-register') }}" class="fw-700">here</a>
+			</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!--Modal Reset Password-->
+	<div class="modal fade" id="modPassword" role="dialog">
+		<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>&#215;</span></button>
+				<a href="{{ url() }}"><img src="{{ url('assets/image/logo.png') }}" class="img-responsive" id="mod-logo"></a>
+				<div class="min-title text-center">
+					<hr class="bc-dodger-blue">
+					<div class="c-dodger-blue text-center"><span class="bg-white"><i class="fa fa-sign-in"></i> Forgot Password</span></div>
+				</div>
+			</div>
+			 
+			<div class="modal-body">
+				<form role="form" class="form-horizontal" action="{{ url('main/reset-password') }}" method="post">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					<div class="form-group">
+						<div class="modal-input">
+							<div class="col-xs-4">
+								<label class="c-dodger-blue"><i class="fa fa-envelope-o"></i> E-mail</label>
+							</div>
+							<div class="col-xs-8">
+								<input type="email" name="email" class="form-control" placeholder="Your e-mail address" required>
+							</div>
+						</div>
+					</div>
+					<div class="space-1"></div>
+					<div class="form-group">
+						<div class="col-sm-3 md-none"></div>
+						<div class="col-sm-6">
+							<button type="submit" class="btn btn-default bg-cinnabar"><span class="fw-700">Get New Password</span></button>
+						</div>
+						<div class="col-sm-3 md-none"></div>
+					</div>
+				</form>
 			</div>
 			</div>
 		</div>

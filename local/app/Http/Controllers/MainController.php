@@ -227,4 +227,30 @@ class MainController extends Controller {
 	
 		return $cities;
 	}
+	
+	public function postResetPassword(Request $request){
+
+		if($request->has('email')){
+			$email = $request->email;
+			$user = User::where('email', '=', $email)->first();
+			$newPassword = str_random(6);
+			if($user){
+				$user->password = Hash::make($newPassword);
+				$user->save();
+				
+				Mail::send('main.main-reset-password',
+	            	array('newPassword' => $newPassword),
+	            	function($message) use ($user, $request) {
+	                $message->to($request->email, $request->email)->subject('Your New Password');
+	            });
+				
+				Session::flash('message', array('Please check your mail for new password'));
+				return Redirect::to('main');
+			}
+		}
+
+		Session::flash('error', array('This email is not registered in our system, please register if you want become a member of holidayku.com.'));
+		return Redirect::to('main');
+
+	}
 }

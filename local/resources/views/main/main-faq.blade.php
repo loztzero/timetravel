@@ -3,10 +3,21 @@
 
 <section class="container">
     @include('layouts.message-helper')
-    <!--Mengapa Holidayku Section-->
-    
-    <!--Mengapa Holidayku Section End-->
-
+    <h2 class="section-title c-java text-center"><span><i class="fa fa-check"></i> FAQ</span></h2>
+    <ul>
+        <li>
+            Q : Berapa harga yang harus dibayarkan oleh Vendor untuk bergabung dan membuat listing di Holidayku?
+        </li>
+        <li>
+            A : Untuk membuat listing danmenjadi member di Holidaykuadalah gratis (FREE) dan berlaku sampai kapanpun
+        </li>
+        <li>
+            Q : Apa yang membedakan Holidayku dengan travel fair?
+        </li>
+        <li>
+            A : Yang membedakan adalah para Customer dapat mencari paket-paket yang diinginkan seperti pada travel fair, tapi tidak usah datang kelokasi, dan dapat diakses dimanapun
+        </li>
+    </ul>
 </section>
 @stop
 
