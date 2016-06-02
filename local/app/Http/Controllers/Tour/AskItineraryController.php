@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\TourProfile;
 use App\Models\VisitorProfile;
 use App\Models\AskItinerary;
-use App\Models\User;
+use App\User;
 use App\Models\Country;
 use App\Models\City;
 
@@ -47,10 +47,9 @@ class AskItineraryController extends Controller {
 
 			$mail = $this->setMailData($data);
 			
-			Mail::send('tour.ask-itinerary-email', $mail,
-					function($message) use ($user, $request) {
-						$message->to($user->email)->subject('Permintaan Itinerary');
-					});
+			Mail::send('tour.askitinerary.ask-itinerary-email', $mail, function($message) use ($user, $request) {
+				$message->to($user->email)->subject('Permintaan Itinerary');
+			});
 			
 			return redirect('ask-itinerary/index/'.$data['mst001_id'])->with('message', array('Data permintaan itinerary telah berhasil di buat dan di kirim ke tour'))
 					->withInput($askItinerary->toArray());
@@ -65,7 +64,7 @@ class AskItineraryController extends Controller {
 	}
 	
 	public function setMailData($data){
-		$tourProfile = TourProfile::where('mst001_id', '=', $userId)->first();
+		$tourProfile = TourProfile::where('mst001_id', '=', $data['mst001_id'])->first();
 		$visitorProfile = VisitorProfile::where('mst001_id', '=', Auth::user()->id)->first();
 		$user = User::find(Auth::user()->id);
 		$country = User::find($data['countryId']);
@@ -76,8 +75,8 @@ class AskItineraryController extends Controller {
 						'last_name' => $visitorProfile->last_name,
 						'phone_number' => $visitorProfile->phone_number,
 						'email' => $user->email,
-						'country_name' => $country->country_name,
-						'city_name' => $city->city_name,
+						'country_name' => $country["country_name"],
+						'city_name' => $city["city_name"] ? $city["city_name"] : "",
 						'departure_date' => $data['departure_date'],
 						'days' => $data['days'],
 						'pax' => $data['pax']

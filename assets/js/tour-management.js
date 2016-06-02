@@ -1,9 +1,8 @@
 function getData($id){
-	var token = '"{{ csrf_token() }}"';
 	$.ajax({
 		type: "GET",
 		url : "tour-management/data",
-		data : {'id':$id, '_token':token},
+		data : {'id':$id, '_token':'{{ csrf_token() }}'},
 		success : function(data){
 			data = JSON.parse(data);
 

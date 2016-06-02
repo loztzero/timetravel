@@ -8,11 +8,10 @@ $("document").ready(function(){
 });
 
 function getData($id){
-	var token = '"{{ csrf_token() }}"';
 	$.ajax({
 		type: "GET",
 		url : "tour-itinerary/data",
-		data : {'id':$id, '_token':token},
+		data : {'id':$id, '_token':'{{ csrf_token() }}'},
 		success : function(data){
 			data = JSON.parse(data);
 			
@@ -49,7 +48,7 @@ function setCities(){
 	$.ajax({
 		type: "GET",
 		url : "tour-itinerary/city-by-country",
-		data : {'countryId':countryId, '_token':'"{{ csrf_token() }}"'},
+		data : {'countryId':countryId, '_token':'{{ csrf_token() }}'},
 		success : function(data){
 			data = JSON.parse(data);
 			$("#cityId").html("<option></option>");

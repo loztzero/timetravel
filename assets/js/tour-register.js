@@ -16,7 +16,7 @@ function setCities(){
 	$.ajax({
 		type: "GET",
 		url : "tour-register/city-by-country",
-		data : {'countryId':countryId, '_token':'"{{ csrf_token() }}"'},
+		data : {'countryId':countryId, '_token':'{{ csrf_token() }}'},
 		success : function(data){
 			data = JSON.parse(data);
 			$("#cityId").html("<option></option>");

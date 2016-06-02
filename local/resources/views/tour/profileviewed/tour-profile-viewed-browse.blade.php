@@ -156,7 +156,7 @@
 							</div>
 							<div class="col-md-2 col-xs-6">
 								<h4 class="c-lightgrey fw-700 md-block c-java">CITY</h4>
-								<h4 class="c-lightgrey">{{ $value->city->city_name }}</h4>
+								<h4 class="c-lightgrey">{{ $value->city ? $value->city->city_name : "" }}</h4>
 							</div>
 							<div class="col-md-4">
 								<h4 class="c-lightgrey fw-700 md-block c-java">PERIODE</h4>

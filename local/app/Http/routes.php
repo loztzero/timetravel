@@ -24,7 +24,7 @@ Route::get('faq', function(){
 
 
 Route::get('password', function(){
-	echo Hash::make('bebek123');
+	echo Hash::make('Ardian1987');
 });
 
 Route::filter('auth', function($route, $request)

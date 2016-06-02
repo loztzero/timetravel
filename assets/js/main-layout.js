@@ -46,7 +46,7 @@ function setCitiesSearch(){
 	$.ajax({
 		type: "GET",
 		url : "main/city-by-country-search",
-		data : {'countryIdSearch':countryIdSearch, '_token':'"{{ csrf_token() }}"'},
+		data : {'countryIdSearch':countryIdSearch, '_token':'{{ csrf_token() }}'},
 		success : function(data){
 			data = JSON.parse(data);
 			$("#cityIdSearch").html("<option value='' selected>All City</option>");
