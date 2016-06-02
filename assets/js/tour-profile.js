@@ -10,7 +10,7 @@ $("#file").change(function() {
 });
 
 function setCities(){
-	var url = getUrl() + tour-profile/city-by-country;
+	var url = getUrl() + "tour-profile/city-by-country";
 	var countryId = $('#countryId').val();
 	
 	$.ajax({
