@@ -8,9 +8,11 @@ $("document").ready(function(){
 });
 
 function getData($id){
+	var url = getUrl() + "tour-itinerary/data";
+	
 	$.ajax({
 		type: "GET",
-		url : "tour-itinerary/data",
+		url : url,
 		data : {'id':$id, '_token':'{{ csrf_token() }}'},
 		success : function(data){
 			data = JSON.parse(data);
@@ -44,10 +46,12 @@ $("#file").change(function() {
 });
 
 function setCities(){
+	var url = getUrl() + "tour-itinerary/city-by-country";
 	var countryId = $('#countryId').val();
+	
 	$.ajax({
 		type: "GET",
-		url : "tour-itinerary/city-by-country",
+		url : url,
 		data : {'countryId':countryId, '_token':'{{ csrf_token() }}'},
 		success : function(data){
 			data = JSON.parse(data);
@@ -93,4 +97,11 @@ function setDataIfError(){
 		$("#category option[value='']").prop('selected', true);
 		$("#countryId option[value='']").prop('selected', true);
 	}
+}
+
+function getUrl(){
+	if (document.location.hostname == "localhost")
+		return "http://localhost/timetravel/";
+	else
+		return "http://" + document.location.hostname + "/";
 }

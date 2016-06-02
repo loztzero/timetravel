@@ -42,10 +42,12 @@ $(document).scroll(function() {
 });
 
 function setCitiesSearch(){
+	var url = getUrl() + "main/city-by-country-search";
 	var countryIdSearch = $('#countryIdSearch').val();
+	
 	$.ajax({
 		type: "GET",
-		url : "main/city-by-country-search",
+		url : url,
 		data : {'countryIdSearch':countryIdSearch, '_token':'{{ csrf_token() }}'},
 		success : function(data){
 			data = JSON.parse(data);
@@ -55,4 +57,11 @@ function setCitiesSearch(){
 			});
 		}
 	},"json");
+}
+
+function getUrl(){
+	if (document.location.hostname == "localhost")
+		return "http://localhost/timetravel/";
+	else
+		return "http://" + document.location.hostname + "/";
 }

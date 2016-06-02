@@ -21,7 +21,9 @@
 		<div class="container">
 			<div class="row" id="header-reg">
 				<div class="col-xs-4 padd-0">
-					<img src="{{ url('assets/image/logo.png') }}" class="img-responsive">
+					<a href="{{ url('main') }}">
+						<img src="{{ url('assets/image/logo.png') }}" class="img-responsive">
+					</a>
 				</div>
 				<div class="col-xs-8 text-right">
 					<img src="{{ url('assets/image/header-img-v.png') }}" class="img-responsive">

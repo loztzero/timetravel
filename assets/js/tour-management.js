@@ -1,7 +1,9 @@
 function getData($id){
+	var url = getUrl() + "tour-management/data";
+	
 	$.ajax({
 		type: "GET",
-		url : "tour-management/data",
+		url : url,
 		data : {'id':$id, '_token':'{{ csrf_token() }}'},
 		success : function(data){
 			data = JSON.parse(data);
@@ -18,4 +20,11 @@ function getData($id){
 			$("#city_name").val(data.city.city_name);
 		}
 	},"json");
+}
+
+function getUrl(){
+	if (document.location.hostname == "localhost")
+		return "http://localhost/timetravel/";
+	else
+		return "http://" + document.location.hostname + "/";
 }

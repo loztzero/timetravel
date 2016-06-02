@@ -12,10 +12,12 @@ $("#file").change(function() {
 });
 
 function setCities(){
+	var url = getUrl() + "tour-register/city-by-country";
 	var countryId = $('#countryId').val();
+	
 	$.ajax({
 		type: "GET",
-		url : "tour-register/city-by-country",
+		url : url,
 		data : {'countryId':countryId, '_token':'{{ csrf_token() }}'},
 		success : function(data){
 			data = JSON.parse(data);
@@ -25,4 +27,11 @@ function setCities(){
 			});
 		}
 	},"json");
+}
+
+function getUrl(){
+	if (document.location.hostname == "localhost")
+		return "http://localhost/timetravel/";
+	else
+		return "http://" + document.location.hostname + "/";
 }

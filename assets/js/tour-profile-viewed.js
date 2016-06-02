@@ -7,10 +7,12 @@ $("document").ready(function(){
 });
 
 function setCities(){
+	var url = getUrl() + "tour-profile-viewed/city-by-country";
 	var countryId = $('#countryId').val();
+	
 	$.ajax({
 		type: "GET",
-		url : "tour-profile-viewed/city-by-country",
+		url : url,
 		data : {'countryId':countryId, '_token':'{{ csrf_token() }}'},
 		success : function(data){
 			data = JSON.parse(data);
@@ -27,3 +29,10 @@ $('.input-daterange').datepicker({
 	todayHighlight: true,
 	format: "dd-mm-yyyy"
 });
+
+function getUrl(){
+	if (document.location.hostname == "localhost")
+		return "http://localhost/timetravel/";
+	else
+		return "http://" + document.location.hostname + "/";
+}
