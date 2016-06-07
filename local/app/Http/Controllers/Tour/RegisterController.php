@@ -20,18 +20,10 @@ class RegisterController extends Controller {
 
 	public function postSave(Request $request){
 		$data = $request->all();
+		$user = new User();
+		$errorBag = $user->rules($data);
 
-		$rules = array(
-				'email'      => 'required|email',
-		);
-			
-		$messages = array(
-				'email.required' => 'Your email is required',
-				'email.email' => 'Your email format must be valid',
-		);
-		
-		$v = Validator::make($request->all(), $rules, $messages );
-		if($v->fails()){
+		if(count($errorBag) > 0){
 			$error = $v->errors()->all();
 		
 			Session::flash('error', $error);
@@ -47,9 +39,7 @@ class RegisterController extends Controller {
 		DB::beginTransaction();
 		try {
 			$activatedLink = Hash::make(str_random(10));
-			$user = new User();
-			$user->email = $request->email;
-			$user->password = Hash::make($request->password);
+			$user->doParams($user, $data);
 			$user->role = 'Tour';
 			$user->activation_key = $activatedLink;
 			$user->save();

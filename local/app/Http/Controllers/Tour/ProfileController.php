@@ -4,7 +4,6 @@ use Input, Session, Redirect, Auth, File, Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\TourProfile;
-use App\User;
 use App\Models\Country;
 use App\Models\City;
 
@@ -65,10 +64,6 @@ class ProfileController extends Controller {
 				}
 			}
 			
-			if(isset($request->password)){
-				$this->saveUser($request);
-			}
-			
 			return redirect('tour-profile')->with('message', array('Data tour profile telah berhasil di buat'))
 					->withInput($tourProfile->toArray());
 		}
@@ -81,12 +76,6 @@ class ProfileController extends Controller {
 		return $cities;
 	}
 
-	private function saveUser(Request $request){
-		$user = User::find(Auth::user()->id);
-		$user->password = Hash::make($request->password);
-		$user->save();
-	}
-	
 	private function getPath(){
 		return './'.config('constants.TOUR_ALBUM').Auth::user()->id;
 	}

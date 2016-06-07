@@ -64,9 +64,6 @@
                     <div class="col-sm-6">
                         <label class="control-label c-java"> E-mail</label>
                         <input type="email" class="form-control br-0 input-lg" placeholder="john-doe@example.com" value="{{ Auth::user()->email }}" readonly>
-                        <div class="space-1"></div>
-                        <label class="control-label c-java"> Password</label>
-                        <input type="password" class="form-control input-lg br-0" name="password">
                     </div>
                 </div>
                 <div class="space-1"></div>

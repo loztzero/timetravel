@@ -35,10 +35,7 @@
 						</div>
 						<div class="col-sm-6">
 							<label class="control-label c-persimmon"> E-mail</label>
-							<input id="email" name="email" type="email" class="form-control br-0 input-lg" placeholder="john-doe@example.com" value="{{ Auth::user()->email }}" disabled>
-							<div class="space-1"></div>
-							<label class="control-label c-persimmon"> Password</label>
-							<input id="password" name="password" type="password" class="form-control input-lg br-0">
+							<input id="email" name="email" type="email" class="form-control br-0" placeholder="john-doe@example.com" value="{{ Auth::user()->email }}" disabled>
 						</div>
 					</div>
 					<div class="space-1"></div>
@@ -46,36 +43,36 @@
 					<div class="form-group">
 						<div class="col-sm-6">
 							<label class="control-label c-persimmon">First name</label>
-							<input id="first_name" name="first_name" type="text" class="form-control input-lg br-0" placeholder="John" value="{{ Input::old('first_name', $tourProfile != null ? $tourProfile->first_name : '') }}" required>
+							<input id="first_name" name="first_name" type="text" class="form-control br-0" placeholder="John" value="{{ Input::old('first_name', $tourProfile != null ? $tourProfile->first_name : '') }}" required>
 						</div>
 						<div class="col-sm-6">
 							<label class="control-label c-persimmon">Last name</label>
-							<input id="last_name" name="last_name" type="text" class="form-control input-lg br-0" placeholder="Doe" value="{{ Input::old('last_name', $tourProfile != null ? $tourProfile->last_name : '') }}" required>
+							<input id="last_name" name="last_name" type="text" class="form-control br-0" placeholder="Doe" value="{{ Input::old('last_name', $tourProfile != null ? $tourProfile->last_name : '') }}" required>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-6">
 							<label class="control-label c-persimmon">Tour Name</label>
-							<input id="tour_name" name="tour_name" type="text" class="form-control input-lg br-0" placeholder="Everyday Tour" value="{{ Input::old('tour_name', $tourProfile != null ? $tourProfile->tour_name : '') }}" required>
+							<input id="tour_name" name="tour_name" type="text" class="form-control br-0" placeholder="Everyday Tour" value="{{ Input::old('tour_name', $tourProfile != null ? $tourProfile->tour_name : '') }}" required>
 						</div>
 						<div class="col-sm-6">
 							<label class="control-label c-persimmon">Phone number</label>
-							<input id="phone_number" name="phone_number" type="tel" class="form-control input-lg br-0" placeholder="e.g. +628711000" value="{{ Input::old('phone_number', $tourProfile != null ? $tourProfile->phone_number : '') }}" required>
+							<input id="phone_number" name="phone_number" type="tel" class="form-control br-0" placeholder="e.g. +628711000" value="{{ Input::old('phone_number', $tourProfile != null ? $tourProfile->phone_number : '') }}" required>
 						</div>
 					</div>
 					<div class="space-1"></div>
 					<div class="form-group">
 						<div class="col-sm-12">
 							<label class="control-label c-persimmon">Address</label>
-							<input id="address1" name="address1" type="text" class="form-control input-lg br-0" placeholder="Address line 1" value="{{ Input::old('address1', $tourProfile != null ? $tourProfile->address1 : '') }}" required><br>
-							<input id="address2" name="address2" type="text" class="form-control input-lg br-0" placeholder="Address line 2" value="{{ Input::old('address2', $tourProfile != null ? $tourProfile->address2 : '') }}"><br>
-							<input id="address3" name="address3" type="text" class="form-control input-lg br-0" placeholder="Address line 3" value="{{ Input::old('address3', $tourProfile != null ? $tourProfile->address3 : '') }}">
+							<input id="address1" name="address1" type="text" class="form-control br-0" placeholder="Address line 1" value="{{ Input::old('address1', $tourProfile != null ? $tourProfile->address1 : '') }}" required><br>
+							<input id="address2" name="address2" type="text" class="form-control br-0" placeholder="Address line 2" value="{{ Input::old('address2', $tourProfile != null ? $tourProfile->address2 : '') }}"><br>
+							<input id="address3" name="address3" type="text" class="form-control br-0" placeholder="Address line 3" value="{{ Input::old('address3', $tourProfile != null ? $tourProfile->address3 : '') }}">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-6">
 							<label class="control-label c-persimmon">Zip Code</label>
-							<input id="zip_code" name="zip_code" type="text" class="form-control input-lg br-0" placeholder="Zip Code/Postal Code" value="{{ Input::old('zip_code', $tourProfile != null ? $tourProfile->zip_code : '') }}" min="0" data-bind="value:replyNumber" required>
+							<input id="zip_code" name="zip_code" type="text" class="form-control br-0" placeholder="Zip Code/Postal Code" value="{{ Input::old('zip_code', $tourProfile != null ? $tourProfile->zip_code : '') }}" min="0" data-bind="value:replyNumber" required>
 						</div>
 					</div>
 					<div class="form-group">

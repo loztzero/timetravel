@@ -67,19 +67,30 @@ class AskItineraryController extends Controller {
 		$tourProfile = TourProfile::where('mst001_id', '=', $data['mst001_id'])->first();
 		$visitorProfile = VisitorProfile::where('mst001_id', '=', Auth::user()->id)->first();
 		$user = User::find(Auth::user()->id);
-		$country = User::find($data['countryId']);
-		$city = User::find($data['cityId']);
+		$country = Country::find($data['countryId']);
+		$city = City::find($data['cityId']);
 		
-		return array(	'tour_name' => $tourProfile->tour_name,
-						'first_name' => $visitorProfile->first_name,
-						'last_name' => $visitorProfile->last_name,
-						'phone_number' => $visitorProfile->phone_number,
-						'email' => $user->email,
-						'country_name' => $country["country_name"],
-						'city_name' => $city["city_name"] ? $city["city_name"] : "",
-						'departure_date' => $data['departure_date'],
-						'days' => $data['days'],
-						'pax' => $data['pax']
+		$tourName = $tourProfile->tour_name;
+		$firstName = $visitorProfile->first_name;
+		$lastName = $visitorProfile->last_name;
+		$phoneNumber = $visitorProfile->phone_number;
+		$email = $user->email;
+		$countryName = $country->country_name;
+		$cityName = $city == null ? "" : $city->city_name;
+		$departureDate = $data['departure_date'];
+		$days = $data['days'];
+		$pax = $data['pax'];
+		
+		return array(	'tour_name' => $tourName,
+						'first_name' => $firstName,
+						'last_name' => $lastName,
+						'phone_number' => $phoneNumber,
+						'email' => $email,
+						'country_name' => $countryName,
+						'city_name' => $cityName,
+						'departure_date' => $departureDate,
+						'days' => $days,
+						'pax' => $pax
 		);
 	}
 }

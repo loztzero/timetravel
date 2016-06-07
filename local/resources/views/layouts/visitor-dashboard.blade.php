@@ -5,5 +5,6 @@
         <li class="p-05 {{ Request::segment(1) == 'visitor-favourite-tour' ? 'active' : '' }}"><a href="{{ url('visitor-favorite-tour') }}" class="c-lightgrey"><i class="fa fa-heart"></i> My Favourite Tour</a></li>
         <li class="p-05 {{ Request::segment(1) == 'visitor-itenary' ? 'active' : '' }}"><a href="{{ url('visitor-itenary') }}" class="c-lightgrey"><i class="fa fa-map"></i> My Itinerary</a></li>
         <li class="p-05 {{ Request::segment(1) == 'visitor-journey' ? 'active' : '' }}"><a href="{{ url('visitor-journey') }}" class="c-lightgrey"><i class="fa fa-location-arrow"></i> My Journey</a></li> 
+        <li class="p-05 {{ Request::segment(1) == 'change-password' ? 'active' : '' }}"><a href="{{ url('change-password') }}" class="c-lightgrey"><i class="fa fa-edit"></i> Change Password</a></li> 
     </ul>
 </div>

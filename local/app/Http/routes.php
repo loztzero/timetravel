@@ -78,6 +78,8 @@ Route::group(array('before' => 'auth'), function(){
 	Route::group(array('before' => 'isAdmin'), function(){
 		Route::controller('tour-management', 'Admin\TourManagementController');
 	});
+	
+	Route::controller('change-password', 'Auth\ChangePasswordController');
 });
 
 Route::controllers([

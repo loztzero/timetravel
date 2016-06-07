@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Validator;
+use Validator, Hash;
 class User extends Emodel implements AuthenticatableContract, CanResetPasswordContract
 {
     use Authenticatable, CanResetPassword;
@@ -60,9 +60,9 @@ class User extends Emodel implements AuthenticatableContract, CanResetPasswordCo
 
     public function doParams($object, $data)
     {
-        $user->password = Hash::make($data['password']);
-        $user->email = $data['email'];
-        $user->role = $data['role'];
+        $object->email = $data['email'];
+        $object->password = Hash::make($data['password']);
+        
         return $object;
     }
 	

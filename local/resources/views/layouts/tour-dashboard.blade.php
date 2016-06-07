@@ -30,5 +30,11 @@
 				My Album
 			</a>
 		</li>
+		<li class="p-05 {{ Request::segment(1) == 'change-password' ? 'active vendor' : '' }}">
+			<a href="{{ url('change-password') }}" class="c-lightgrey">
+				<i class="fa fa-edit"></i>
+				Change Password
+			</a>
+		</li>
 	</ul>
 </div>
