@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers\Auth;
 
-use Input, Session, Redirect, Auth, File;
+use Input, Session, Redirect, Auth, File, Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;

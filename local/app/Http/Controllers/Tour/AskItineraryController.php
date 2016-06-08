@@ -71,9 +71,9 @@ class AskItineraryController extends Controller {
 		$city = City::find($data['cityId']);
 		
 		$tourName = $tourProfile->tour_name;
-		$firstName = $visitorProfile->first_name;
-		$lastName = $visitorProfile->last_name;
-		$phoneNumber = $visitorProfile->phone_number;
+		$firstName = $visitorProfile == null ? "" : $visitorProfile->first_name;
+		$lastName = $visitorProfile == null ? "" : $visitorProfile->last_name;
+		$phoneNumber = $visitorProfile == null ? "" : $visitorProfile->phone_number;
 		$email = $user->email;
 		$countryName = $country->country_name;
 		$cityName = $city == null ? "" : $city->city_name;
