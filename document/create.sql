@@ -5,7 +5,7 @@
 # Project name:                                                          #
 # Author:                                                                #
 # Script type:           Database creation script                        #
-# Created on:            2016-06-16 20:28                                #
+# Created on:            2016-06-16 20:42                                #
 # ---------------------------------------------------------------------- #
 
 
@@ -22,7 +22,11 @@ CREATE TABLE `MST001` (
     `email` VARCHAR(40) NOT NULL COMMENT 'Email user, sebagai user code',
     `password` VARCHAR(100) NOT NULL,
     `role` VARCHAR(40) NOT NULL COMMENT 'Role : user/admin',
-    `remembered_token` VARCHAR(100) NOT NULL,
+    `provider` VARCHAR(20),
+    `provider_id` VARCHAR(50),
+    `remember_token` VARCHAR(100) NOT NULL,
+    `status` VARCHAR(10) NOT NULL,
+    `activation_key` VARCHAR(100) NOT NULL,
     `updated_at` TIMESTAMP NOT NULL,
     `created_at` TIMESTAMP NOT NULL,
     CONSTRAINT `PK_MST001` PRIMARY KEY (`id`),
@@ -173,8 +177,8 @@ CREATE TABLE `VST001` (
     `address1` VARCHAR(100) NOT NULL,
     `address2` VARCHAR(100),
     `address3` VARCHAR(100),
-    `mst002_id` VARCHAR(100) NOT NULL,
-    `mst003_id` VARCHAR(100) NOT NULL,
+    `country` VARCHAR(100) NOT NULL,
+    `city` VARCHAR(100) NOT NULL,
     `zip_code` VARCHAR(15),
     `phone_number` VARCHAR(40) NOT NULL,
     `photo` VARCHAR(100),
@@ -306,10 +310,10 @@ ALTER TABLE `VST001` ADD CONSTRAINT `MST001_VST001`
     FOREIGN KEY (`mst001_id`) REFERENCES `MST001` (`id`);
 
 ALTER TABLE `VST001` ADD CONSTRAINT `MST002_VST001` 
-    FOREIGN KEY (`mst002_id`) REFERENCES `MST002` (`id`);
+    FOREIGN KEY (`country`) REFERENCES `MST002` (`id`);
 
 ALTER TABLE `VST001` ADD CONSTRAINT `MST003_VST001` 
-    FOREIGN KEY (`mst003_id`) REFERENCES `MST003` (`id`);
+    FOREIGN KEY (`city`) REFERENCES `MST003` (`id`);
 
 ALTER TABLE `TR0010` ADD CONSTRAINT `MST001_TR0010` 
     FOREIGN KEY (`mst001_id`) REFERENCES `MST001` (`id`);
