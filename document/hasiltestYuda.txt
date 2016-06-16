@@ -1,7 +1,4 @@
-1. coba login sebelumnya bisa,tapi pas cb login lg ga bs
-email : tjandra.tourntravel@gmail.com
-pass : Ardian1987
-sebagai vendor
+
 2. ask itenary
 3. mau ubah inputan itenary ga dialog, jadi ga?
 	
